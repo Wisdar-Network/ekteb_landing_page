@@ -18,6 +18,16 @@ export const LOCALES = {
 export const LOCALE_CODES = Object.keys(LOCALES)
 export const DEFAULT_LOCALE = 'ar'
 
+/**
+ * Where a visitor lands when their browser asks for a language this site does
+ * not publish. Deliberately not DEFAULT_LOCALE: Arabic is the primary market
+ * and the master copy, but someone whose browser is set to French or Spanish
+ * reads English far more often than Arabic, so an unmatched header is answered
+ * in English. Changing this must also move the `x-default` hreflang in
+ * routes/pages.js — that tag *is* the declaration of this behaviour.
+ */
+export const FALLBACK_LOCALE = 'en'
+
 // Per-key fallback chain: a missing tr key falls through to en, then ar, so a
 // half-finished translation never renders an empty heading.
 const FALLBACKS = { ar: [], en: ['ar'], tr: ['en', 'ar'] }
@@ -55,7 +65,8 @@ export const isLocale = (v) => Object.hasOwn(LOCALES, v)
 /**
  * Pick a locale from an Accept-Language header. Matches the primary subtag so
  * `tr-TR`, `ar-SA`, and `en-GB` all land on a supported locale; falls back to
- * DEFAULT_LOCALE when nothing matches.
+ * FALLBACK_LOCALE when nothing matches, when the header is absent, or when it
+ * is a bare `*`.
  */
 export function negotiate(header = '') {
   const ranked = String(header)
@@ -65,14 +76,17 @@ export function negotiate(header = '') {
       const q = params.find((p) => p.trim().startsWith('q='))
       return { tag: tag.trim().toLowerCase(), q: q ? Number.parseFloat(q.split('=')[1]) || 0 : 1 }
     })
-    .filter((x) => x.tag)
+    // q=0 is not a weak preference, it is a refusal: `fr, ar;q=0` means the
+    // visitor would rather have anything than Arabic. Ranking it last would
+    // still hand it to them once nothing better matched.
+    .filter((x) => x.tag && x.q > 0)
     .sort((a, b) => b.q - a.q)
 
   for (const { tag } of ranked) {
     const primary = tag.split('-')[0]
     if (isLocale(primary)) return primary
   }
-  return DEFAULT_LOCALE
+  return FALLBACK_LOCALE
 }
 
 /** Every locale's URL for this page — used for hreflang and the switcher. */

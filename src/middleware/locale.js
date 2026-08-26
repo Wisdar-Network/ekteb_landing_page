@@ -1,16 +1,16 @@
-import { DEFAULT_LOCALE, isLocale, negotiate } from '../i18n.js'
+import { FALLBACK_LOCALE, isLocale, negotiate } from '../i18n.js'
 
 export const LANG_COOKIE = 'ekteb-lang'
 const COOKIE_MAX_AGE = 365 * 24 * 60 * 60 * 1000
 
 /**
  * Resolve which locale a bare `/` visitor should land on: an explicit prior
- * choice beats the browser's preference, which beats the site default.
+ * choice beats the browser's preference, which beats English.
  */
 export function pickLocale(req) {
   const cookie = req.cookies?.[LANG_COOKIE]
   if (isLocale(cookie)) return cookie
-  return negotiate(req.headers['accept-language']) || DEFAULT_LOCALE
+  return negotiate(req.headers['accept-language']) || FALLBACK_LOCALE
 }
 
 /**

@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { config } from '../config.js'
-import { LOCALES, LOCALE_CODES, DEFAULT_LOCALE, alternates, isLocale, t } from '../i18n.js'
+import { LOCALES, LOCALE_CODES, DEFAULT_LOCALE, FALLBACK_LOCALE, alternates, isLocale, t } from '../i18n.js'
 import { pickLocale, rememberLocale, varyOnLanguage } from '../middleware/locale.js'
 import {
   structuredData,
@@ -23,6 +23,10 @@ function view(locale, extra = {}) {
     siteUrl: config.siteUrl,
     appUrl: config.appUrl,
     canonical: `${config.siteUrl}/${locale}`,
+    // Derived, not written into the template: x-default names the page an
+    // unmatched visitor gets, so it has to follow pickLocale() rather than sit
+    // as a hardcoded /ar in the head.
+    xDefault: `${config.siteUrl}/${FALLBACK_LOCALE}`,
     ogImage: `${config.siteUrl}/media/og/og.png`,
     ...extra,
   }
@@ -85,7 +89,11 @@ pagesRouter.get('/sitemap.xml', (_req, res) => {
       `    <changefreq>weekly</changefreq>`,
       `    <priority>${code === DEFAULT_LOCALE ? '1.0' : '0.9'}</priority>`,
       links,
-      `    <xhtml:link rel="alternate" hreflang="x-default" href="${config.siteUrl}/${DEFAULT_LOCALE}"/>`,
+      // x-default is not "the main language" — it is the page served to a
+      // visitor whose language matches nothing, which is exactly what
+      // pickLocale() does. The two must name the same locale or the sitemap
+      // tells crawlers something the server does not do.
+      `    <xhtml:link rel="alternate" hreflang="x-default" href="${config.siteUrl}/${FALLBACK_LOCALE}"/>`,
       `  </url>`,
     ].join('\n')
   }).join('\n')

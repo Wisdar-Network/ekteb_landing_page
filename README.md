@@ -64,6 +64,35 @@ node -e "const f=require('fs');const w=(o,p='')=>Object.entries(o).flatMap(([k,v
 A key missing from `tr.json` falls back to `en.json`, then `ar.json` — the page
 never renders a blank.
 
+### Which language a visitor gets
+
+`GET /` is a 302, never a page. It resolves in this order:
+
+1. **The `ekteb-lang` cookie**, if the visitor has already picked a language
+   from the switcher — an explicit choice outranks anything the browser says.
+2. **`Accept-Language`**, matched on the primary subtag, so `ar-SA`, `en-GB`
+   and `tr-TR` all land on a supported locale. Quality values are honoured, and
+   `q=0` is treated as a refusal rather than a weak preference.
+3. **English** — `FALLBACK_LOCALE` in [src/i18n.js](src/i18n.js). A browser set
+   to French, German, or Chinese gets `/en`, and so does a request with no
+   `Accept-Language` header at all.
+
+That last step is deliberately *not* `DEFAULT_LOCALE`. Arabic is the primary
+market and the master copy, but someone whose browser is set to a language this
+site does not publish reads English far more often than Arabic. The two
+constants are separate on purpose: `DEFAULT_LOCALE` still drives the sitemap
+priority, the 404 page, and the per-key fallback chain.
+
+If you change `FALLBACK_LOCALE`, the `x-default` hreflang follows it
+automatically — in the page head and in `sitemap.xml`. That tag means "the page
+served to a visitor who matches nothing", so it has to name whatever the
+redirect actually does; a hardcoded value would tell crawlers one thing while
+the server did another.
+
+The response carries `Vary: Accept-Language, Cookie`, and the cookie is written
+only when it changes — a `Set-Cookie` on every view makes most CDNs refuse to
+cache the page.
+
 ### Adding a fourth language
 
 1. Add `locales/xx.json`

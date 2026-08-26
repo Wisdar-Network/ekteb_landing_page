@@ -66,8 +66,13 @@ stylesheet uses logical properties throughout and direction comes from
 
 `src/server.js` boots i18n and the mailer, then mounts `/api` before `/`.
 
-- `GET /` → 302 to a negotiated locale (cookie → `Accept-Language` → `ar`),
-  with `Vary: Accept-Language, Cookie`.
+- `GET /` → 302 to a negotiated locale (cookie → `Accept-Language` → `en`),
+  with `Vary: Accept-Language, Cookie`. The last step is `FALLBACK_LOCALE`, not
+  `DEFAULT_LOCALE`: an unmatched browser language gets English, while Arabic
+  stays the site default for the sitemap priority, the 404 page, and the
+  per-key fallback chain. `x-default` is derived from `FALLBACK_LOCALE` in both
+  the page head and the sitemap — it declares exactly this redirect, so it must
+  never be hardcoded back to a locale.
 - `GET /:locale` → renders `index.njk`. Unknown locale falls through to 404.
 - `GET /funnel/:locale` → the scroll animation as a standalone document.
 - `robots.txt`, `sitemap.xml`, `llms.txt`, `llms-full.txt` are all generated
