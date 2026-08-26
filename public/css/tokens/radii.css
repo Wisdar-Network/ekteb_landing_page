@@ -1,0 +1,6 @@
+:root{
+--radius-none:0;--radius-xs:4px;--radius-sm:6px;--radius-md:8px;--radius-lg:10px;--radius-xl:12px;--radius-2xl:16px;--radius-pill:999px;--radius-circle:50%;
+/* Semantic */
+--radius-button:6px;--radius-field:6px;--radius-badge:6px;--radius-chip:999px;--radius-card:10px;--radius-panel:12px;--radius-modal:16px;--radius-thumb:8px;--radius-avatar:50%;
+--border-width:1px;--border-width-thick:1.5px;--focus-ring-width:3px;
+}

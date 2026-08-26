@@ -1,0 +1,35 @@
+<a class="skip" href="#feedsec">{{ t.skip }}</a>
+<header class="hdr" id="hdr" data-solid="0">
+<div class="wrap-wide hdr-in">
+<a class="hdr-logo" href="#top" aria-label="{{ t.nav.ariaHome }}"><img class="lg-l" src="/media/logo-light.svg" alt="{{ t.meta.siteName }}" width="96" height="27"><img class="lg-d" src="/media/logo.svg" alt="" width="96" height="27"></a>
+<nav class="nav" aria-label="{{ t.nav.ariaMain }}">
+<a href="#feedsec">{{ t.nav.feed }}</a>
+<a href="#steps">{{ t.nav.how }}</a>
+<a href="#editorfeat">{{ t.nav.features }}</a>
+<a href="#usecases">{{ t.nav.usecases }}</a>
+<a href="#faqb">{{ t.nav.faq }}</a>
+</nav>
+<div class="hdr-cta">
+{% include "partials/lang-switch.njk" %}
+<a class="btn btn-p btn-sm" href="#contact">{{ t.nav.contact }}</a>
+<button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="{{ t.nav.ariaMenu }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div>
+</div>
+<div class="mnav" id="mnav" data-open="0">
+<div class="wrap">
+<ul>
+<li><a href="#feedsec">{{ t.nav.feed }}</a></li>
+<li><a href="#steps">{{ t.nav.how }}</a></li>
+<li><a href="#editorfeat">{{ t.nav.features }}</a></li>
+<li><a href="#usecases">{{ t.nav.usecases }}</a></li>
+<li><a href="#problem">{{ t.nav.problem }}</a></li>
+<li><a href="#faqb">{{ t.nav.faq }}</a></li>
+<li><a href="{{ appUrl }}">{{ t.nav.login }}</a></li>
+</ul>
+<a class="btn btn-p" href="#contact">{{ t.nav.contact }}</a>
+<ul class="langsw-inline">
+{% for alt in locales %}<li><a href="/{{ alt.code }}" lang="{{ alt.htmlLang }}" hreflang="{{ alt.htmlLang }}"{% if alt.code == locale %} aria-current="true"{% endif %}>{{ alt.label }}</a></li>
+{% endfor %}</ul>
+</div>
+</div>
+</header>

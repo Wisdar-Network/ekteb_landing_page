@@ -1,0 +1,21 @@
+<section class="sec sec-soft" id="usecases" aria-labelledby="usecases-h">
+<div class="wrap">
+<div class="hiw-head rv">
+<span class="eyebrow">{{ t.usecases.eyebrow }}</span>
+<h2 id="usecases-h">{{ t.usecases.h2_html | safe }}</h2>
+<p class="lead">{{ t.usecases.lead }}</p>
+</div>
+<div class="uc-grid rv">
+{# Each card carries its own icon and accent colour, so the markup stays
+   explicit and only the copy comes from the locale file. #}
+<article class="uc-card"><span class="badge" style="background:var(--ek-purple-t);color:var(--ek-purple)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c3-1.3 6-1.3 9 0v14c-3-1.3-6-1.3-9 0Z"/><path d="M22 5c-3-1.3-6-1.3-9 0v14c3-1.3 6-1.3 9 0Z"/></svg></span><h3>{{ t.usecases.items[0].h3 }}</h3><p class="body-sm">{{ t.usecases.items[0].p }}</p></article>
+
+<article class="uc-card"><span class="badge" style="background:var(--ek-info-bg);color:var(--ek-info)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2.5"/><path d="m22 8-6 4 6 4z"/></svg></span><h3>{{ t.usecases.items[1].h3 }}</h3><p class="body-sm">{{ t.usecases.items[1].p }}</p></article>
+
+<article class="uc-card"><span class="badge" style="background:var(--ek-ok-bg);color:var(--ek-ok)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M17 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3>{{ t.usecases.items[2].h3 }}</h3><p class="body-sm">{{ t.usecases.items[2].p }}</p></article>
+
+<article class="uc-card"><span class="badge" style="background:var(--ek-warn-bg);color:var(--ek-warn)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span><h3>{{ t.usecases.items[3].h3 }}</h3><p class="body-sm">{{ t.usecases.items[3].p }}</p></article>
+
+</div>
+</div>
+</section>

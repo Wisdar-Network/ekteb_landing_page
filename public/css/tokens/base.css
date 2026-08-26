@@ -1,0 +1,11 @@
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font:var(--type-body);color:var(--text-body);background:var(--surface-page);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+[dir="rtl"] body,body[dir="rtl"],.ekteb-rtl{font-family:var(--font-arabic)}
+h1,h2,h3,h4,h5,h6{margin:0;color:var(--text-strong)}
+p{margin:0;text-wrap:pretty}
+a{color:var(--text-link);text-decoration:none;transition:var(--transition-control)}
+a:hover{color:var(--text-link-hover);text-decoration:underline;text-underline-offset:3px}
+button{font-family:inherit}
+:focus-visible{outline:none;box-shadow:var(--ring-brand)}
+img{display:block;max-width:100%}
+::selection{background:var(--purple-100);color:var(--purple-900)}

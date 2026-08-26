@@ -1,0 +1,29 @@
+{
+  "name": "ekteb-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ekteb marketing site — Express + Nunjucks, trilingual (ar/en/tr)",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "build:css": "node scripts/build-css.mjs",
+    "build:og": "node scripts/build-og.mjs",
+    "build": "npm run build:css && npm run build:og",
+    "prestart": "npm run build",
+    "predev": "npm run build"
+  },
+  "dependencies": {
+    "compression": "^1.8.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "nunjucks": "^3.2.4",
+    "zod": "^3.25.0"
+  }
+}

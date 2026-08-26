@@ -1,0 +1,302 @@
+{
+  "meta": {
+    "title": "Ekteb | Keşiften yayına, tek platformda",
+    "description": "Yayınlanmayı hak edeni bulun; çevrilmiş, markanıza uygun ve her kanala hazır içeriğe dönüştürün.",
+    "ogTitle": "Ekteb — içerik ekipleri için işletim sistemi",
+    "siteName": "Ekteb"
+  },
+  "skip": "İçeriğe geç",
+  "nav": {
+    "feed": "Görsel akış",
+    "how": "Nasıl çalışır",
+    "features": "Özellikler",
+    "usecases": "Kullanım alanları",
+    "problem": "Sorun",
+    "faq": "SSS",
+    "login": "Giriş yap",
+    "contact": "Bize ulaşın",
+    "ariaMain": "Ana gezinme",
+    "ariaMenu": "Menü",
+    "ariaHome": "Ekteb — ana sayfa",
+    "ariaLang": "Dili değiştir"
+  },
+  "hero": {
+    "eyebrow": "Ekteb",
+    "line1": "Dijital içeriği üretmek, yönetmek ve",
+    "line2": "büyük ölçekte yayınlamak için tek platform",
+    "lead": "Daha hızlı üretim. Daha düşük maliyet. Tek elden yönetim.",
+    "ctaPrimary": "Hemen başlayın",
+    "ctaSecondary": "Nasıl çalıştığını görün"
+  },
+  "problem": {
+    "eyebrow": "Sorun",
+    "h2_html": "İçerik ekipleri neden<br>Ekteb'i seçiyor",
+    "lead": "Ekteb, günlük işin yavaş ve el emeği gerektiren kısımlarını ortadan kaldırır; ekibiniz kaliteden ödün vermeden daha çok ve daha hızlı yayın yapar.",
+    "vs": "VS",
+    "bad": {
+      "title": "Elle yapılan işler",
+      "sub": "Kaynakları izlemek, çeviri yapmak ve her platform için ayrı sürüm hazırlamak ekibinizin her gün saatlerini alıyor.",
+      "items": [
+        "Her saat onlarca kaynağı elle kontrol etmek",
+        "Her videoyu elle deşifre edip çevirmek",
+        "Her platform için ayrı kurgu ve en boy oranı hazırlamak",
+        "Yayınlanan her video için saatler süren iş"
+      ],
+      "note": "Rutin işler ekibinizin gününü yiyor. Bu zamanı daha çok içerik üretmeye ayırın."
+    },
+    "good": {
+      "title": "Ekteb ile",
+      "sub": "Bir video yükleyin ya da görsel akıştan seçin; dakikalar içinde yayına hazır bir kurgu alın.",
+      "items": [
+        "Ekteb kaynaklarınızı izler ve önemli olanı anında bildirir",
+        "Yüksek doğrulukta otomatik deşifre ve çeviri",
+        "Her platform için doğru boyut ve markayla otomatik dışa aktarım",
+        "Ham görüntüden yayınlanmış videoya dakikalar içinde"
+      ],
+      "cta": "Hemen başlayın"
+    },
+    "outcome_html": "<b>Sonuç:</b> daha küçük bir ekip, daha hızlı teslim, tüm hesaplarda daha az hata ve daha düşük maliyet."
+  },
+  "steps": {
+    "eyebrow": "Nasıl çalışır",
+    "h2": "Ham görüntüden yayına hazır içeriğe üç adımda.",
+    "cta": "Hemen başlayın",
+    "c1": {
+      "feedTitle": "Yıllık gösteride hava akrobasisi",
+      "feedMeta": "Görsel akış · 12 dk önce",
+      "pick": "Seç",
+      "add": "Ekle",
+      "setLang": "Arapça",
+      "setBrand": "Kanal markası",
+      "h3_html": "Bir video yükleyin ya da<br>görsel akışa göz atın",
+      "p": "Bir dosyadan, bir bağlantıdan ya da akıştan seçtiğiniz bir içerikten başlayın; sonra dili, en boy oranını ve markayı ayarlayın."
+    },
+    "c2": {
+      "t1": "Deşifre ve çeviri…",
+      "t2": "Yüzler tanınıyor…",
+      "t3": "Kurgu ve marka uygulaması…",
+      "cap": "Kanal markasıyla altyazı",
+      "h3_html": "Yapay zekâ sizin yerinize<br>çalışsın",
+      "p": "Ekteb deşifre eder, çevirir, kurgular ve markanızı uygular; ardından düzenleyebileceğiniz ya da olduğu gibi yayınlayabileceğiniz bir video verir."
+    },
+    "c3": {
+      "cap": "Yarın 9:00'a planlandı",
+      "h3_html": "Çıktılarınızı alın,<br>yayınlayın ya da planlayın",
+      "p": "Çıktıları indirin, doğrudan kanallarınıza gönderin ya da her platform için doğru boyutta yayın planlayın."
+    }
+  },
+  "feed": {
+    "eyebrow": "Görsel akış",
+    "h2": "Yayınlanmayı hak edeni bulun. Dakikalar içinde hazır içeriğe dönüştürün.",
+    "lead": "Ekteb 1.500'den fazla hesap ve kaynağı izler, ekibinizin önemli olanı seçmesine yardım eder, ardından içeriği çevrilmiş, markanıza uygun ve her kanala hazır bir videoya dönüştürür.",
+    "iframeTitle": "Keşiften yayına"
+  },
+  "features": {
+    "eyebrow": "Özellikler",
+    "h2_html": "Video düzenlemenin daha akıllı yolu,<br>her zamankinden hızlı.",
+    "lead": "Ekteb yavaş, el emeği gerektiren işleri üstlenir; siz kaliteden ödün vermeden daha çok üretir ve yayınlarsınız.",
+    "f1": {
+      "h3": "Tam işleme, tam kontrol",
+      "p": "Kesme, kırpma, yeniden çerçeveleme, yakınlaştırma, bulanıklaştırma, altyazı, şablon, ses ve kapak — hepsi tarayıcıda çalışan bir editörde. Yapay zekânın önerilerini kullanın ya da onaylamadan önce her ayrıntıyı elle düzenleyin.",
+      "winTitle": "Ekteb editörü",
+      "laneSubs": "Altyazılar",
+      "laneFaces": "Yüzler",
+      "laneBlur": "Bulanıklık",
+      "laneAudio": "Ses"
+    },
+    "f2": {
+      "h3": "Hassas deşifre, 30+ dilde çeviri",
+      "p": "Kimin ne zaman konuştuğunu bilir ve metni konuşmacılara göre otomatik ayırır — birinin saatlerce deşifre edip etiketlemesi yerine. Kaynak ve çeviri zaman çizelgesinde yan yana durur; altyazılar markanıza uygun biçimlendirilerek izlenme tamamlama oranını yükseltir.",
+      "srcLabel": "Kaynak",
+      "trLabel": "Çeviri",
+      "srcDir": "ltr",
+      "trDir": "ltr",
+      "demo1Src": "Multi-language subtitles",
+      "demo1Tr": "Çok dilli altyazılar",
+      "demo2Src": "This is where it all begins",
+      "demo2Tr": "Her şey burada başlıyor",
+      "capL1": "Çok dilli",
+      "capL2": "altyazılar"
+    },
+    "f3": {
+      "h3": "Marka kimliğiniz otomatik uygulanır",
+      "p": "Logonuzu, renklerinizi, yazı tiplerinizi, şablonlarınızı ve üslubunuzu bir kez yükleyin. Ekteb'in ürettiği her şey markanızla tutarlı çıkar — içerik başına yeniden tasarım ya da yeniden biçimlendirme gerekmez.",
+      "before": "Önce",
+      "logo": "Logo",
+      "colours": "Renkler",
+      "font": "Yazı tipi",
+      "fontName": "Ekteb Sans",
+      "template": "Şablon",
+      "cap": "Resmî bir kurumdan görüntülü açıklama",
+      "bar": "Son dakika · Ekteb"
+    },
+    "f4": {
+      "h3": "Her video için önerilen kapak",
+      "p": "Ekteb en güçlü karelerden kapaklar önerir, her sosyal platformun ihtiyaç duyduğu boyutlarda."
+    },
+    "f5": {
+      "h3": "Ekteb ekrandakini tanır",
+      "p": "Bir yüz seçin; Ekteb tüm görünümlerini bulur, sahneleri toplar ve videoyu otomatik olarak o kişinin çevresinde yeniden çerçeveler."
+    },
+    "f6": {
+      "h3": "Her platforma planlı yayın",
+      "p": "Kanallarınızı seçin, saati belirleyin; Ekteb planlandığı gibi yayınlar."
+    }
+  },
+  "usecases": {
+    "eyebrow": "Kullanım alanları",
+    "h2_html": "Ekteb her gün yayın yapan<br>her ekip için",
+    "lead": "Haber odalarından ajanslara ve içerik üreticilerine kadar Ekteb, ham görüntüyle tamamlanmış paylaşım arasındaki mesafeyi kısaltır.",
+    "items": [
+      {
+        "h3": "Medya kuruluşları",
+        "p": "Birden fazla dilde, her gün ve yüksek hacimde video üreten haber ajansları ve televizyon kanalları."
+      },
+      {
+        "h3": "İçerik üreticileri",
+        "p": "Video üretimini büyütmek ve zahmetsizce küresel bir kitleye ulaşmak isteyen YouTuber'lar ve fenomenler."
+      },
+      {
+        "h3": "Sosyal medya ekipleri",
+        "p": "Sosyal hesapları yöneten ve her gün düzenli, çok dilli video akışına ihtiyaç duyan şirketler."
+      },
+      {
+        "h3": "Markalar ve işletmeler",
+        "p": "Küresel pazarlar için profesyonel ve yerelleştirilmiş videoyu hızla üretmek isteyen markalar."
+      }
+    ]
+  },
+  "enterprise": {
+    "badge": "Kurumsal düzeyde",
+    "h2": "Kurumunuzun gereksinimlerini karşılamak için tasarlandı",
+    "items": [
+      {
+        "h3_html": "İçeriğiniz <b>sizin</b> kalır",
+        "p": "Açık bir veri saklama politikası; içeriğiniz hiçbir zaman model eğitiminde kullanılmaz."
+      },
+      {
+        "h3_html": "<b>İzinler</b> üzerinde tam kontrol",
+        "p": "Proje ve içerik düzeyinde roller, gruplar ve ayrıntılı izinler."
+      },
+      {
+        "h3_html": "<b>Araçlarınıza</b> uyum",
+        "p": "Açık bir API ve yayın platformlarıyla medya kitaplıklarına entegrasyonlar."
+      },
+      {
+        "h3_html": "Gerçek <b>Arapça</b> desteği",
+        "p": "Tam RTL arayüz ve sizin saat diliminizde çalışan bir ekip."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "SSS",
+    "h2": "Sorularınız mı var?",
+    "items": [
+      {
+        "q": "Hangi tür içerikle başlayabilirim?",
+        "a": "Bir video yükleyin, bir bağlantı yapıştırın, bir makale ekleyin ya da görsel akıştan bir içerik seçin. Her durumda Ekteb tek bir proje oluşturur ve içeriği bu projenin içinde hazırlamaya başlar."
+      },
+      {
+        "q": "Ekteb hangi dilleri destekliyor?",
+        "a": "Ekteb, ana dil düzeyine yakın bir doğrulukla birden fazla dilde çeviri yapar ve içerik üretir; böylece zahmetsizce küresel bir kitleye ulaşırsınız.",
+        "open": true
+      },
+      {
+        "q": "Görsel akış nedir?",
+        "a": "1.500'den fazla hesap ve kaynaktan yeni içerikleri toplayan bir keşif alanı. Ekteb günde yaklaşık 20.000 videoyu analiz eder, kopya ve zayıf içeriği eler, ardından yaklaşık 200 içeriği öncelik ve editoryal uygunluğa göre sıralar."
+      },
+      {
+        "q": "Çıktıyı onaylamadan önce düzenleyebilir miyim?",
+        "a": "Evet. Her çıktı incelenebilir ve düzenlenebilir — deşifre, çeviri, başlık, açıklama, klipler, kapak ve şablon. Son karar her zaman ekibinize aittir."
+      },
+      {
+        "q": "Ekteb markamı nasıl tutarlı tutuyor?",
+        "a": "Şablonlar, logo, renkler, yazı tipleri, altyazı biçimlendirmesi ve etiketler platformda saklanır ve yeni içeriklere otomatik olarak uygulanır."
+      },
+      {
+        "q": "Hangi kanallara yayın yapabilirim?",
+        "a": "Ekteb YouTube, Facebook, Instagram, TikTok, X ve Telegram'a yayın yapar. Hemen yayınlayın ya da sonrası için planlayın."
+      },
+      {
+        "q": "Ekibimiz Ekteb'i kullanmaya nasıl başlar?",
+        "a": "İş akışınızı anlamak için bir kurulum oturumuyla başlıyoruz; ardından şablonları hazırlıyor, hesapları bağlıyor ve kullanıcılarınızı keşif, üretim, inceleme ve yayın konusunda eğitiyoruz."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Sonraki adım",
+    "h2": "Ekteb'in ekibinizde nasıl çalıştığını görün",
+    "lead": "E-posta adresinizi bırakın; Ekteb ekibi, ekibinize uygun iş akışını gösteren kısa bir oturum ayarlasın.",
+    "emailLabel": "E-posta adresi",
+    "submit": "Bize ulaşın",
+    "trust1": "Bir iş günü içinde yanıt",
+    "trust2": "Ekibinizle bir kurulum oturumu",
+    "msgBad": "Geçerli bir e-posta adresi girin.",
+    "msgSending": "Gönderiliyor…",
+    "msgOk": "Aldık. Ekteb ekibi bir iş günü içinde size dönecek.",
+    "msgFail": "Gönderilemedi. Lütfen birazdan tekrar deneyin.",
+    "msgRate": "Talebinizi zaten aldık. Kısa süre içinde sizinle iletişime geçeceğiz."
+  },
+  "footer": {
+    "copy": "© 2026 Ekteb"
+  },
+  "funnel": {
+    "title": "Ekteb | 20.000 içerikten yayına hazır tek habere",
+    "srDesc": "Ekteb günde yaklaşık yirmi bin içeriği — video ve yazılı raporları — analiz eder, kopya ve zayıf içeriği eler, ardından yaklaşık iki yüz içeriği öncelik ve uygunluğa göre sıralar. Tek bir içerik; deşifre, çeviri ve marka uygulamasının tamamlandığı bir projeye dönüşür, incelemeye ve ardından YouTube, Facebook, Instagram, TikTok, X ve Telegram'da yayına hazır hale gelir.",
+    "t1": "Çok kaynaklı izleme",
+    "t1lbl": "içerik bugün analiz edildi — video ve raporlar",
+    "t2": "Analiz ve ön eleme",
+    "t2lbl": "içerik önceliğe ve uygunluğa göre sıralandı",
+    "t3": "Düzenlemeye hazır",
+    "t3lbl": "içerik markanızla, kanallarınız için hazır",
+    "kindVideo": "Video",
+    "kindArticle": "Makale",
+    "kindReport": "Rapor",
+    "rows": [
+      "Yardım kuruluşları Gazze'deki ablukanın kaldırılması çağrısında bulundu",
+      "Fransa yardımlı ölüm hakkına dair tarihi bir yasayı kabul etti",
+      "Bölgedeki siber güvenlik dönüşümlerine ilişkin bu yılki rapor",
+      "Türkiye Dışişleri Bakanı'ndan bölgesel gelişmelere ilişkin basın toplantısı",
+      "Eski şehir çarşıları ve ticaret hareketliliği üzerine saha raporu"
+    ],
+    "chipSuggested": "Ekibiniz için öneriliyor",
+    "chipPriority": "Yüksek öncelik",
+    "chipNew": "Yeni",
+    "chipReviewed": "İncelendi",
+    "chipSaved": "Kaydedildi",
+    "source": "© Kaynak",
+    "sub": "Yardım kuruluşları yardım konvoyları için sınır kapılarının açılmasını istiyor",
+    "watch": "Yeni içerikler izleniyor",
+    "drop": "Kopya ve zayıf içerik eleniyor",
+    "ranked": "200 içerik önceliğe göre sıralandı",
+    "pick": "Ekibiniz için öneriliyor",
+    "steps": [
+      "Proje oluşturuluyor",
+      "Deşifre tamamlandı",
+      "Çeviri tamamlandı",
+      "Marka uygulandı",
+      "İncelemeye hazır",
+      "Yayına hazır"
+    ],
+    "scroll": "Oynatmak için kaydırın"
+  },
+  "media": {
+    "hero": "Ekteb arayüzü: düzenleyicide açık bir klip, yanında deşifre metni ve marka paneli",
+    "feedItem": "Görsel akıştan bir öğe: küçük resim, klip kaynağı ve üretime alma düğmesi",
+    "editorClip": "Ekteb düzenleyicisi: altyazı, yüz, bulanıklık ve ses şeritleriyle bir basın toplantısı klibi",
+    "speakerSubs": "Dikey bir klipte konuşmacı, alt kısımda altyazılar görünüyor",
+    "brandBefore": "Marka kimliği uygulanmadan önceki video karesi",
+    "brandAfter": "Ekteb logoyu, renkleri ve yazı tipini otomatik uyguladıktan sonra aynı kare",
+    "coverSuggest": "Ekteb en güçlü karelerden kapak görselleri öneriyor, her platformun ölçüsünde",
+    "faceDetect": "Ekteb seçilen yüzü tanıyor ve klipteki tüm görünümlerini topluyor",
+    "schedule": "Yayın planlama: kanalları seçme ve her biri için yayın saati belirleme",
+    "stepClip": "Ekteb içinde işlenmekte olan bir klip ve yanında görev ilerleme listesi",
+    "stepPlatforms": "TikTok, Instagram, YouTube ve Facebook'ta yayına hazır çıktılar"
+  },
+  "seo": {
+    "orgDescription": "Ekteb bir içerik üretim platformudur: yayınlanmayı hak edeni bulur; deşifre eder, çevirir, keser, marka kimliğinizi uygular ve tüm kanallara yayınlar veya planlar.",
+    "appCategory": "MultimediaApplication",
+    "priceNote": "Fiyatlandırma için satış ekibiyle iletişime geçin",
+    "breadcrumbHome": "Ana sayfa"
+  }
+}

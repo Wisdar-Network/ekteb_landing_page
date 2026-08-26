@@ -1,0 +1,16 @@
+:root{
+--shadow-xs:0 1px 2px rgba(16,24,40,.05);
+--shadow-sm:0 1px 3px rgba(16,24,40,.06),0 1px 2px rgba(16,24,40,.04);
+--shadow-md:0 4px 8px -2px rgba(16,24,40,.06),0 2px 4px -2px rgba(16,24,40,.04);
+--shadow-lg:0 12px 16px -4px rgba(16,24,40,.06),0 4px 6px -2px rgba(16,24,40,.03);
+--shadow-xl:0 20px 24px -4px rgba(16,24,40,.08),0 8px 8px -4px rgba(16,24,40,.03);
+--shadow-modal:0 24px 48px -12px rgba(16,24,40,.18);
+--shadow-toolbar:0 8px 24px -6px rgba(16,24,40,.16);
+--shadow-inset-field:inset 0 1px 2px rgba(16,24,40,.04);
+--ring-brand:0 0 0 3px rgba(96,77,140,.18);
+--ring-danger:0 0 0 3px rgba(240,68,56,.16);
+--ring-success:0 0 0 3px rgba(3,152,85,.16);
+--overlay-scrim:rgba(52,64,84,.28);
+--protection-bottom:linear-gradient(to top,rgba(16,24,40,.72) 0%,rgba(16,24,40,.35) 45%,transparent 100%); /* @kind other */
+--protection-top:linear-gradient(to bottom,rgba(16,24,40,.55) 0%,transparent 100%); /* @kind other */
+}

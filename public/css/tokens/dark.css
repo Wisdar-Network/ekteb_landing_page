@@ -1,0 +1,33 @@
+/* Dark theme — semantic aliases only. Toggled by the header moon/sun button,
+   which sets data-theme="dark" on <html> and remembers the choice. */
+[data-theme="dark"]{
+color-scheme:dark;
+--brand:var(--purple-500);--brand-hover:var(--purple-400);--brand-active:var(--purple-300);--brand-subtle:#241e34;--brand-subtle-strong:#302748;--brand-border:#473b68;--brand-on:#fff;
+
+--text-strong:#f4f6f9;--text-body:#d8dce4;--text-muted:#98a1b0;--text-subtle:#7a8393;--text-placeholder:#6b7382;--text-on-brand:#fff;--text-brand:var(--purple-300);--text-link:var(--purple-300);--text-link-hover:var(--purple-200);--text-inverse:var(--gray-900);
+
+--surface-page:#0f1219;--surface-canvas:#0b0e14;--surface-card:#141821;--surface-raised:#1a1f2a;--surface-sunken:#11151d;--surface-nav:#0f1219;--surface-nav-active:#241e34;--surface-table-head:#11151d;--surface-hover:#1b2029;--surface-selected:#241e34;--surface-dark:#080a0f;--surface-editor:#0f1219;
+
+--border-subtle:#1e2430;--border-default:#272e3b;--border-strong:#38414f;--border-focus:var(--purple-400);--border-brand:var(--purple-400);
+
+--success:#63d69d;--success-solid:var(--green-500);--success-subtle:#122419;--success-border:#1f4632;
+--warning:#f4c374;--warning-solid:var(--amber-500);--warning-subtle:#2a2013;--warning-border:#4a3617;
+--danger:#f8968d;--danger-solid:var(--red-500);--danger-soft:var(--red-400);--danger-subtle:#2b1817;--danger-border:#4d2520;
+--info:#a0b1fb;--info-solid:var(--indigo-500);--info-subtle:#161c31;--info-border:#2a3560;
+
+--shadow-xs:0 1px 2px rgba(0,0,0,.4);
+--shadow-sm:0 1px 3px rgba(0,0,0,.45),0 1px 2px rgba(0,0,0,.3);
+--shadow-md:0 4px 8px -2px rgba(0,0,0,.5),0 2px 4px -2px rgba(0,0,0,.35);
+--shadow-lg:0 12px 16px -4px rgba(0,0,0,.55),0 4px 6px -2px rgba(0,0,0,.35);
+--shadow-xl:0 20px 24px -4px rgba(0,0,0,.6),0 8px 8px -4px rgba(0,0,0,.35);
+--shadow-modal:0 24px 48px -12px rgba(0,0,0,.7);
+--shadow-toolbar:0 8px 24px -6px rgba(0,0,0,.6);
+--shadow-inset-field:inset 0 1px 2px rgba(0,0,0,.35);
+--overlay-scrim:rgba(4,6,10,.62);--loader-scrim:rgba(8,10,15,.66);
+
+--clip-subtitle-ar:#302748;--clip-subtitle-ar-border:var(--purple-400);--clip-subtitle-src:#1a1f2a;--clip-audio:#122419;--clip-waveform:var(--green-400);
+}
+[data-theme="dark"] ::selection{background:var(--purple-700);color:#fff}
+[data-theme="dark"] img{opacity:.94}
+/* the wordmark is dark navy — lift it off dark surfaces without losing the purple mark */
+[data-theme="dark"] img[src$="logo.svg"]{opacity:1;filter:invert(1) hue-rotate(180deg) saturate(1.15)}

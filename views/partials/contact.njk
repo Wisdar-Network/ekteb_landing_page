@@ -1,0 +1,26 @@
+<section class="sec sec-cta-dark" id="contact" aria-labelledby="contact-h">
+<div class="wrap ctc-in rv">
+<span class="eyebrow">{{ t.contact.eyebrow }}</span>
+<h2 id="contact-h">{{ t.contact.h2 }}</h2>
+<p class="lead">{{ t.contact.lead }}</p>
+{# Posts to /api/contact via fetch; the action/method keep it working if the
+   script fails to load, and the JSON messages below are read by site.js. #}
+<form class="ctc-form" id="contact-form" action="/api/contact" method="post" novalidate data-locale="{{ locale }}">
+<input id="c-email" name="email" type="email" aria-label="{{ t.contact.emailLabel }}" dir="ltr" autocomplete="email" placeholder="name@company.com" required>
+<label class="ctc-hp" aria-hidden="true"><span>Company</span><input name="company" type="text" tabindex="-1" autocomplete="off"></label>
+<button class="btn btn-p" type="submit">{{ t.contact.submit }}</button>
+</form>
+<p class="ctc-msg" id="ctc-msg" role="status" aria-live="polite"></p>
+<script id="contact-i18n" type="application/json">{{ {
+  "bad": t.contact.msgBad,
+  "sending": t.contact.msgSending,
+  "ok": t.contact.msgOk,
+  "fail": t.contact.msgFail,
+  "rate": t.contact.msgRate
+} | dump | safe }}</script>
+<div class="ctc-trust">
+<span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>{{ t.contact.trust1 }}</span>
+<span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>{{ t.contact.trust2 }}</span>
+</div>
+</div>
+</section>

@@ -1,0 +1,37 @@
+:root{
+/* Families — Baloo 2 for display/brand moments only; IBM Plex for all functional UI */
+--font-display:'Baloo 2','IBM Plex Sans Arabic',system-ui,sans-serif;
+--font-sans:'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,-apple-system,sans-serif;
+--font-arabic:'IBM Plex Sans Arabic','IBM Plex Sans',system-ui,sans-serif;
+--font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,monospace;
+
+/* Sizes */
+--text-2xs:11px;--text-xs:12px;--text-sm:13px;--text-md:14px;--text-base:15px;--text-lg:16px;--text-xl:18px;--text-2xl:20px;--text-3xl:24px;--text-4xl:30px;--text-5xl:36px;--text-6xl:44px;--text-7xl:56px;--text-8xl:72px;
+
+/* Line heights */
+--leading-tight:1.08;--leading-snug:1.2;--leading-heading:1.3;--leading-normal:1.5;--leading-relaxed:1.65;
+
+/* Weights */
+--weight-regular:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;--weight-extrabold:800;
+
+/* Tracking */
+--tracking-tighter:-0.03em;--tracking-tight:-0.015em;--tracking-normal:0;--tracking-wide:0.02em;--tracking-caps:0.06em;
+
+/* Semantic type roles */
+--type-display-hero:var(--weight-extrabold) var(--text-7xl)/var(--leading-tight) var(--font-display);
+--type-display-lg:var(--weight-bold) var(--text-6xl)/var(--leading-tight) var(--font-display);
+--type-display-md:var(--weight-bold) var(--text-5xl)/var(--leading-snug) var(--font-display);
+--type-display-sm:var(--weight-bold) var(--text-4xl)/var(--leading-snug) var(--font-display);
+--type-heading-lg:var(--weight-semibold) var(--text-3xl)/var(--leading-heading) var(--font-sans);
+--type-heading-md:var(--weight-semibold) var(--text-2xl)/var(--leading-heading) var(--font-sans);
+--type-heading-sm:var(--weight-semibold) var(--text-xl)/var(--leading-heading) var(--font-sans);
+--type-body-lg:var(--weight-regular) var(--text-lg)/var(--leading-relaxed) var(--font-sans);
+--type-body:var(--weight-regular) var(--text-base)/var(--leading-normal) var(--font-sans);
+--type-body-sm:var(--weight-regular) var(--text-md)/var(--leading-normal) var(--font-sans);
+--type-label:var(--weight-medium) var(--text-md)/1.4 var(--font-sans);
+--type-label-sm:var(--weight-medium) var(--text-xs)/1.35 var(--font-sans);
+--type-button:var(--weight-semibold) var(--text-md)/1 var(--font-sans);
+--type-caption:var(--weight-regular) var(--text-xs)/1.4 var(--font-sans);
+--type-eyebrow:var(--weight-semibold) var(--text-xs)/1.3 var(--font-sans);
+--type-mono:var(--weight-medium) var(--text-xs)/1.4 var(--font-mono);
+}

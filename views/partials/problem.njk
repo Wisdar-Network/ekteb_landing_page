@@ -1,0 +1,35 @@
+<section class="sec sec-soft" id="problem" aria-labelledby="problem-h">
+<div class="wrap">
+<div class="hiw-head rv">
+<span class="eyebrow">{{ t.problem.eyebrow }}</span>
+<h2 id="problem-h">{{ t.problem.h2_html | safe }}</h2>
+<p class="lead">{{ t.problem.lead }}</p>
+</div>
+<div class="prob-grid rv">
+
+<article class="prob-card bad">
+<h3 style="text-align:start;font-size:20px;font-weight:700">{{ t.problem.bad.title }}</h3>
+<p class="prob-sub" style="text-align:start">{{ t.problem.bad.sub }}</p>
+<ul class="prob-list">
+{% for item in t.problem.bad.items %}<li><span class="prob-ic"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span>{{ item }}</li>
+{% endfor %}</ul>
+<p class="prob-note">{{ t.problem.bad.note }}</p>
+</article>
+
+<span class="prob-vs">{{ t.problem.vs }}</span>
+
+<article class="prob-card good">
+<h3 style="font-size:20px;text-align:start;font-weight:700">{{ t.problem.good.title }}</h3>
+<p class="prob-sub" style="text-align:start">{{ t.problem.good.sub }}</p>
+<ul class="prob-list good">
+{% for item in t.problem.good.items %}<li><span class="prob-ic"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>{{ item }}</li>
+{% endfor %}</ul>
+<div class="prob-cta"><a class="btn btn-p" href="#contact">{{ t.problem.good.cta }}</a></div>
+</article>
+
+</div>
+<div class="prob-outcome rv">
+<p>{{ t.problem.outcome_html | safe }}</p>
+</div>
+</div>
+</section>

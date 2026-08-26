@@ -1,0 +1,11 @@
+{% extends "layout.njk" %}
+{% block body %}
+<main class="sec" style="min-height:60vh;display:grid;place-items:center">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow">404</span>
+    <h1 style="margin:12px 0 18px">{{ t.meta.siteName }}</h1>
+    <p class="lead" style="margin-inline:auto">{{ t.skip }}</p>
+    <div class="sec-cta"><a class="btn btn-p" href="/{{ locale }}">{{ t.nav.ariaHome }}</a></div>
+  </div>
+</main>
+{% endblock %}

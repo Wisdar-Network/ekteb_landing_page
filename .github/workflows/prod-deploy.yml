@@ -1,0 +1,64 @@
+name: Deploy to AZURE Production Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create .env file
+        run: echo "${{ vars.PROD_ENV }}" > .env
+
+      - name: Build Docker image
+        run: sudo docker build -t ${{ vars.NAME }}:latest .
+
+      - name: Save Docker image to tar
+        run: |
+          sudo docker save ${{ vars.NAME }}:latest -o ${{ vars.NAME }}.tar
+          sudo chmod 644 ${{ vars.NAME }}.tar
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PROD_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ vars.PROD_IP }} >> ~/.ssh/known_hosts
+
+      - name: Copy Docker image to server
+        run: |
+          scp -i ~/.ssh/id_rsa ${{ vars.NAME }}.tar ${{ vars.PROD_USER }}@${{ vars.PROD_IP }}:/home/${{ vars.PROD_USER }}/${{ vars.NAME }}.tar
+
+      - name: Load and run Docker image on server
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ vars.PROD_IP }}
+          username: ${{ vars.PROD_USER }}
+          key: ${{ secrets.PROD_SSH_KEY }}
+          script: |
+            if [ $(sudo docker ps -q -f name=${{ vars.NAME }}) ]; then
+              echo "Stopping old container..."
+              sudo docker stop ${{ vars.NAME }}
+            fi
+
+            if [ $(sudo docker images -q ${{ vars.NAME }}:latest) ]; then
+              echo "Removing old image..."
+              sudo docker rmi ${{ vars.NAME }}:latest
+            fi
+
+            sudo docker load -i /home/${{ vars.PROD_USER }}/${{ vars.NAME }}.tar
+            sudo docker run -d --hostname ${{ vars.NAME }} --network node01 --name ${{ vars.NAME }} --rm ${{ vars.NAME }}:latest

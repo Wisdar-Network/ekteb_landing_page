@@ -1,0 +1,8 @@
+node_modules/
+.env
+*.log
+tmp_src/
+public/css/tokens.bundle.css
+public/media/og/
+.DS_Store
+Thumbs.db

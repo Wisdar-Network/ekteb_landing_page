@@ -1,0 +1,30 @@
+:root{
+/* ── Brand purple — from the Ekteb mark (#604D8C) ───────────────── */
+--purple-25:#f8f7fb;--purple-50:#f1eef7;--purple-100:#e7ddf6;--purple-200:#cfc4e2;--purple-300:#ab9ac6;--purple-400:#8874ab;--purple-500:#6f5a9c;--purple-600:#604d8c;--purple-700:#4e3e73;--purple-800:#3b2f58;--purple-900:#2a213e;
+/* ── Ink / neutral — anchored on the wordmark navy (#344054) ────── */
+--gray-25:#fcfcfd;--gray-50:#f9fafb;--gray-100:#f2f4f7;--gray-200:#eaecf0;--gray-300:#d0d5dd;--gray-400:#98a2b3;--gray-500:#667085;--gray-600:#475467;--gray-700:#344054;--gray-800:#182230;--gray-900:#101828;
+/* ── Semantic scales ───────────────────────────────────────────── */
+--green-50:#ecfdf3;--green-100:#d1fadf;--green-200:#a6f4c5;--green-400:#47c586;--green-500:#31bf77;--green-600:#039855;--green-700:#027a48;
+--amber-50:#fffaeb;--amber-100:#fef0c7;--amber-400:#fdb022;--amber-500:#f79009;--amber-700:#b54708;
+--red-50:#fef3f2;--red-100:#fee4e2;--red-400:#fa776d;--red-500:#f04438;--red-700:#b42318;
+--indigo-50:#eef4ff;--indigo-100:#e0eaff;--indigo-400:#8098f9;--indigo-500:#6172f3;--indigo-600:#444ce7;
+/* ── Secondary accents: data-viz + content categories ───────────── */
+--accent-purple:#604d8c;--accent-teal:#0e9384;--accent-amber:#f79009;--accent-indigo:#444ce7;--accent-rose:#e31b54;--accent-slate:#667085;
+
+/* ── Semantic aliases ──────────────────────────────────────────── */
+--brand:var(--purple-600);--brand-hover:var(--purple-700);--brand-active:var(--purple-800);--brand-subtle:var(--purple-50);--brand-subtle-strong:var(--purple-100);--brand-border:var(--purple-200);--brand-on:#fff;
+
+--text-strong:var(--gray-900);--text-body:var(--gray-700);--text-muted:var(--gray-500);--text-subtle:var(--gray-400);--text-placeholder:var(--gray-400);--text-on-brand:#fff;--text-brand:var(--purple-600);--text-link:var(--purple-600);--text-link-hover:var(--purple-800);--text-inverse:#fff;
+
+--surface-page:#fff;--surface-canvas:var(--gray-50);--surface-card:#fff;--surface-raised:#fff;--surface-sunken:var(--gray-50);--surface-nav:#fff;--surface-nav-active:var(--purple-50);--surface-table-head:var(--gray-50);--surface-hover:var(--gray-50);--surface-selected:var(--purple-50);--surface-dark:var(--gray-900);--surface-editor:var(--gray-25);
+
+--border-subtle:var(--gray-100);--border-default:var(--gray-200);--border-strong:var(--gray-300);--border-focus:var(--purple-400);--border-brand:var(--purple-600);
+
+--success:var(--green-600);--success-solid:var(--green-500);--success-subtle:var(--green-50);--success-border:var(--green-200);
+--warning:var(--amber-700);--warning-solid:var(--amber-500);--warning-subtle:var(--amber-50);--warning-border:var(--amber-100);
+--danger:var(--red-700);--danger-solid:var(--red-500);--danger-soft:var(--red-400);--danger-subtle:var(--red-50);--danger-border:var(--red-100);
+--info:var(--indigo-600);--info-solid:var(--indigo-500);--info-subtle:var(--indigo-50);--info-border:var(--indigo-100);
+
+/* ── Editor-specific (timeline / clips) ────────────────────────── */
+--clip-subtitle-ar:var(--purple-100);--clip-subtitle-ar-border:var(--purple-300);--clip-subtitle-src:#fff;--clip-audio:var(--green-50);--clip-waveform:var(--green-400);--playhead:#f5a524;--crop-guide:var(--purple-600);--loader-scrim:rgba(255,255,255,.62);
+}

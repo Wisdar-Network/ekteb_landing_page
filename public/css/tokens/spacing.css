@@ -1,0 +1,7 @@
+:root{
+--space-0:0;--space-1:2px;--space-2:4px;--space-3:6px;--space-4:8px;--space-5:10px;--space-6:12px;--space-7:14px;--space-8:16px;--space-9:20px;--space-10:24px;--space-11:28px;--space-12:32px;--space-14:40px;--space-16:48px;--space-20:64px;--space-24:80px;--space-28:96px;--space-32:120px;
+/* Layout */
+--container-max:1200px;--container-wide:1360px;--sidebar-w:272px;--sidebar-w-collapsed:72px;--topbar-h:76px;--rail-w:56px;--editor-panel-w:314px;
+--gutter-page:24px;--gutter-page-lg:64px;--section-y:96px;--section-y-lg:120px;
+--card-pad:16px;--card-pad-lg:20px;--field-h:44px;--field-h-sm:36px;--control-gap:12px;--row-h:112px;
+}

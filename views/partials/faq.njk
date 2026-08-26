@@ -1,0 +1,11 @@
+<section class="sec sec-soft" id="faqb" aria-labelledby="faqb-h">
+<div class="wrap">
+<div class="hiw-head rv">
+<span class="eyebrow">{{ t.faq.eyebrow }}</span>
+<h2 id="faqb-h">{{ t.faq.h2 }}</h2>
+</div>
+<div class="faqb rv">
+{% for item in t.faq.items %}<details{% if item.open %} open{% endif %}><summary>{{ item.q }}<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></summary><p class="ans">{{ item.a }}</p></details>
+{% endfor %}</div>
+</div>
+</section>

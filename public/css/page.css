@@ -1,0 +1,139 @@
+/* Page-level overrides lifted verbatim from the design export's inline <style>.
+   Only the language selectors changed: html[lang="en"] became
+   html:not([lang="ar"]) so Turkish inherits the same Latin treatment.
+   The .l-ar/.l-en visibility rules are gone — each page now renders one
+   language server-side instead of shipping both and hiding one. */
+body{background:#fff}html{scroll-behavior:smooth;scroll-padding-top:96px}
+html:not([lang="ar"]){--ek-ar:'Roboto Slab','IBM Plex Sans',Georgia,serif}
+html:not([lang="ar"]) h1,html:not([lang="ar"]) h2,html:not([lang="ar"]) h3,html:not([lang="ar"]) h4{font-family:var(--ek-lat);font-weight:700}
+html:not([lang="ar"]) #feedsec .hiw-head h2{max-width:40ch}
+html:not([lang="ar"]) .hero h1{letter-spacing:-.02em}
+.lang{flex:none;display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--ek-line-2);background:transparent;font-family:var(--ek-ar);font-size:14px;font-weight:600;color:var(--ek-body-2);cursor:pointer;transition:color .2s var(--ease),border-color .2s var(--ease),transform .2s var(--ease)}
+.lang:hover{color:var(--ek-ink);border-color:var(--ek-muted);transform:translateY(-2px)}
+.hdr[data-solid="0"] .lang{color:rgba(247,243,236,.82);border-color:rgba(255,255,255,.24)}
+.hdr[data-solid="0"] .lang:hover{color:#fff;border-color:rgba(255,255,255,.5)}
+.sec-cta{display:flex;justify-content:center;margin-top:var(--s6)}
+html[dir="rtl"] .faqb summary svg{transform:scaleX(-1)}
+html[dir="rtl"] .faqb details[open] summary svg{transform:rotate(90deg)}
+.ctc-msg{margin:16px 0 0;font-size:15px;font-weight:600;display:none}
+.ctc-msg[data-state="error"]{display:block;color:#FFB4A8}
+.ctc-msg[data-state="ok"]{display:block;color:#A7E8C4}
+.sec-cta-dark .ctc-form input[aria-invalid="true"]{border-color:#E5776A}
+.hiw-head .lead,.ent-head .lead{margin-top:14px;max-width:680px;margin-inline:auto}
+.hero{justify-content:center;background:#0D0917;color:#E8E1D8}
+.hero::before{inset-inline-start:-8%;top:auto;bottom:0;width:88%;height:76%;background:radial-gradient(54% 54% at 46% 56%,rgba(126,102,182,.46),rgba(96,77,140,.14) 54%,rgba(96,77,140,0) 76%)}
+.hero::after{content:none}
+.hero-eyb{color:#B9A9D6}
+.hero-eyb i{background:#7A63B0}
+.hero h1{color:#F7F3EC}
+.hero h1 .ln2{color:#C4B7DA}
+.hero .lead{color:rgba(232,225,216,.74)}
+.hero .btn-s{background:transparent;color:#F7F3EC;border-color:rgba(255,255,255,.26)}
+.hero .btn-s:hover{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.45)}
+.hero :focus-visible{outline-color:#C4B7DA}
+.hdr[data-solid="0"]{background:transparent;backdrop-filter:none;border-bottom-color:transparent}
+.hdr[data-solid="0"] .lg-l{display:block}
+.hdr[data-solid="0"] .lg-d{display:none}
+.hdr[data-solid="0"] .nav a{color:rgba(247,243,236,.72)}
+.hdr[data-solid="0"] .nav a:hover{color:#fff}
+.hdr[data-solid="0"] .burger{background:transparent;color:#F7F3EC;border-color:rgba(255,255,255,.22)}
+.hero-stage{margin-top:0;padding-top:clamp(24px,4.5vh,52px);padding-bottom:0;transform:none}
+.hp-shot{width:min(1140px,94%)}
+.hp-shot img{width:auto;height:auto;max-width:100%;max-height:min(56vh,600px);margin-inline:auto;object-fit:contain;border-radius:12px;border:1px solid rgba(255,255,255,.14);box-shadow:0 44px 90px -34px rgba(0,0,0,.8),0 4px 14px rgba(0,0,0,.3);filter:none}
+.hp-turn{transform:perspective(1800px) rotateY(-14deg) rotateX(5deg) scale(.97);transform-origin:50% 50%;transition:none}
+@media (max-width:767px){.hp-shot img{max-height:min(40vh,400px)}.hp-shot{width:100%}}@media (max-width:1023px){.fs-grid>div:first-child{max-width:720px}}
+.ent-board{background:var(--ek-canvas);border:1px solid var(--ek-line);border-radius:var(--r-lg);overflow:hidden;margin-top:var(--s6);box-shadow:var(--sh-1)}
+.ent-board .ent-grid{margin-top:0;text-align:start;gap:0}
+.ent-board .ent-item{padding:clamp(24px,2.6vw,36px);border-inline-start:1px solid var(--ek-line)}
+.ent-board .ent-item:first-child{border-inline-start:0}
+.ent-board .ent-item .ic{margin:0 0 20px;width:36px;height:36px;border:0;border-radius:10px;background:var(--ek-purple-t)}
+.ent-board .ent-item h3{margin:0 0 10px;font-size:19px;line-height:1.5;text-wrap:pretty}
+.ent-board .ent-item h3 b{font-weight:inherit;color:var(--ek-purple)}
+.ent-board .ent-item p{font-size:14.5px;line-height:1.75}
+@media (max-width:1023px){.ent-board .ent-grid{grid-template-columns:1fr 1fr}.ent-board .ent-item:nth-child(odd){border-inline-start:0}.ent-board .ent-item:nth-child(n+3){border-block-start:1px solid var(--ek-line)}}
+@media (max-width:560px){.ent-board .ent-grid{grid-template-columns:1fr}.ent-board .ent-item{border-inline-start:0}.ent-board .ent-item+.ent-item{border-block-start:1px solid var(--ek-line)}}
+@media (max-width:1023px){.sec{padding:var(--s8) 0}.hiw-grid,.feat-grid,.prob-grid,.uc-grid{margin-top:var(--s6)}}
+@media (max-width:480px){.feedp-tabs .fpt:nth-child(n+5){display:none}}
+.prob-outcome{margin-top:var(--s6);text-align:center}
+.prob-outcome p{margin:0;font-family:var(--ek-ar);font-weight:700;font-size:clamp(17px,2vw,28px);line-height:1.55;letter-spacing:-.01em;color:var(--ek-purple);max-width:none;text-wrap:pretty}
+@media (min-width:768px){.prob-outcome p{white-space:nowrap}}
+.prob-outcome b{font-weight:inherit;color:inherit}
+
+/* ── Language switcher ──────────────────────────────────────────────────
+   The export shipped a two-state toggle button. Three languages need a menu,
+   so this is a <details> disclosure: it opens without JavaScript, the options
+   are ordinary <a> links, and the trigger reuses the .lang pill above so the
+   header keeps the exact look it was designed with. */
+.langsw{position:relative;flex:none}
+.langsw>summary{list-style:none;user-select:none}
+.langsw>summary::-webkit-details-marker{display:none}
+.langsw>summary::marker{content:''}
+.langsw>summary .chev{transition:transform .2s var(--ease)}
+.langsw[open]>summary .chev{transform:rotate(180deg)}
+
+.langsw-menu{position:absolute;inset-block-start:calc(100% + 8px);inset-inline-end:0;z-index:60;
+  min-width:168px;padding:6px;margin:0;list-style:none;
+  background:var(--ek-canvas);border:1px solid var(--ek-line);border-radius:var(--r-md);
+  box-shadow:var(--sh-2)}
+.langsw-menu li{margin:0}
+.langsw-menu a{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:9px 12px;border-radius:calc(var(--r-md) - 4px);
+  font-family:var(--ek-ar);font-size:14.5px;font-weight:600;line-height:1.4;
+  color:var(--ek-body);text-decoration:none;
+  transition:background .16s var(--ease),color .16s var(--ease)}
+.langsw-menu a:hover{background:var(--ek-purple-t);color:var(--ek-purple)}
+.langsw-menu a[aria-current="true"]{color:var(--ek-purple);font-weight:700}
+.langsw-menu a[aria-current="true"]::after{content:'';width:6px;height:6px;flex:none;
+  border-radius:50%;background:var(--ek-purple)}
+/* Each label is written in its own language, so it needs its own direction. */
+.langsw-menu a[lang="ar"]{direction:rtl}
+.langsw-menu a[lang="en"],.langsw-menu a[lang="tr"]{direction:ltr}
+
+/* Over the dark hero the header is transparent; the menu stays a light card
+   but the trigger has to read against the artwork. */
+.hdr[data-solid="0"] .langsw>summary{color:rgba(247,243,236,.82);border-color:rgba(255,255,255,.24)}
+.hdr[data-solid="0"] .langsw>summary:hover{color:#fff;border-color:rgba(255,255,255,.5)}
+
+/* Mobile menu variant: laid out inline instead of as a popup. */
+.mnav .langsw-inline{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;padding:0;list-style:none}
+.mnav .langsw-inline a{display:inline-flex;align-items:center;padding:8px 16px;border-radius:999px;
+  border:1px solid var(--ek-line-2);font-family:var(--ek-ar);font-size:14.5px;font-weight:600;
+  color:var(--ek-body-2);text-decoration:none;transition:color .18s var(--ease),border-color .18s var(--ease)}
+.mnav .langsw-inline a:hover{color:var(--ek-ink);border-color:var(--ek-muted)}
+.mnav .langsw-inline a[aria-current="true"]{color:var(--ek-purple);border-color:var(--ek-purple);background:var(--ek-purple-t)}
+
+/* Contact form: the export had no pending state because nothing was sent. */
+.ctc-form[data-busy="1"] button{opacity:.6;pointer-events:none}
+.ctc-msg[data-state="pending"]{display:block;color:rgba(247,243,236,.72)}
+.ctc-hp{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* At <=1023px the design hides .nav, .hdr-login and .hdr-cta .btn and moves
+   them into .mnav, leaving only the burger. The switcher follows the same
+   rule: the export's two-letter pill fit, but a full language name does not,
+   and .mnav already carries the complete list. */
+@media (max-width:1023px){
+  .langsw{display:none}
+}
+
+/* Let grid tracks shrink below their content.
+   A grid item's automatic minimum size is its min-content, so a card whose
+   longest unbreakable run exceeds the track pushes that track wider. The
+   inner flex children already carry min-width:0; the cards themselves did not.
+   The export masked this: it rendered Arabic (short strings) and body has
+   overflow-x:hidden, so at 375px the card silently bled ~19px into the page
+   gutter instead of scrolling. Latin copy is longer, so English reached 410px
+   and Turkish 431px of real horizontal scroll. */
+.hiw-card,.hiw-stage,
+.feat-card,.uc-card,.prob-card,.ent-item{min-width:0}
+
+/* The export pins the outcome line to a single row from 768px up. That works
+   for Arabic — the language the page was drawn in, where the line needs about
+   492px at tablet type size — but the English and Turkish sentences are around
+   1.6x longer and forced 20-40px of horizontal scroll at 768px.
+   Dropping the pin for Latin copy keeps the single line wherever it fits (it
+   still does on wide screens) and lets it break into two balanced lines where
+   it does not. Arabic is untouched. */
+@media (min-width:768px){
+  html:not([lang="ar"]) .prob-outcome p{white-space:normal;text-wrap:balance}
+}
