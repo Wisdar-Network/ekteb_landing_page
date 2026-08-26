@@ -1,0 +1,20 @@
+# Secrets never enter the image: the .env is shipped to the host separately and
+# handed to `docker run --env-file`, so an image tar can travel without carrying
+# the Mailgun key. See .github/workflows/prod-deploy.yml.
+.env
+.env.*
+!.env.example
+
+.git
+.github
+node_modules
+npm-debug.log
+*.log
+
+# Build outputs — the image regenerates both during `docker build`.
+public/css/tokens.bundle.css
+public/media/og
+
+.DS_Store
+Thumbs.db
+tmp_src

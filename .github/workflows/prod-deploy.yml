@@ -21,8 +21,16 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # The image carries no secrets, so dotenv finds nothing inside the
+      # container. This file is shipped to the host and handed to
+      # `docker run --env-file` below — that is what configures Mailgun.
+      # Note: --env-file takes values literally. Do not quote them in PROD_ENV
+      # (MAIL_FROM=Ekteb <no-reply@ekteb.ai>, not MAIL_FROM="Ekteb <...>").
       - name: Create .env file
-        run: echo "${{ vars.PROD_ENV }}" > .env
+        run: |
+          echo "${{ vars.PROD_ENV }}" > .env
+          chmod 600 .env
+          echo "keys delivered:" && sed -E 's/=.*/=<set>/' .env
 
       - name: Build Docker image
         run: sudo docker build -t ${{ vars.NAME }}:latest .
@@ -39,9 +47,10 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ vars.PROD_IP }} >> ~/.ssh/known_hosts
 
-      - name: Copy Docker image to server
+      - name: Copy Docker image and env to server
         run: |
           scp -i ~/.ssh/id_rsa ${{ vars.NAME }}.tar ${{ vars.PROD_USER }}@${{ vars.PROD_IP }}:/home/${{ vars.PROD_USER }}/${{ vars.NAME }}.tar
+          scp -i ~/.ssh/id_rsa .env ${{ vars.PROD_USER }}@${{ vars.PROD_IP }}:/home/${{ vars.PROD_USER }}/${{ vars.NAME }}.env
 
       - name: Load and run Docker image on server
         uses: appleboy/ssh-action@v0.1.7
@@ -61,4 +70,17 @@ jobs:
             fi
 
             sudo docker load -i /home/${{ vars.PROD_USER }}/${{ vars.NAME }}.tar
-            sudo docker run -d --hostname ${{ vars.NAME }} --network node01 --name ${{ vars.NAME }} --rm ${{ vars.NAME }}:latest
+            chmod 600 /home/${{ vars.PROD_USER }}/${{ vars.NAME }}.env
+
+            sudo docker run -d --hostname ${{ vars.NAME }} --network node01 --name ${{ vars.NAME }} --rm \
+              --env-file /home/${{ vars.PROD_USER }}/${{ vars.NAME }}.env \
+              ${{ vars.NAME }}:latest
+
+            # The boot line reports whether Mailgun came up. Without it a
+            # misdelivered .env only shows up as a 503 on the first real lead.
+            sleep 3
+            sudo docker logs ${{ vars.NAME }} 2>&1 | tail -n 12
+            sudo docker logs ${{ vars.NAME }} 2>&1 | grep -q "mail: mailgun" || {
+              echo "::error::container booted without Mailgun — check the PROD_ENV variable"
+              exit 1
+            }

@@ -246,6 +246,20 @@ on demand (`workflow_dispatch`): it builds the image in CI, copies it to the
 Azure host over SSH, and runs it on the `node01` Docker network behind a reverse
 proxy.
 
+**The image carries no configuration.** [.dockerignore](.dockerignore) keeps
+`.env` out of it, so `dotenv` finds nothing inside the container and every
+setting has to arrive at run time. CI writes the `PROD_ENV` Actions variable to
+`.env`, `scp`s it to the host next to the image tar, and passes it with
+`docker run --env-file`. Skip that flag and the container boots with only the
+`NODE_ENV`/`HOST`/`PORT` defaults baked into the Dockerfile — the banner reads
+`mail: not configured` and every lead gets a `503`. The deploy job greps the
+boot log for `mail: mailgun` and fails if it is missing.
+
+`--env-file` is not a shell and not `dotenv`: it splits on the first `=` and
+takes the rest of the line **literally**. Do not quote values in `PROD_ENV` —
+`MAIL_FROM=Ekteb <no-reply@ekteb.ai>` is right, `MAIL_FROM="Ekteb <...>"` ships
+the quotes as part of the sender name.
+
 Set in `.env` before deploying:
 
 - `SITE_URL` — the real origin, no trailing slash (canonical, hreflang, sitemap,

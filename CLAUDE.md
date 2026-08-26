@@ -164,7 +164,13 @@ longer than the Arabic the design was drawn in, so overflow bugs appear in
 `.github/workflows/prod-deploy.yml` is manual (`workflow_dispatch`): it builds
 the Docker image in CI, `scp`s a tar to an Azure host, and runs it on the
 `node01` Docker network with `--rm` and no published ports — a reverse proxy on
-that network fronts it. `.env` is written from the `PROD_ENV` Actions variable.
+that network fronts it. `.env` is written from the `PROD_ENV` Actions variable, `scp`d to the host
+beside the tar, and handed to the container with `docker run --env-file` —
+`.dockerignore` keeps it out of the image, so nothing configures the app unless
+that flag is present. A container started without it still boots (the Dockerfile
+sets `NODE_ENV`, `HOST`, `PORT`) and reports `mail: not configured`, which is
+what a missing `--env-file` looks like in the log. Docker's env-file parser is
+not `dotenv`: values are literal, so `PROD_ENV` must not quote them.
 
 `app.set('trust proxy', 1)` is unconditional in `src/server.js` — there is no
 env flag. It always runs behind a proxy, and without it express-rate-limit
