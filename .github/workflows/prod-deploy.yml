@@ -1,4 +1,4 @@
-name: Deploy to AZURE Production Server
+name: Deploy to Server
 
 on:
   workflow_dispatch:
