@@ -270,10 +270,32 @@ The app trusts one reverse-proxy hop unconditionally ([src/server.js](src/server
 so the contact form's rate limit counts real visitors rather than the proxy.
 Raise it to `2` if you put a second proxy (Cloudflare, say) in front.
 
-[.github/workflows/prod-deploy.yml](.github/workflows/prod-deploy.yml) does this
-on demand (`workflow_dispatch`): it builds the image in CI, copies it to the
-Azure host over SSH, and runs it on the `node01` Docker network behind a reverse
-proxy.
+[.github/workflows/prod-deploy.yml](.github/workflows/prod-deploy.yml) builds the
+image in CI, copies it to the Azure host over SSH, and runs it on the `node01`
+Docker network behind a reverse proxy.
+
+It fires two ways:
+
+- **Manually** — Actions → *Deploy to Server* → *Run workflow*.
+- **On a push to `main`** whose tip commit message contains `deploy it`:
+
+  ```bash
+  git commit -m "fix hreflang — deploy it"
+  ```
+
+  The match is case-insensitive and the phrase can sit anywhere in the message.
+  Every push to `main` starts the workflow, but the job's `if` gate decides
+  whether it runs, so a push without the marker just logs a skipped run.
+
+  Only the **tip** commit of the push is read (`github.event.head_commit.message`)
+  — GitHub expressions cannot substring-search a list of commits. Push three
+  commits with the marker on the first and nothing deploys; put it on the last
+  one, or amend before pushing.
+
+Deploys are serialised by a `concurrency` group. A second run waits for the
+first rather than cancelling it — the job stops the container and removes the
+old image before loading the new one, so interrupting it can leave the host with
+nothing running.
 
 **The image carries no configuration.** [.dockerignore](.dockerignore) keeps
 `.env` out of it, so `dotenv` finds nothing inside the container and every

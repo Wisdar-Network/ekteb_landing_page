@@ -7,7 +7,11 @@
    script fails to load, and the JSON messages below are read by site.js. #}
 <form class="ctc-form" id="contact-form" action="/api/contact" method="post" novalidate data-locale="{{ locale }}">
 <input id="c-email" name="email" type="email" aria-label="{{ t.contact.emailLabel }}" dir="ltr" autocomplete="email" placeholder="name@company.com" required>
-<label class="ctc-hp" aria-hidden="true"><span>Company</span><input name="company" type="text" tabindex="-1" autocomplete="off"></label>
+{# Honeypot. aria-hidden sits on the wrapper, not on the <label>: the HTML
+   spec forbids aria-hidden on a label that wraps a form control, and the
+   W3C checker flags it as an error. The wrapper hides the whole subtree
+   from assistive tech just the same. #}
+<div class="ctc-hp" aria-hidden="true"><label><span>Company</span><input name="company" type="text" tabindex="-1" autocomplete="off"></label></div>
 <button class="btn btn-p" type="submit">{{ t.contact.submit }}</button>
 </form>
 <p class="ctc-msg" id="ctc-msg" role="status" aria-live="polite"></p>

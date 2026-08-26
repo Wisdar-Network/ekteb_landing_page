@@ -95,7 +95,11 @@ export function structuredData(locale) {
   }
 
   const software = {
-    '@type': 'SoftwareApplication',
+    // Both types, not just SoftwareApplication: browserRequirements is defined
+    // on WebApplication only, so the bare parent type makes it an unrecognised
+    // property (schema.org's validator flags it). WebApplication is also the
+    // truer description, and Google's Software App rich result accepts it.
+    '@type': ['SoftwareApplication', 'WebApplication'],
     '@id': APP(),
     name: tr.meta.siteName,
     url: config.siteUrl,

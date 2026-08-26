@@ -1,11 +1,41 @@
 name: Deploy to Server
 
 on:
+  # Still manual whenever you want it: Actions -> Deploy to Server -> Run workflow.
   workflow_dispatch:
+  # And automatic on a push to main whose tip commit says so. Every push to main
+  # starts this workflow; the `if` on the job below is what decides whether it
+  # actually deploys, so a run that skips costs nothing and leaves a visible
+  # "skipped" entry rather than silence.
+  push:
+    branches: [main]
+
+# One deploy at a time. The job stops the running container and deletes the old
+# image before loading the new one, so two overlapping runs would fight over the
+# host. cancel-in-progress stays false on purpose: cancelling a deploy midway
+# can leave the host with the container stopped and no image to start.
+concurrency:
+  group: prod-deploy
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # The opt-in marker. `contains` is case-insensitive, so "Deploy it" and
+    # "DEPLOY IT" work too, and the phrase can sit anywhere in the message.
+    #
+    # head_commit is the *tip* commit of the push, not every commit in it —
+    # GitHub expressions cannot substring-search a list of commit messages. So
+    # the rule is: the last commit you push decides. Pushing three commits with
+    # the marker on the first one deploys nothing.
+    #
+    # head_commit is nullable in GitHub's own push schema (a branch deletion
+    # pushes no tip commit), and workflow_dispatch has no head_commit at all.
+    # Both are safe: a null dereference yields null and contains(null, ...) is
+    # false. That false is also why the manual path needs its own clause here.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.head_commit.message, 'deploy it')
 
     steps:
       - name: Checkout repository

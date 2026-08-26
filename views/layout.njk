@@ -18,7 +18,11 @@
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="{{ ogLocale }}">
-<meta property="og:site_name" content="{{ t.meta.siteName }}">
+{# The other locales this page exists in. hreflang tells search engines;
+   og:locale:alternate is the same statement for the social crawlers,
+   which never read hreflang. #}
+{% for alt in locales %}{% if alt.code != locale %}<meta property="og:locale:alternate" content="{{ alt.ogLocale }}">
+{% endif %}{% endfor %}<meta property="og:site_name" content="{{ t.meta.siteName }}">
 <meta property="og:title" content="{{ t.meta.ogTitle }}">
 <meta property="og:description" content="{{ t.meta.description }}">
 {% if canonical %}<meta property="og:url" content="{{ canonical }}">{% endif %}

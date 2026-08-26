@@ -166,8 +166,18 @@ longer than the Arabic the design was drawn in, so overflow bugs appear in
 
 ## Deployment
 
-`.github/workflows/prod-deploy.yml` is manual (`workflow_dispatch`): it builds
-the Docker image in CI, `scp`s a tar to an Azure host, and runs it on the
+`.github/workflows/prod-deploy.yml` runs two ways: manually
+(`workflow_dispatch`), and on a push to `main` whose **tip** commit message
+contains `deploy it` (case-insensitive, anywhere in the message). Every push to
+`main` starts the workflow; the job-level `if` decides whether it deploys, so a
+push without the marker shows up as a skipped run. The marker is read from
+`github.event.head_commit.message` — GitHub expressions cannot substring-search
+a list of commits, so only the last commit of the push counts. A `concurrency`
+group serialises deploys: the job stops the container and deletes the image
+before loading the new one, and `cancel-in-progress` is `false` because killing
+a deploy mid-flight can leave the host stopped with no image to start.
+
+The job builds the Docker image in CI, `scp`s a tar to an Azure host, and runs it on the
 `node01` Docker network with `--rm` and no published ports — a reverse proxy on
 that network fronts it. `.env` is written from the `PROD_ENV` Actions variable, `scp`d to the host
 beside the tar, and handed to the container with `docker run --env-file` —
