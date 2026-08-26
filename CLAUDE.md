@@ -166,10 +166,17 @@ the Docker image in CI, `scp`s a tar to an Azure host, and runs it on the
 `node01` Docker network with `--rm` and no published ports — a reverse proxy on
 that network fronts it. `.env` is written from the `PROD_ENV` Actions variable.
 
-Because it sits behind a proxy, `PROD_ENV` must set `TRUST_PROXY=true`, or
-rate limiting keys every visitor to the proxy's IP. `SITE_URL` must be the real
-origin with no trailing slash — canonical, hreflang, sitemap, and the OG image
-URL are all built from it.
+`app.set('trust proxy', 1)` is unconditional in `src/server.js` — there is no
+env flag. It always runs behind a proxy, and without it express-rate-limit
+keys every visitor to the proxy's single IP, so the whole internet shares one
+5-per-hour budget on the contact form. Raise to `2` for a second proxy hop.
+
+The server binds `config.host` (`HOST`, default `0.0.0.0`); the Dockerfile sets
+it explicitly because `127.0.0.1` inside a container is unreachable from the
+Docker network.
+
+`SITE_URL` must be the real origin with no trailing slash — canonical,
+hreflang, sitemap, and the OG image URL are all built from it.
 
 The container is stateless; no volume is needed.
 

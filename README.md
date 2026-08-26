@@ -234,7 +234,12 @@ docker run -p 3000:3000 --env-file .env ekteb-landing
 
 The container is **stateless**: no database and no disk writes, so it needs no
 volume and several instances can run behind a load balancer without
-coordination.
+coordination. It binds `0.0.0.0:3000` — `127.0.0.1` would be unreachable from
+the Docker network.
+
+The app trusts one reverse-proxy hop unconditionally ([src/server.js](src/server.js)),
+so the contact form's rate limit counts real visitors rather than the proxy.
+Raise it to `2` if you put a second proxy (Cloudflare, say) in front.
 
 [.github/workflows/prod-deploy.yml](.github/workflows/prod-deploy.yml) does this
 on demand (`workflow_dispatch`): it builds the image in CI, copies it to the
@@ -245,8 +250,6 @@ Set in `.env` before deploying:
 
 - `SITE_URL` — the real origin, no trailing slash (canonical, hreflang, sitemap,
   and the OG image URL are all built from it)
-- `TRUST_PROXY=true` behind nginx or Cloudflare, or rate limiting counts every
-  visitor as one address
 - `MAILGUN_API_KEY`, `MAILGUN_DOMAIN`, `MAILGUN_REGION`, `MAIL_TO` — without
   them the form answers `503`
 - `NODE_ENV=production`

@@ -17,7 +17,11 @@ const mailReady = initMailer()
 
 const app = express()
 
-if (config.trustProxy) app.set('trust proxy', 1)
+// One hop: this always runs behind a reverse proxy, and without this every
+// visitor would share a single rate-limit budget keyed to the proxy's IP.
+// Raise to 2 if a second proxy is added in front; delete it only if the
+// container is ever exposed to the internet directly.
+app.set('trust proxy', 1)
 app.disable('x-powered-by')
 
 const env = nunjucks.configure(join(root, 'views'), {
@@ -71,9 +75,9 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ ok: false, error: 'server_error' })
 })
 
-const server = app.listen(config.port, () => {
+const server = app.listen(config.port, config.host, () => {
   console.log(`\n  Ekteb landing — ${config.env}`)
-  console.log(`  http://localhost:${config.port}  →  /${DEFAULT_LOCALE}`)
+  console.log(`  listening on ${config.host}:${config.port}  →  /${DEFAULT_LOCALE}`)
   console.log(`  locales: ${Object.keys(LOCALES).join(', ')}   mail: ${mailReady ? 'mailgun' : 'not configured'}\n`)
 })
 
