@@ -17,6 +17,7 @@
     "contact": "Bize ulaşın",
     "ariaMain": "Ana gezinme",
     "ariaMenu": "Menü",
+    "ariaCloseMenu": "Menüyü kapat",
     "ariaHome": "Ekteb — ana sayfa",
     "ariaLang": "Dili değiştir"
   },
@@ -24,9 +25,7 @@
     "eyebrow": "Ekteb",
     "line1": "Dijital içeriği üretmek, yönetmek ve",
     "line2": "büyük ölçekte yayınlamak için tek platform",
-    "lead": "Daha hızlı üretim. Daha düşük maliyet. Tek elden yönetim.",
-    "ctaPrimary": "Hemen başlayın",
-    "ctaSecondary": "Nasıl çalıştığını görün"
+    "lead": "Daha hızlı üretim. Daha düşük maliyet. Tek elden yönetim."
   },
   "problem": {
     "eyebrow": "Sorun",

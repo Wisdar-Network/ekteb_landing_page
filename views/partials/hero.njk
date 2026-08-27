@@ -4,10 +4,14 @@
 <span class="hero-eyb up" style="--d:40ms"><i></i>{{ t.hero.eyebrow }}</span>
 <h1 id="hero-h"><span class="ln up" style="--d:120ms">{{ t.hero.line1 }}</span><span class="ln ln2 up" style="--d:240ms">{{ t.hero.line2 }}</span></h1>
 <p class="lead up" style="--d:420ms">{{ t.hero.lead }}</p>
-<div class="hero-btns up" style="--d:520ms">
-<a class="btn btn-p" href="#contact">{{ t.hero.ctaPrimary }}</a>
-<a class="btn btn-s" href="#steps">{{ t.hero.ctaSecondary }}</a>
-</div>
+{# The two buttons the export used to carry are now a capture form. It posts
+   to /api/contact exactly like the one in #contact; site.js wires both. #}
+<form class="ctc-form hero-form up" id="hero-form" style="--d:520ms" action="/api/contact" method="post" novalidate data-locale="{{ locale }}">
+<input id="h-email" name="email" type="email" aria-label="{{ t.contact.emailLabel }}" dir="ltr" autocomplete="email" placeholder="name@company.com" required>
+<div class="ctc-hp" aria-hidden="true"><label><span>Company</span><input name="company" type="text" tabindex="-1" autocomplete="off"></label></div>
+<button class="btn btn-p" type="submit">{{ t.nav.contact }}</button>
+</form>
+<p class="ctc-msg hero-msg up" id="hero-msg" role="status" aria-live="polite" style="--d:560ms"></p>
 </div>
 </div>
 <div class="hero-stage">

@@ -17,6 +17,7 @@
     "contact": "Get in touch",
     "ariaMain": "Main navigation",
     "ariaMenu": "Menu",
+    "ariaCloseMenu": "Close menu",
     "ariaHome": "Ekteb — home",
     "ariaLang": "Change language"
   },
@@ -24,9 +25,7 @@
     "eyebrow": "Ekteb",
     "line1": "One platform to produce, manage,",
     "line2": "and publish digital content at scale",
-    "lead": "Faster production. Lower cost. Unified management.",
-    "ctaPrimary": "Get started",
-    "ctaSecondary": "See how it works"
+    "lead": "Faster production. Lower cost. Unified management."
   },
   "problem": {
     "eyebrow": "The problem",

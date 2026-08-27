@@ -3,13 +3,13 @@
    under a script-src 'self' CSP. Two things changed:
      - the language toggle is gone: locales are separate URLs now, so the
        switcher is plain links and only needs dismiss-on-outside-click;
-     - the contact form actually posts to /api/contact instead of faking a
-       success message.
+     - the three email forms actually post to /api/contact instead of faking
+       a success message.
    Everything else is the original behaviour, unchanged. */
 (function () {
   'use strict'
 
-  /* Header: solid on scroll, burger menu ------------------------------ */
+  /* Header: solid on scroll, full-screen burger menu ------------------- */
   ;(function () {
     var h = document.getElementById('hdr')
     var b = document.getElementById('burger')
@@ -21,12 +21,30 @@
     window.addEventListener('scroll', solid, { passive: true })
 
     if (!b || !m) return
-    function close() { m.setAttribute('data-open', '0'); b.setAttribute('aria-expanded', 'false') }
+    var sc = document.getElementById('mnav-scrim')
+    var xb = document.getElementById('mnav-x')
+
+    /* The menu now covers the viewport, so the page behind it must not
+       scroll while it is up. */
+    function close() {
+      m.setAttribute('data-open', '0')
+      b.setAttribute('aria-expanded', 'false')
+      if (sc) sc.setAttribute('data-open', '0')
+      document.body.removeAttribute('data-mnav')
+    }
+    function open() {
+      m.setAttribute('data-open', '1')
+      b.setAttribute('aria-expanded', 'true')
+      if (sc) sc.setAttribute('data-open', '1')
+      document.body.setAttribute('data-mnav', '1')
+    }
+
     b.addEventListener('click', function () {
-      var open = m.getAttribute('data-open') === '1'
-      m.setAttribute('data-open', open ? '0' : '1')
-      b.setAttribute('aria-expanded', open ? 'false' : 'true')
+      if (m.getAttribute('data-open') === '1') close(); else open()
     })
+    if (sc) sc.addEventListener('click', close)
+    if (xb) xb.addEventListener('click', close)
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close() })
     m.addEventListener('click', function (e) { if (e.target.closest('a')) close() })
     window.addEventListener('resize', function () { if (window.innerWidth > 1023) close() })
   })()
@@ -84,86 +102,110 @@
     setInterval(set, 250)
   })()
 
-  /* Contact form ------------------------------------------------------- */
+  /* Email capture forms ------------------------------------------------ */
+  /* Three of them now — the hero, the mobile menu, and #contact — all posting
+     to the same endpoint. #contact renders the strings blob once and the
+     other two read it, so the copy still lives only in locales/. */
   ;(function () {
-    var form = document.getElementById('contact-form')
-    if (!form) return
-    var input = document.getElementById('c-email')
-    var msg = document.getElementById('ctc-msg')
     var blob = document.getElementById('contact-i18n')
-
+    if (!blob) return
     var M = {}
     try { M = JSON.parse(blob.textContent) } catch (e) { return }
 
-    // Stamped on first interaction. A submit faster than the server's floor is
-    // treated as automated; real people never clear that bar.
-    var firstTouch = 0
-    var mark = function () { if (!firstTouch) firstTouch = Date.now() }
-    form.addEventListener('focusin', mark, { once: true })
-    form.addEventListener('input', mark, { once: true })
+    ;[['contact-form', 'c-email', 'ctc-msg'],
+      ['hero-form', 'h-email', 'hero-msg'],
+      ['mnav-form', 'm-email', 'mnav-msg']].forEach(function (ids) {
+        wire(ids[0], ids[1], ids[2])
+      })
 
-    function say(state, text) {
-      if (state) msg.setAttribute('data-state', state)
-      else msg.removeAttribute('data-state')
-      msg.textContent = text || ''
-    }
+    function wire(formId, inputId, msgId) {
+      var form = document.getElementById(formId)
+      var input = document.getElementById(inputId)
+      var msg = document.getElementById(msgId)
+      if (!form || !input || !msg) return
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault()
-      var value = (input.value || '').trim()
+      // Stamped on first interaction. A submit faster than the server's floor is
+      // treated as automated; real people never clear that bar.
+      var firstTouch = 0
+      var mark = function () { if (!firstTouch) firstTouch = Date.now() }
+      form.addEventListener('focusin', mark, { once: true })
+      form.addEventListener('input', mark, { once: true })
 
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
-        input.setAttribute('aria-invalid', 'true')
-        say('error', M.bad)
-        input.focus()
-        return
+      function say(state, text) {
+        if (state) msg.setAttribute('data-state', state)
+        else msg.removeAttribute('data-state')
+        msg.textContent = text || ''
       }
 
-      input.removeAttribute('aria-invalid')
-      form.setAttribute('data-busy', '1')
-      say('pending', M.sending)
+      form.addEventListener('submit', function (e) {
+        e.preventDefault()
+        var value = (input.value || '').trim()
 
-      fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: value,
-          locale: form.getAttribute('data-locale') || document.documentElement.lang,
-          company: form.elements.company ? form.elements.company.value : '',
-          elapsed: firstTouch ? Date.now() - firstTouch : 0
-        })
-      })
-        .then(function (res) {
-          return res.json().catch(function () { return {} }).then(function (body) {
-            return { status: res.status, body: body }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+          input.setAttribute('aria-invalid', 'true')
+          say('error', M.bad)
+          input.focus()
+          return
+        }
+
+        input.removeAttribute('aria-invalid')
+        form.setAttribute('data-busy', '1')
+        say('pending', M.sending)
+
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: value,
+            locale: form.getAttribute('data-locale') || document.documentElement.lang,
+            company: form.elements.company ? form.elements.company.value : '',
+            elapsed: firstTouch ? Date.now() - firstTouch : 0
           })
         })
-        .then(function (r) {
-          if (r.status === 429) { say('error', M.rate); return }
-          if (!r.body.ok) { say('error', r.status === 400 ? M.bad : M.fail); return }
-          say('ok', M.ok)
-          input.value = ''
-          input.blur()
-        })
-        .catch(function () { say('error', M.fail) })
-        .then(function () { form.removeAttribute('data-busy') })
-    })
+          .then(function (res) {
+            return res.json().catch(function () { return {} }).then(function (body) {
+              return { status: res.status, body: body }
+            })
+          })
+          .then(function (r) {
+            if (r.status === 429) { say('error', M.rate); return }
+            if (!r.body.ok) { say('error', r.status === 400 ? M.bad : M.fail); return }
+            say('ok', M.ok)
+            input.value = ''
+            input.blur()
+          })
+          .catch(function () { say('error', M.fail) })
+          .then(function () { form.removeAttribute('data-busy') })
+      })
 
-    input.addEventListener('input', function () {
-      input.removeAttribute('aria-invalid')
-      say(null, '')
-    })
+      input.addEventListener('input', function () {
+        input.removeAttribute('aria-invalid')
+        say(null, '')
+      })
+    }
   })()
 
   /* Funnel iframe: drive its timeline from this page's scroll ---------- */
   ;(function () {
     var f = document.getElementById('fs-anim-frame')
     if (!f) return
+    var pin = document.getElementById('fs-pin')
 
     window.addEventListener('message', function (e) {
       var d = e && e.data
-      if (d && d.ektebFunnelH > 200) f.style.height = d.ektebFunnelH + 'px'
+      if (d && d.ektebFunnelH > 200) { f.style.height = d.ektebFunnelH + 'px'; fit() }
     })
+
+    /* While the frame is pinned it sticks at a fixed offset, so centre it in
+       whatever height the viewport actually has. */
+    function fit() {
+      var w = f.parentNode
+      if (!(pin && window.innerWidth >= 831)) { w.style.top = ''; return }
+      var h = parseFloat(f.style.height) || f.offsetHeight
+      var vh = window.innerHeight || 1
+      w.style.top = Math.max(72, (vh - h) / 2) + 'px'
+    }
+    window.addEventListener('resize', fit)
 
     /* the animation is driven by how far this block has travelled through the
        viewport - nothing to sit and wait for, and it rewinds on the way back up */
@@ -172,11 +214,20 @@
 
     function send() {
       queued = false
-      var r = f.getBoundingClientRect()
       var vh = window.innerHeight || 1
-      var start = vh * 0.86
-      var span = vh * 0.42 + r.height
-      var p = (start - r.top) / span
+      var p
+      if (pin && window.innerWidth >= 831) {
+        /* pinned: the tall track is the timeline, so progress is how far it
+           has scrolled past the sticky frame */
+        var pr = pin.getBoundingClientRect()
+        var span = pr.height - vh
+        p = span > 0 ? (-pr.top) / span : 0
+      } else {
+        var r = f.getBoundingClientRect()
+        var start = vh * 0.86
+        var sp = vh * 0.42 + r.height
+        p = (start - r.top) / sp
+      }
       p = p < 0 ? 0 : p > 1 ? 1 : p
       if (Math.abs(p - last) < 0.002) return
       last = p

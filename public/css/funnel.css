@@ -470,7 +470,12 @@ html.is-solo .scroll-hint.is-gone{ opacity:0; }
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width:760px){
   :root{ --fn-panel-h:auto; }
-  .fn, .fn.is-s2, .fn.is-s3{ grid-template-columns:minmax(0,1fr); gap:var(--sp-5) 0; }
+  .fn, .fn.is-s2, .fn.is-s3{ grid-template-columns:minmax(0,1fr); gap:var(--sp-4) 0; counter-reset:fnstep; }
+  /* stacked = three plain step cards: heading, then the line of text, then its own animation */
+  .fn__tier{ counter-increment:fnstep; background:#fff; border:1px solid var(--border-default); border-radius:var(--radius-card); padding:16px 15px; box-shadow:var(--shadow-sm); gap:7px; overflow:visible; }
+  .fn__ttl{ display:flex; align-items:center; gap:9px; font-size:var(--fs-sm); }
+  .fn__ttl::before{ content:counter(fnstep); flex:none; width:24px; height:24px; border-radius:8px; background:var(--purple-100); color:var(--purple-600); font-size:12px; font-weight:var(--weight-bold); display:grid; place-items:center; }
+  .fn__tier .fn__panel{ margin-top:3px; background:var(--surface-subtle,#FBF9F6); border-color:var(--border-subtle,#F0EBE4); box-shadow:none; }
   .fn__cap{ min-height:0; white-space:normal; }
   .fn__panel{ height:auto; min-height:200px; }
   .fn__mosaic{ grid-template-columns:repeat(8,minmax(0,1fr)); gap:4px; width:100%; }
@@ -479,7 +484,7 @@ html.is-solo .scroll-hint.is-gone{ opacity:0; }
   .fn__tier--c .fn__ttl, .fn__tier--c .fn__cap, .fn__tier--c .fn__panel{ width:100%; }
   .fn__tier--b, .fn__tier--c{ display:flex; opacity:1; }
   .fn__link{ display:flex; }
-  .fn__link{ height:34px; }
+  .fn__link{ height:22px; }
   .fn__link svg{ display:none; }
   .fn__link::after{
     content:""; position:absolute; inset-inline-start:50%; top:0; bottom:0; width:2px; background:var(--purple-200);

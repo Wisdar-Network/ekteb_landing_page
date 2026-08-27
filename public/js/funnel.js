@@ -217,27 +217,45 @@ window.addEventListener('load',post);window.addEventListener('resize',post);setI
   }
 
   /* ── stacked layout ──────────────────────────────────────────── */
-  /* how far one card has travelled through the screen it is actually shown on —
-     the file's own scrollport when standalone, the host page's viewport when
-     embedded (same origin, so the frame's position is readable) */
-  function cardProgress(el) {
-    var r = el.getBoundingClientRect(), vh, top;
-    if (document.documentElement.classList.contains('is-solo')) {
-      var sr = scroller.getBoundingClientRect();
-      vh = scroller.clientHeight; top = r.top - sr.top;
-    } else {
-      vh = window.innerHeight; top = r.top;
-      try {
-        var fe = window.frameElement;
-        if (fe) { vh = window.parent.innerHeight; top = fe.getBoundingClientRect().top + r.top; }
-      } catch (e) {}
+  /* Each card owns its own looping clock: it starts when the card reaches the
+     screen, plays once, holds on the finished state, then replays. Cards are
+     independent of each other and of the scroll position. */
+  var LOOP = { play:2400, hold:1500 };
+  var clocks = [], loopRaf = null;
+  function clockFor(el){ var c = { el:el, p:0, t0:0, live:false }; clocks.push(c); return c; }
+  function loopTick(ts){
+    var any = false;
+    for (var i = 0; i < clocks.length; i++) {
+      var c = clocks[i]; if (!c.live) continue; any = true;
+      if (!c.t0) c.t0 = ts;
+      var k = (ts - c.t0) % (LOOP.play + LOOP.hold);
+      c.p = k < LOOP.play ? k / LOOP.play : 1;
     }
-    return cl((vh * 0.86 - top) / (vh * 0.34 + r.height * 0.5));
+    renderStacked();
+    loopRaf = any ? requestAnimationFrame(loopTick) : null;
+  }
+  function startLoops(){
+    if (!clocks.length) {
+      [tierA, tierB, tierC].forEach(function (el) { el.__clock = clockFor(el); });
+      var io = new IntersectionObserver(function (en) {
+        en.forEach(function (x) {
+          var c = x.target.__clock; if (!c) return;
+          if (x.isIntersecting) { if (!c.live) { c.live = true; c.t0 = 0; } }
+          else { c.live = false; }
+        });
+        if (!loopRaf) loopRaf = requestAnimationFrame(loopTick);
+      }, { threshold:0.3 });
+      clocks.forEach(function (c) { io.observe(c.el); });
+    }
+    if (!loopRaf) loopRaf = requestAnimationFrame(loopTick);
   }
 
   function renderStacked() {
+    if (!clocks.length) { startLoops(); }
     fn.classList.remove('is-s2', 'is-s3');
-    var pa = cardProgress(tierA), pb = cardProgress(tierB), pc = cardProgress(tierC);
+    var pa = tierA.__clock ? tierA.__clock.p : 0,
+        pb = tierB.__clock ? tierB.__clock.p : 0,
+        pc = tierC.__clock ? tierC.__clock.p : 0;
     paintWall(out3(seg(pa, M.fill[0], M.fill[1])), seg(pa, M.filter[0], M.filter[1]),
               1, out3(seg(pa, M.travel[0], M.travel[1])));
     paintRows(seg(pb, M.rows[0], M.rows[1]), pb >= M.pick);
@@ -271,13 +289,12 @@ window.addEventListener('load',post);window.addEventListener('resize',post);setI
   /* Self-driving by default — the file's own scrollbar is the timeline, whether
      it is opened directly or shown in a preview frame. The moment a host page
      posts a real progress value, that takes over and the local scroll is let go. */
-  /* FIX (not in the export): these two lookups used to sit *after* the three
-     boot calls below. render(0) reaches cardProgress(), which reads
-     scroller.getBoundingClientRect() whenever the stacked layout is active
-     (<=760px) - and at that point var-hoisting left scroller undefined, so
-     boot threw on every narrow viewport and the scroll handler was never
-     attached: the animation was dead on mobile. Hoisting the lookups fixes
-     it without touching any of the animation logic. */
+  /* Kept hoisted above the boot calls (the export declares them after).
+     The stacked layout used to read scroller.getBoundingClientRect() during
+     render(0), and var-hoisting left scroller undefined there, so boot threw
+     on every narrow viewport and the animation was dead on mobile. The card
+     clocks no longer touch scroller, but declaring these first keeps the boot
+     order safe if the stacked path ever reads them again. */
   var hint = $('#scrollHint');
   var scroller = $('#scroller');
 
@@ -289,7 +306,7 @@ window.addEventListener('load',post);window.addEventListener('resize',post);setI
   var onScroll = function () {
     var max = scroller.scrollHeight - scroller.clientHeight;
     var p = max > 0 ? scroller.scrollTop / max : 0;
-    if (stacked()) { render(0); if (hint) hint.classList.toggle('is-gone', p > 0.02); return; }
+    if (stacked()) { startLoops(); if (hint) hint.classList.toggle('is-gone', p > 0.02); return; }
     setProgress(p);
     if (hint) hint.classList.toggle('is-gone', p > 0.02);
   };

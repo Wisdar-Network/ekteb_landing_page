@@ -19,6 +19,38 @@ html[dir="rtl"] .faqb details[open] summary svg{transform:rotate(90deg)}
 .ctc-msg[data-state="error"]{display:block;color:#FFB4A8}
 .ctc-msg[data-state="ok"]{display:block;color:#A7E8C4}
 .sec-cta-dark .ctc-form input[aria-invalid="true"]{border-color:#E5776A}
+.hero-form{width:100%;max-width:470px;margin:26px auto 0}
+.hero-form input{height:54px;padding:0 18px;color:#F7F3EC;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2)}
+.hero-form input::placeholder{color:#8E86A0}
+.hero-form input:focus{outline:none;border-color:#8E76C7;background:rgba(255,255,255,.11)}
+.hero-form input[aria-invalid="true"]{border-color:#E5776A}
+.hero-form .btn{height:54px;background:#fff;color:#241C33;border:0}
+.hero-form .btn:hover{background:#EFE9F7;color:#241C33}
+.hero-msg{text-align:center}
+@media (max-width:640px){.hero-form{flex-direction:column;max-width:100%;gap:12px}.hero-form input{width:100%;box-sizing:border-box;height:auto;min-height:58px;line-height:58px;font-size:16px}.hero-form .btn{width:100%;height:auto;min-height:56px}}
+@media (max-width:640px){.sec-cta-dark .ctc-form{flex-direction:column;max-width:100%;gap:12px}.sec-cta-dark .ctc-form input{width:100%;box-sizing:border-box;height:auto;min-height:58px;padding:0 18px;text-align:start;font-size:16px;line-height:58px}.sec-cta-dark .ctc-form .btn{width:100%;height:auto;min-height:56px}.ctc-trust{justify-content:center;text-align:center;gap:10px 18px}}
+.mnav-scrim{position:fixed;inset:0;z-index:58;background:rgba(13,9,23,.55);backdrop-filter:blur(2px);opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease;border:0;padding:0;display:none}
+@media (max-width:1023px){.mnav-scrim{display:block}.mnav-scrim[data-open="1"]{opacity:1;visibility:visible}.burger{position:relative}.burger .ic-x{display:none}.burger[aria-expanded="true"] .ic-m{display:none}.burger[aria-expanded="true"] .ic-x{display:block}.hdr .burger[aria-expanded="true"],.hdr[data-solid="0"] .burger[aria-expanded="true"]{background:#fff;color:#241C33;border-color:var(--ek-line)}.mnav a:not(.btn){min-height:48px;display:flex;align-items:center}}
+body[data-mnav="1"]{overflow:hidden}
+@media (max-width:1023px){
+.mnav{position:fixed!important;top:0!important;right:0!important;bottom:0!important;left:0!important;width:100%!important;height:100vh!important;height:100dvh!important;max-height:none!important;z-index:70;display:block!important;padding:0;border-bottom:0;box-shadow:none;transform:translateY(-6px);background:#fff!important;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.mnav-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;padding:0 20px;border-bottom:1px solid var(--ek-line);background:#fff}
+.mnav-x{width:44px;height:44px;margin-inline-start:-10px;display:grid;place-items:center;border:0;background:transparent;color:var(--ek-ink);cursor:pointer;border-radius:10px}
+.mnav-x:active{background:var(--ek-surface-2,#F2EDE6)}
+.mnav-logo{height:26px;width:auto}
+.mnav-body{display:block;width:100%;max-width:none;margin:0;padding:12px 24px 40px;text-align:start;background:#fff}
+.mnav-body ul{width:100%;margin:0;padding:0;list-style:none;display:block}
+.mnav-body a:not(.btn){text-align:start}
+.mnav-form{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.mnav-form input{width:100%;box-sizing:border-box;min-height:54px;padding:0 16px;border:1px solid var(--ek-line);border-radius:var(--r-md,12px);background:#fff;font:inherit;font-size:16px;color:var(--ek-ink)}
+.mnav-form input::placeholder{color:var(--ek-faint)}
+.mnav-form input:focus{outline:none;border-color:var(--ek-purple);box-shadow:0 0 0 3px rgba(126,102,182,.18)}
+.mnav-form .btn{display:flex;width:100%;min-height:54px;justify-content:center;margin-top:0}
+.mnav-msg{margin:10px 0 0;font-size:13.5px;color:var(--ek-purple);min-height:18px}
+.mnav-body ul{flex:none}
+.mnav .btn{margin-top:24px}
+.hdr[data-mnav="1"]{opacity:0;pointer-events:none}
+}
 .hiw-head .lead,.ent-head .lead{margin-top:14px;max-width:680px;margin-inline:auto}
 .hero{justify-content:center;background:#0D0917;color:#E8E1D8}
 .hero::before{inset-inline-start:-8%;top:auto;bottom:0;width:88%;height:76%;background:radial-gradient(54% 54% at 46% 56%,rgba(126,102,182,.46),rgba(96,77,140,.14) 54%,rgba(96,77,140,0) 76%)}
@@ -41,7 +73,11 @@ html[dir="rtl"] .faqb details[open] summary svg{transform:rotate(90deg)}
 .hp-shot{width:min(1140px,94%)}
 .hp-shot img{width:auto;height:auto;max-width:100%;max-height:min(56vh,600px);margin-inline:auto;object-fit:contain;border-radius:12px;border:1px solid rgba(255,255,255,.14);box-shadow:0 44px 90px -34px rgba(0,0,0,.8),0 4px 14px rgba(0,0,0,.3);filter:none}
 .hp-turn{transform:perspective(1800px) rotateY(-14deg) rotateX(5deg) scale(.97);transform-origin:50% 50%;transition:none}
-@media (max-width:767px){.hp-shot img{max-height:min(40vh,400px)}.hp-shot{width:100%}}@media (max-width:1023px){.fs-grid>div:first-child{max-width:720px}}
+@media (min-width:768px) and (max-width:1023px){.hero{min-height:max(560px,84svh)}}
+/* below desktop the screenshot fills whatever height is left in the hero exactly —
+   the stage is the flex remainder, so no dark strip can appear under it */
+@media (max-width:1023px){.hero-stage{margin-top:0;flex:1 1 auto;min-height:230px;display:flex;align-items:stretch;padding-top:clamp(22px,4vh,46px);padding-bottom:0}.hp-shot{width:100%;height:100%;max-height:none}.hp-turn{transform:none;height:100%}.hp-shot img{width:100%;height:100%;max-height:none;object-fit:cover;object-position:top center;border-radius:14px 14px 0 0;border-bottom:0}}
+@media (max-width:767px){.hp-shot{width:100%}.hero-stage{margin-top:auto}.hp-shot img{border-radius:14px 14px 0 0;border-bottom:0;box-shadow:0 -2px 0 rgba(255,255,255,.06),0 28px 60px -26px rgba(0,0,0,.8)}.hp-turn{transform:none}.hero-stage{padding-top:clamp(30px,5.5vh,60px)}}@media (max-width:1023px){.fs-grid>div:first-child{max-width:720px}}
 .ent-board{background:var(--ek-canvas);border:1px solid var(--ek-line);border-radius:var(--r-lg);overflow:hidden;margin-top:var(--s6);box-shadow:var(--sh-1)}
 .ent-board .ent-grid{margin-top:0;text-align:start;gap:0}
 .ent-board .ent-item{padding:clamp(24px,2.6vw,36px);border-inline-start:1px solid var(--ek-line)}
@@ -54,10 +90,21 @@ html[dir="rtl"] .faqb details[open] summary svg{transform:rotate(90deg)}
 @media (max-width:560px){.ent-board .ent-grid{grid-template-columns:1fr}.ent-board .ent-item{border-inline-start:0}.ent-board .ent-item+.ent-item{border-block-start:1px solid var(--ek-line)}}
 @media (max-width:1023px){.sec{padding:var(--s8) 0}.hiw-grid,.feat-grid,.prob-grid,.uc-grid{margin-top:var(--s6)}}
 @media (max-width:480px){.feedp-tabs .fpt:nth-child(n+5){display:none}}
+@media (max-width:640px){.uc-grid{grid-template-columns:1fr;gap:0;background:#fff;border:1px solid var(--ek-line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-1)}.uc-card{border:0;border-radius:0;box-shadow:none;padding:16px 16px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;align-items:center}.uc-card+.uc-card{border-top:1px solid var(--ek-line)}.uc-card:hover{transform:none;box-shadow:none}.uc-card .badge{width:34px;height:34px;border-radius:10px}.uc-card h3{margin:0;font-size:16.5px}.uc-card p{grid-column:2;margin:0;font-size:13.5px}
+.ent-board .ent-grid{grid-template-columns:1fr}.ent-board .ent-item{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;align-items:center;text-align:start;padding:16px}.ent-board .ent-item .ic{width:34px;height:34px;border-radius:10px;margin:0}.ent-board .ent-item h3{margin:0;font-size:16.5px}.ent-board .ent-item p{grid-column:2;margin:0;font-size:13.5px}}
 .prob-outcome{margin-top:var(--s6);text-align:center}
 .prob-outcome p{margin:0;font-family:var(--ek-ar);font-weight:700;font-size:clamp(17px,2vw,28px);line-height:1.55;letter-spacing:-.01em;color:var(--ek-purple);max-width:none;text-wrap:pretty}
 @media (min-width:768px){.prob-outcome p{white-space:nowrap}}
 .prob-outcome b{font-weight:inherit;color:inherit}
+.ftr-min{background:#0D0917;color:#8F86A3;border-top:1px solid rgba(255,255,255,.1)}
+.ftr-min .ftr-cr{color:#8F86A3}
+.ftr-min a{color:#B7AEC6}
+.ftr-min a:hover{color:#F7F3EC}
+@media (min-width:831px){
+.fs-pin{position:relative;height:300vh}
+.fs-pin .fs-anim{position:sticky;top:calc(50vh - 300px);margin-top:0;display:flex;align-items:center;justify-content:center}
+.fs-pin .fs-anim iframe{min-height:0}
+}
 
 /* ── Language switcher ──────────────────────────────────────────────────
    The export shipped a two-state toggle button. Three languages need a menu,
@@ -102,9 +149,12 @@ html[dir="rtl"] .faqb details[open] summary svg{transform:rotate(90deg)}
 .mnav .langsw-inline a:hover{color:var(--ek-ink);border-color:var(--ek-muted)}
 .mnav .langsw-inline a[aria-current="true"]{color:var(--ek-purple);border-color:var(--ek-purple);background:var(--ek-purple-t)}
 
-/* Contact form: the export had no pending state because nothing was sent. */
-.ctc-form[data-busy="1"] button{opacity:.6;pointer-events:none}
+/* Contact forms: the export had no pending state because nothing was sent.
+   The mobile-menu form is not a .ctc-form - it sits on white, so it keeps the
+   export's own .mnav-msg colour and only needs an error tone of its own. */
+.ctc-form[data-busy="1"] button,.mnav-form[data-busy="1"] button{opacity:.6;pointer-events:none}
 .ctc-msg[data-state="pending"]{display:block;color:rgba(247,243,236,.72)}
+.mnav-msg[data-state="error"]{color:#B42318}
 .ctc-hp{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
   clip:rect(0 0 0 0);white-space:nowrap;border:0}
 

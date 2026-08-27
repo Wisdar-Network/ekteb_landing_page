@@ -26,7 +26,7 @@ node -e "const f=require('fs');const w=(o,p='')=>Object.entries(o).flatMap(([k,v
 This site is a rebuild of a static Claude Design export (a single bilingual HTML
 file that shipped Arabic and English together and hid one with CSS). **The visual
 result must stay pixel-identical to that export.** Every structural choice here —
-keeping all 39 inline SVGs verbatim, keeping the 41 inline `style=` attributes,
+keeping all 41 inline SVGs verbatim, keeping the 42 inline `style=` attributes,
 preserving nested spans that look redundant — exists to protect that.
 
 Before changing anything that touches markup or CSS, assume the odd-looking thing
@@ -91,6 +91,19 @@ private scroll timeline. The host page drives it over `postMessage`:
 
 There is no language message: each locale is rendered server-side once.
 
+Where that progress comes from depends on the width. From 831px up the frame is
+sticky inside `.fs-pin`, a 300vh track, and progress is how far that track has
+travelled past it — so the animation is scrubbed while the picture holds still.
+Below 831px `.fs-pin` collapses to its natural height and progress is the
+frame's own travel through the viewport. `fit()` centres the sticky frame in
+whatever height the viewport has; it must run again whenever the funnel reports
+a new height.
+
+At <=760px the funnel stops taking host progress altogether: each of the three
+cards runs its own looping clock (play 2400ms, hold 1500ms), started and stopped
+by an IntersectionObserver. Stacked cards are independent of each other and of
+the scroll position, so do not wire them back to `ektebScroll`.
+
 ### CSP shapes the JavaScript
 
 `script-src 'self'` — no inline scripts anywhere. Every script the export had
@@ -99,7 +112,7 @@ inline now lives in `public/js/`. Strings that JS needs are passed through inert
 which the external scripts `JSON.parse`. Keep that pattern; do not add inline
 handlers or `eval` (the browser will block it, including in dev tooling).
 
-`style-src` needs `'unsafe-inline'` because the design carries 41 inline
+`style-src` needs `'unsafe-inline'` because the design carries 42 inline
 `style=` attributes that are part of the artwork.
 
 `public/js/*.js` is ES5-style, `var`-based, IIFE-wrapped — it was migrated from
@@ -108,7 +121,13 @@ code under `src/` is modern ESM; match *that* style there.
 
 ### No database — the email is the record
 
-The contact form has no persistence. `POST /api/contact` validates with zod,
+Three forms post to the one endpoint — the hero, the mobile menu, and
+`#contact` — and `public/js/site.js` wires all of them from the single
+`#contact-i18n` strings blob that `#contact` renders. A new form needs an id
+triple in that list, a honeypot, and `data-locale`; it does not need its own
+copy.
+
+None of them has persistence. `POST /api/contact` validates with zod,
 drops honeypot/too-fast submissions silently with a `200`, dedupes repeat
 addresses for 24h in memory (`src/services/dedupe.js`), then **awaits** the
 Mailgun send.
