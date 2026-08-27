@@ -1,10 +1,17 @@
 {# Three languages need a menu, not a toggle. <details> gives us an accessible
    disclosure with zero JavaScript; each option is a plain link to that locale's
-   URL, so it still works with scripting off and search engines can follow it. #}
-<details class="langsw" id="langsw">
-  <summary class="lang" aria-label="{{ t.nav.ariaLang }}">
+   URL, so it still works with scripting off and search engines can follow it.
+
+   Included twice per page. The header gets the pill trigger and a popup panel;
+   the mobile menu passes swVariant='langsw-m' for a full-width row that expands
+   in place — a popup would be positioned against a panel that scrolls. Both are
+   the same markup on purpose: a native <select> would read as a dropdown too,
+   but it would take the hreflang links out of the mobile render, which is the
+   render Google indexes. #}
+<details class="langsw{% if swVariant %} {{ swVariant }}{% endif %}" id="{{ swId | default('langsw') }}">
+  <summary class="{{ swTrigger | default('lang') }}" aria-label="{{ t.nav.ariaLang }}">
     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
-    <span>{{ label }}</span>
+    <span class="lbl">{{ label }}</span>
     <svg class="chev" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
   </summary>
   <ul class="langsw-menu">

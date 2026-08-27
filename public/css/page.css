@@ -141,13 +141,23 @@ body[data-mnav="1"]{overflow:hidden}
 .hdr[data-solid="0"] .langsw>summary{color:rgba(247,243,236,.82);border-color:rgba(255,255,255,.24)}
 .hdr[data-solid="0"] .langsw>summary:hover{color:#fff;border-color:rgba(255,255,255,.5)}
 
-/* Mobile menu variant: laid out inline instead of as a popup. */
-.mnav .langsw-inline{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0;padding:0;list-style:none}
-.mnav .langsw-inline a{display:inline-flex;align-items:center;padding:8px 16px;border-radius:999px;
-  border:1px solid var(--ek-line-2);font-family:var(--ek-ar);font-size:14.5px;font-weight:600;
-  color:var(--ek-body-2);text-decoration:none;transition:color .18s var(--ease),border-color .18s var(--ease)}
-.mnav .langsw-inline a:hover{color:var(--ek-ink);border-color:var(--ek-muted)}
-.mnav .langsw-inline a[aria-current="true"]{color:var(--ek-purple);border-color:var(--ek-purple);background:var(--ek-purple-t)}
+/* Mobile menu variant: the same disclosure, but the trigger is a full-width row
+   and the panel opens in place instead of floating. An absolutely positioned
+   popup would be anchored inside a panel that scrolls, and the last option can
+   sit below the fold; opening in place just lengthens the scroll. The trigger
+   matches .mnav-form input so the two controls read as one column. */
+.langsw-m>summary.lang-row{display:flex;align-items:center;gap:10px;width:100%;box-sizing:border-box;
+  min-height:54px;padding:0 16px;border:1px solid var(--ek-line);border-radius:var(--r-md,12px);
+  background:#fff;font-family:var(--ek-ar);font-size:16px;font-weight:600;color:var(--ek-ink);
+  cursor:pointer;transition:border-color .18s var(--ease)}
+.langsw-m>summary.lang-row .lbl{flex:1;min-width:0;text-align:start}
+.langsw-m>summary.lang-row .chev{flex:none}
+.langsw-m>summary.lang-row:hover{border-color:var(--ek-muted)}
+.langsw-m[open]>summary.lang-row{border-color:var(--ek-purple)}
+/* Static, not absolute: this panel is inside a scrolling menu. */
+.mnav .langsw-m .langsw-menu{position:static;min-width:0;margin-top:8px;padding:6px;
+  background:#fff;box-shadow:none}
+.mnav .langsw-m .langsw-menu a{font-size:16px}
 
 /* Contact forms: the export had no pending state because nothing was sent.
    The mobile-menu form is not a .ctc-form - it sits on white, so it keeps the
@@ -159,11 +169,12 @@ body[data-mnav="1"]{overflow:hidden}
   clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* At <=1023px the design hides .nav, .hdr-login and .hdr-cta .btn and moves
-   them into .mnav, leaving only the burger. The switcher follows the same
-   rule: the export's two-letter pill fit, but a full language name does not,
-   and .mnav already carries the complete list. */
+   them into .mnav, leaving only the burger. The header switcher follows the
+   same rule — the export's two-letter pill fit, but a full language name does
+   not — and the .mnav copy takes over. */
 @media (max-width:1023px){
   .langsw{display:none}
+  .langsw.langsw-m{display:block;position:static;margin:18px 0 0}
 }
 
 /* Let grid tracks shrink below their content.

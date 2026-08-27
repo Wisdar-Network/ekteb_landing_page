@@ -31,6 +31,9 @@
       b.setAttribute('aria-expanded', 'false')
       if (sc) sc.setAttribute('data-open', '0')
       document.body.removeAttribute('data-mnav')
+      // Collapse the language dropdown too, or reopening the menu shows it
+      // stuck open from last time.
+      m.querySelectorAll('.langsw[open]').forEach(function (sw) { sw.open = false })
     }
     function open() {
       m.setAttribute('data-open', '1')
@@ -44,20 +47,38 @@
     })
     if (sc) sc.addEventListener('click', close)
     if (xb) xb.addEventListener('click', close)
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close() })
+    // Escape unwinds one layer at a time: the language dropdown first (the
+    // handler below closes it), the whole menu only once nothing is open
+    // inside it.
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !m.querySelector('.langsw[open]')) close()
+    })
     m.addEventListener('click', function (e) { if (e.target.closest('a')) close() })
     window.addEventListener('resize', function () { if (window.innerWidth > 1023) close() })
   })()
 
   /* Language menu: <details> handles opening, this only closes it ------ */
+  /* Two of them now: the header pill and the row inside the mobile menu. */
   ;(function () {
-    var sw = document.getElementById('langsw')
-    if (!sw) return
+    var sws = document.querySelectorAll('.langsw')
+    if (!sws.length) return
     document.addEventListener('click', function (e) {
-      if (sw.open && !sw.contains(e.target)) sw.open = false
+      sws.forEach(function (sw) { if (sw.open && !sw.contains(e.target)) sw.open = false })
     })
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && sw.open) { sw.open = false; sw.querySelector('summary').focus() }
+      if (e.key !== 'Escape') return
+      sws.forEach(function (sw) {
+        if (sw.open) { sw.open = false; sw.querySelector('summary').focus() }
+      })
+    })
+    /* The one inside the mobile menu opens in place near the bottom of a panel
+       that scrolls, so the last option can land below the fold. Pull the whole
+       disclosure into view instead of leaving the visitor to find it. */
+    sws.forEach(function (sw) {
+      if (!sw.closest('.mnav')) return
+      sw.addEventListener('toggle', function () {
+        if (sw.open) sw.scrollIntoView({ block: 'nearest' })
+      })
     })
   })()
 

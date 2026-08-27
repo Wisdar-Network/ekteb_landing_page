@@ -41,9 +41,8 @@
 <button class="btn btn-p" type="submit">{{ t.nav.contact }}</button>
 </form>
 <p class="mnav-msg" id="mnav-msg" role="status" aria-live="polite"></p>
-<ul class="langsw-inline">
-{% for alt in locales %}<li><a href="/{{ alt.code }}" lang="{{ alt.htmlLang }}" hreflang="{{ alt.htmlLang }}"{% if alt.code == locale %} aria-current="true"{% endif %}>{{ alt.label }}</a></li>
-{% endfor %}</ul>
+{% set swId = 'langsw-m' %}{% set swVariant = 'langsw-m' %}{% set swTrigger = 'lang-row' %}
+{% include "partials/lang-switch.njk" %}
 </div>
 </div>
 </header>
