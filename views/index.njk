@@ -4,7 +4,7 @@
 
 {# The hero screenshot is the LCP element on every viewport. Preloading it
    starts the fetch during head parsing instead of after layout. #}
-{% block preload %}<link rel="preload" as="image" href="/media/opt/hero-app.webp" type="image/webp" fetchpriority="high">{% endblock %}
+{% block preload %}<link rel="preload" as="image" href="{{ asset('/media/opt/hero-app.webp') }}" type="image/webp" fetchpriority="high">{% endblock %}
 
 {% block body %}
 {% include "partials/header.njk" %}
@@ -23,5 +23,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="/js/site.js" defer></script>
+<script src="{{ asset('/js/site.js') }}" defer></script>
 {% endblock %}

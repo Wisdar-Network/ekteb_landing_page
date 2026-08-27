@@ -6,8 +6,8 @@
 <title>{% block title %}{{ t.meta.title }}{% endblock %}</title>
 <meta name="description" content="{{ t.meta.description }}">
 <meta name="theme-color" content="#604D8C">
-<link rel="icon" href="/media/logo.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/media/og/apple-touch-icon.png">
+<link rel="icon" href="{{ asset('/media/logo.svg') }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ asset('/media/og/apple-touch-icon.png') }}">
 {% block head %}{% endblock %}
 
 {% if canonical %}<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -46,9 +46,9 @@
 {% block preload %}{% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="/css/tokens.bundle.css">
-<link rel="stylesheet" href="/css/landing-v3.css">
-<link rel="stylesheet" href="/css/page.css">
+<link rel="stylesheet" href="{{ asset('/css/tokens.bundle.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/landing-v3.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/page.css') }}">
 {% endblock %}
 {% if jsonLd %}<script type="application/ld+json">{{ jsonLd | safe }}</script>
 {% endif %}</head>

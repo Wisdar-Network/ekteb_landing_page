@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { config, isProd } from './config.js'
+import { assetUrl } from './assets.js'
 import { loadLocales, LOCALES, DEFAULT_LOCALE, t } from './i18n.js'
 import { securityMiddleware } from './middleware/security.js'
 import { pagesRouter } from './routes/pages.js'
@@ -33,6 +34,8 @@ const env = nunjucks.configure(join(root, 'views'), {
 })
 // `| safe` stays explicit at the call site; this only exposes the raw string.
 env.addFilter('nl2br', (s) => String(s).replace(/\n/g, '<br>'))
+// Every static URL a template emits goes through this. See src/assets.js.
+env.addGlobal('asset', assetUrl)
 
 app.use(...securityMiddleware)
 app.use(cookieParser())
@@ -41,14 +44,25 @@ app.use(express.urlencoded({ extended: false, limit: '8kb' }))
 
 app.use(
   express.static(join(root, 'public'), {
-    maxAge: isProd ? '30d' : 0,
+    // maxAge is deliberately absent: Cache-Control is decided per request
+    // below, and express.static's own value would overwrite it.
     etag: true,
-    setHeaders(res, path) {
-      // Fonts and images are content-addressed enough in practice; CSS/JS get a
-      // shorter life so a deploy is visible without a cache-busting query.
-      if (/\.(webp|svg|png|jpe?g|woff2?)$/.test(path) && isProd) {
-        res.setHeader('Cache-Control', 'public, max-age=2592000, immutable')
+    setHeaders(res) {
+      if (!isProd) {
+        // A reload during development must never show yesterday's stylesheet.
+        res.setHeader('Cache-Control', 'no-store')
+        return
       }
+      // asset() stamps a hash of the file's bytes into every URL a template
+      // emits, so a stamped URL can never name stale content - cache it for a
+      // year and skip revalidation entirely. A bare path is one this deploy
+      // did not hand out (a bookmark, a crawler, a page still sitting in
+      // someone's cache), so it revalidates on every use: a 304 costs one
+      // round trip, a month of stale CSS costs a broken layout.
+      res.setHeader(
+        'Cache-Control',
+        res.req.query.v ? 'public, max-age=31536000, immutable' : 'no-cache'
+      )
     },
   })
 )

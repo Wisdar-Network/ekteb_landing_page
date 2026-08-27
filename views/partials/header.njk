@@ -1,7 +1,7 @@
 <a class="skip" href="#feedsec">{{ t.skip }}</a>
 <header class="hdr" id="hdr" data-solid="0">
 <div class="wrap-wide hdr-in">
-<a class="hdr-logo" href="#top" aria-label="{{ t.nav.ariaHome }}"><img class="lg-l" src="/media/logo-light.svg" alt="{{ t.meta.siteName }}" width="96" height="27"><img class="lg-d" src="/media/logo.svg" alt="" width="96" height="27"></a>
+<a class="hdr-logo" href="#top" aria-label="{{ t.nav.ariaHome }}"><img class="lg-l" src="{{ asset('/media/logo-light.svg') }}" alt="{{ t.meta.siteName }}" width="96" height="27"><img class="lg-d" src="{{ asset('/media/logo.svg') }}" alt="" width="96" height="27"></a>
 <nav class="nav" aria-label="{{ t.nav.ariaMain }}">
 <a href="#feedsec">{{ t.nav.feed }}</a>
 <a href="#steps">{{ t.nav.how }}</a>
@@ -21,7 +21,7 @@
 <div class="mnav" id="mnav" data-open="0">
 <div class="mnav-bar">
 <button class="mnav-x" type="button" id="mnav-x" aria-label="{{ t.nav.ariaCloseMenu }}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-<img class="mnav-logo" src="/media/logo.svg" alt="{{ t.meta.siteName }}" width="96" height="27">
+<img class="mnav-logo" src="{{ asset('/media/logo.svg') }}" alt="{{ t.meta.siteName }}" width="96" height="27">
 </div>
 <div class="wrap mnav-body">
 <ul>

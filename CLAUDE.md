@@ -163,6 +163,39 @@ the field is meaningless.
 training scrapers with a comment on why each is allowed. The allow/deny decision
 lives in one place: the `AI_AGENTS` array in `src/seo.js`.
 
+### Nothing survives a deploy in someone's cache
+
+Every static URL a template emits goes through the `asset()` Nunjucks global
+(`src/assets.js`), which appends a hash of that file's bytes:
+
+```njk
+<link rel="stylesheet" href="{{ asset('/css/page.css') }}">
+<img src="{{ asset('/media/opt/hero-app.webp') }}" alt="…">
+```
+
+**A new static file must be referenced through `asset()`.** A bare path still
+works, but it is the one case that can serve a visitor last deploy's copy.
+
+The stamp and the `Cache-Control` in `src/server.js` are two halves of one
+mechanism:
+
+- a stamped URL names one exact byte sequence, so it gets
+  `max-age=31536000, immutable` — never revalidated, and a changed file simply
+  arrives under a URL the browser has never seen;
+- a bare path might be one an earlier deploy handed out, so it gets `no-cache`:
+  stored, but revalidated every time (a 304, not a download);
+- HTML — `/:locale` and `/funnel/:locale` — is `max-age=0, must-revalidate`, so
+  the document is always rechecked and the new asset URLs are picked up on the
+  next load.
+
+`og:image` is stamped too (`src/routes/pages.js`). Social platforms key their
+image cache on the URL and ignore `Cache-Control`, so a changed logo only
+propagates because the URL changed with it.
+
+Prod hashes each file once at boot — nothing writes to `public/` in a running
+container. Dev stamps with mtime instead and re-stats on every render, so an
+edit shows up on reload; dev also sends `no-store`.
+
 ### Generated files
 
 `public/css/tokens.bundle.css` and `public/media/og/*.png` are build outputs and

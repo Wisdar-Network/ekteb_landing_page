@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { config } from '../config.js'
+import { assetUrl } from '../assets.js'
 import { LOCALES, LOCALE_CODES, DEFAULT_LOCALE, FALLBACK_LOCALE, alternates, isLocale, t } from '../i18n.js'
 import { pickLocale, rememberLocale, varyOnLanguage } from '../middleware/locale.js'
 import {
@@ -27,7 +28,10 @@ function view(locale, extra = {}) {
     // unmatched visitor gets, so it has to follow pickLocale() rather than sit
     // as a hardcoded /ar in the head.
     xDefault: `${config.siteUrl}/${FALLBACK_LOCALE}`,
-    ogImage: `${config.siteUrl}/media/og/og.png`,
+    // Stamped like every other asset. Social platforms cache an image against
+    // its URL and ignore Cache-Control, so a new logo is only ever picked up
+    // because the URL changed with it.
+    ogImage: `${config.siteUrl}${assetUrl('/media/og/og.png')}`,
     ...extra,
   }
 }
@@ -53,6 +57,10 @@ pagesRouter.get('/:locale', (req, res, next) => {
 pagesRouter.get('/funnel/:locale', (req, res, next) => {
   const { locale } = req.params
   if (!isLocale(locale)) return next()
+  // Same rule as the page that frames it: the document always revalidates, so
+  // a deploy's new asset URLs reach the iframe on the next load rather than
+  // whenever a heuristic freshness lifetime happens to run out.
+  res.set('Cache-Control', 'public, max-age=0, must-revalidate')
   res.render('funnel.njk', view(locale, { canonical: null }))
 })
 

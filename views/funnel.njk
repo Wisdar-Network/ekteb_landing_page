@@ -11,7 +11,7 @@
 
 {% block styles %}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Baloo+2:wght@600;700&family=Roboto+Slab:wght@300..700&display=swap">
-<link rel="stylesheet" href="/css/funnel.css">
+<link rel="stylesheet" href="{{ asset('/css/funnel.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -192,5 +192,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="/js/funnel.js"></script>
+<script src="{{ asset('/js/funnel.js') }}"></script>
 {% endblock %}

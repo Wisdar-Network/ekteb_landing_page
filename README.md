@@ -93,6 +93,24 @@ The response carries `Vary: Accept-Language, Cookie`, and the cookie is written
 only when it changes — a `Set-Cookie` on every view makes most CDNs refuse to
 cache the page.
 
+### A deploy is never stuck behind a browser cache
+
+Templates never write a static path directly. They go through the `asset()`
+helper, which stamps the URL with a hash of the file's bytes:
+
+```njk
+<link rel="stylesheet" href="{{ asset('/css/page.css') }}">
+```
+
+So `/css/page.css?v=36eb94f128` becomes `?v=b02ed54613` the moment the file
+changes, and the browser fetches it because it has never seen that URL — while
+files that did *not* change keep their URL and stay cached. Stamped URLs are
+served `max-age=31536000, immutable`; a bare path gets `no-cache` so it
+revalidates; the HTML itself is `max-age=0, must-revalidate` so the new URLs are
+always picked up. Nothing needs a hard refresh after a deploy.
+
+If you add a static file, reference it through `asset()`.
+
 ### Adding a fourth language
 
 1. Add `locales/xx.json`
