@@ -239,10 +239,15 @@
       var p
       if (pin && window.innerWidth >= 831) {
         /* pinned: the tall track is the timeline, so progress is how far it
-           has scrolled past the sticky frame */
+           has scrolled past the sticky frame. The clock starts a lead-in
+           early, while the frame is still rising into view: counting from
+           the moment the track reached the top left the frame on screen as
+           an empty white wall for the whole approach. The end is unchanged,
+           so the finished state still lands as the track lets go. */
         var pr = pin.getBoundingClientRect()
-        var span = pr.height - vh
-        p = span > 0 ? (-pr.top) / span : 0
+        var lead = vh * 0.8
+        var span = pr.height - vh + lead
+        p = span > 0 ? (lead - pr.top) / span : 0
       } else {
         var r = f.getBoundingClientRect()
         var start = vh * 0.86

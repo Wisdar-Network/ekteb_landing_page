@@ -1,0 +1,99 @@
+{% extends "layout.njk" %}
+
+{% block bodyattrs %} id="top"{% endblock %}
+
+{% block body %}
+{% set skipId = 'fdp-grid' %}
+{% include "partials/header.njk" %}
+<main>
+{# Dark band under the transparent header, the same plum as the landing hero
+   and #contact, so the header reads exactly as it does at the top of /. #}
+<section class="fdp-hero" aria-labelledby="fdp-h">
+<div class="wrap fdp-hero-in">
+<span class="fdp-eyb"><span class="fdp-pulse" aria-hidden="true"></span>{{ t.feeds.eyebrow }}</span>
+<h1 id="fdp-h">{{ t.feeds.h1 }}</h1>
+<p class="lead">{{ t.feeds.lead }}</p>
+<ul class="fdp-stats">
+{% for s in t.feeds.stats %}<li><b>{{ s.n }}</b><span>{{ s.label }}</span></li>
+{% endfor %}</ul>
+</div>
+</section>
+
+{# Sticky under the fixed header. Plain links so the filter works without
+   script: the server reads ?type= and hides the rest; feeds.js does the same
+   in place and keeps the address bar in step. #}
+<div class="fdp-bar">
+<div class="wrap-wide fdp-bar-in">
+<nav class="fdp-tabs" aria-label="{{ t.feeds.filterAria }}">
+<a href="/{{ locale }}/feeds" data-filter="all"{% if filter == 'all' %} aria-current="page"{% endif %}><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>{{ t.feeds.all }}<span class="n num">{{ counts.all }}</span></a>
+<a href="/{{ locale }}/feeds?type=video" data-filter="video"{% if filter == 'video' %} aria-current="page"{% endif %}><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 13 5.2 3.1a.5.5 0 0 0 .8-.4V8.3a.5.5 0 0 0-.8-.4L16 11"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>{{ t.feeds.videos }}<span class="n num">{{ counts.video }}</span></a>
+<a href="/{{ locale }}/feeds?type=article" data-filter="article"{% if filter == 'article' %} aria-current="page"{% endif %}><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M16 13H8M16 17H8M10 9H8"/></svg>{{ t.feeds.articles }}<span class="n num">{{ counts.article }}</span></a>
+</nav>
+<p class="fdp-live"><span class="fdp-pulse" aria-hidden="true"></span>{{ t.feeds.live }}</p>
+</div>
+</div>
+
+<section class="fdp-body" id="fdp-grid" aria-label="{{ t.feeds.gridAria }}">
+<div class="wrap-wide">
+<ul class="fdp-grid" id="fdp-list">
+{% for it in items %}
+<li class="fc fc-{{ it.type }} rv" data-type="{{ it.type }}" data-tone="{{ it.tone }}"{% if filter != 'all' and filter != it.type %} hidden{% endif %}>
+<article class="fc-in" aria-labelledby="fc-t-{{ loop.index }}">
+<div class="fc-media">
+{% if it.type == 'video' and it.video %}
+{# Decorative preview: the title carries the content. feeds.js attaches the
+   source once the card nears the viewport, so a grid of clips does not
+   fetch them all on load. #t= shows a real frame instead of black. #}
+<video class="fc-vid" data-src="{{ it.video }}#t=1"{% if it.image %} poster="{{ it.image }}"{% endif %} muted playsinline loop preload="none" aria-hidden="true" tabindex="-1"></video>
+<span class="fc-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5.6v12.8a1 1 0 0 0 1.5.86l10.4-6.4a1 1 0 0 0 0-1.72L9.5 4.74A1 1 0 0 0 8 5.6z" fill="currentColor"/></svg></span>
+<span class="fc-prog" aria-hidden="true"><i></i></span>
+{% elif it.image %}
+<img class="fc-img" src="{{ it.image }}" alt="" loading="lazy" decoding="async">
+{% else %}
+<div class="fc-cover" aria-hidden="true"><span class="fc-q">“</span><b dir="auto">{{ it.source }}</b><span class="fc-lines"><i></i><i></i><i></i></span></div>
+{% endif %}
+<span class="fc-type">{% if it.type == 'video' %}<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 13 5.2 3.1a.5.5 0 0 0 .8-.4V8.3a.5.5 0 0 0-.8-.4L16 11"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>{{ t.feeds.typeVideo }}{% else %}<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M16 13H8M16 17H8"/></svg>{{ t.feeds.typeArticle }}{% endif %}</span>
+{% if it.durLabel %}<span class="fc-len num">{{ it.durLabel }}</span>{% elif it.wordsLabel %}<span class="fc-len">{{ it.wordsLabel }}</span>{% endif %}
+</div>
+<div class="fc-body">
+<p class="fc-meta"><span class="fc-av" aria-hidden="true">{{ it.initial }}</span><span class="fc-src" dir="auto">{{ it.source }}</span>{% if it.langLabel %}<span class="fc-lang">{{ it.langLabel }}</span>{% endif %}</p>
+<h3 class="fc-t" id="fc-t-{{ loop.index }}" dir="auto">{{ it.title }}</h3>
+{% if it.summary %}<p class="fc-s" dir="auto">{{ it.summary }}</p>{% endif %}
+{% if it.tags.length %}<ul class="fc-tags">{% for tg in it.tags.slice(0, 3) %}<li dir="auto">#{{ tg }}</li>{% endfor %}</ul>{% endif %}
+</div>
+<div class="fc-ft">
+{% if it.iso %}<time datetime="{{ it.iso }}">{{ it.dateLabel }}</time>{% endif %}
+{% if it.summary %}<span class="fc-ai"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M12 2.5l1.9 5.6 5.6 1.9-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.9z"/><path d="M19 15l.8 2.2 2.2.8-2.2.8L19 21l-.8-2.2-2.2-.8 2.2-.8z"/></svg>{{ t.feeds.aiSummary }}</span>{% endif %}
+</div>
+</article>
+</li>
+{% endfor %}
+</ul>
+<p class="fdp-empty" id="fdp-empty"{% if (filter == 'all' and counts.all) or (filter != 'all' and counts[filter]) %} hidden{% endif %}>{{ t.feeds.empty }}</p>
+
+<div class="fdp-more rv">
+<div>
+<h2 class="h4">{{ t.feeds.moreH }}</h2>
+<p class="body-sm">{{ t.feeds.moreP }}</p>
+</div>
+<div class="fdp-more-btns">
+<a class="btn btn-s" href="#contact">{{ t.nav.contact }}</a>
+<a class="btn btn-p" href="{{ appUrl }}">{{ t.nav.login }}</a>
+</div>
+</div>
+</div>
+</section>
+
+{% include "partials/contact.njk" %}
+</main>
+{% include "partials/footer.njk" %}
+{% endblock %}
+
+{% block styles %}{{ super() }}
+<link rel="stylesheet" href="{{ asset('/css/feeds.css') }}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ asset('/js/site.js') }}" defer></script>
+<script src="{{ asset('/js/feeds.js') }}" defer></script>
+{% endblock %}

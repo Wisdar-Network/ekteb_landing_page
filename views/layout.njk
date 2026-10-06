@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{% block title %}{{ t.meta.title }}{% endblock %}</title>
-<meta name="description" content="{{ t.meta.description }}">
+<title>{% block title %}{{ pageTitle or t.meta.title }}{% endblock %}</title>
+<meta name="description" content="{{ pageDescription or t.meta.description }}">
 <meta name="theme-color" content="#604D8C">
 <link rel="icon" href="{{ asset('/media/logo.svg') }}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{{ asset('/media/og/apple-touch-icon.png') }}">
 {% block head %}{% endblock %}
 
-{% if canonical %}<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+{% if canonical %}<meta name="robots" content="{{ robots or 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}">
 <link rel="canonical" href="{{ canonical }}">
 {% for alt in locales %}<link rel="alternate" hreflang="{{ alt.htmlLang }}" href="{{ alt.href }}">
 {% endfor %}<link rel="alternate" hreflang="x-default" href="{{ xDefault }}">
@@ -23,8 +23,8 @@
    which never read hreflang. #}
 {% for alt in locales %}{% if alt.code != locale %}<meta property="og:locale:alternate" content="{{ alt.ogLocale }}">
 {% endif %}{% endfor %}<meta property="og:site_name" content="{{ t.meta.siteName }}">
-<meta property="og:title" content="{{ t.meta.ogTitle }}">
-<meta property="og:description" content="{{ t.meta.description }}">
+<meta property="og:title" content="{{ pageTitle or t.meta.ogTitle }}">
+<meta property="og:description" content="{{ pageDescription or t.meta.description }}">
 {% if canonical %}<meta property="og:url" content="{{ canonical }}">{% endif %}
 {% if ogImage %}<meta property="og:image" content="{{ ogImage }}">
 <meta property="og:image:secure_url" content="{{ ogImage }}">
@@ -33,8 +33,8 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{{ t.meta.ogTitle }}">
 {% endif %}<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ t.meta.ogTitle }}">
-<meta name="twitter:description" content="{{ t.meta.description }}">
+<meta name="twitter:title" content="{{ pageTitle or t.meta.ogTitle }}">
+<meta name="twitter:description" content="{{ pageDescription or t.meta.description }}">
 {% if ogImage %}<meta name="twitter:image" content="{{ ogImage }}">
 <meta name="twitter:image:alt" content="{{ t.meta.ogTitle }}">
 {% endif %}

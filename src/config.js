@@ -19,7 +19,7 @@ export const config = {
 
   // Absolute origin, used for canonical/hreflang/sitemap. No trailing slash.
   siteUrl: (process.env.SITE_URL || 'http://localhost:3000').replace(/\/+$/, ''),
-  appUrl: process.env.APP_URL || 'https://app.ekteb.com',
+  appUrl: process.env.APP_URL || 'https://portal.ekteb.ai/login',
 
   // schema.org sameAs: the profiles that prove this Organization is the same
   // entity search engines already know from elsewhere. Comma-separated URLs.
@@ -27,6 +27,22 @@ export const config = {
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean),
+
+  // /feeds. Unset apiUrl means the page shows src/data/feeds.sample.json and
+  // stays out of the index — see services/feeds.js.
+  feeds: {
+    apiUrl: (process.env.FEEDS_API_URL || '').trim(),
+    apiKey: (process.env.FEEDS_API_KEY || '').trim(),
+    limit: int(process.env.FEEDS_LIMIT, 24),
+    cacheSeconds: int(process.env.FEEDS_CACHE_SECONDS, 120),
+    timeoutMs: int(process.env.FEEDS_TIMEOUT_MS, 5000),
+    // Hosts the cards load video and thumbnails from. CSP blocks any other
+    // origin, so a new CDN must be added here. Comma-separated origins.
+    mediaOrigins: (process.env.FEEDS_MEDIA_ORIGINS || 'https://ekteb-01.fra1.digitaloceanspaces.com')
+      .split(',')
+      .map((s) => s.trim().replace(/\/+$/, ''))
+      .filter(Boolean),
+  },
 
   mailgun: {
     apiKey: (process.env.MAILGUN_API_KEY || '').trim(),

@@ -1,0 +1,147 @@
+/* /feeds — browse the visual feed.
+   Loaded only by views/feeds.njk, after landing-v3.css and page.css, so it
+   reuses their tokens (--ek-*, --r-*, --sh-*, --ease) and never restyles a
+   selector the landing page uses. Logical properties throughout: the same
+   rules serve the RTL and LTR pages. */
+
+/* ── hero band ─────────────────────────────────────── */
+/* The landing hero's plum, so the transparent header reads the same here. */
+.fdp-hero{position:relative;isolation:isolate;overflow:hidden;background:#0D0917;color:#D9D2E4;padding:156px 0 76px}
+.fdp-hero::before{content:"";position:absolute;z-index:-1;inset-inline-start:-10%;bottom:-45%;width:78%;height:140%;background:radial-gradient(50% 50% at 50% 50%,rgba(126,102,182,.44),rgba(96,77,140,0) 72%);pointer-events:none}
+.fdp-hero::after{content:"";position:absolute;z-index:-1;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:22px 22px;-webkit-mask-image:linear-gradient(to bottom,#000,transparent 85%);mask-image:linear-gradient(to bottom,#000,transparent 85%);pointer-events:none}
+.fdp-hero-in{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
+.fdp-eyb{display:inline-flex;align-items:center;gap:10px;height:34px;padding:0 15px;border-radius:999px;border:1px solid rgba(185,169,214,.28);background:rgba(255,255,255,.04);font-size:14px;font-weight:600;color:#C4B7DA}
+.fdp-hero h1{color:#F7F3EC;font-size:clamp(32px,3.8vw,52px);line-height:1.18;letter-spacing:-.015em;max-width:20ch}
+.fdp-hero .lead{color:#B7AEC6;max-width:60ch}
+.fdp-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;max-width:780px;margin-top:22px;border:1px solid rgba(255,255,255,.1);border-radius:var(--r-lg);background:rgba(255,255,255,.035);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.fdp-stats li{display:flex;flex-direction:column;gap:4px;padding:18px 20px;min-width:0}
+.fdp-stats li+li{border-inline-start:1px solid rgba(255,255,255,.1)}
+.fdp-stats b{font-family:var(--ek-lat);font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.1;color:#fff;direction:ltr;unicode-bidi:isolate}
+.fdp-stats span{font-size:14px;line-height:1.5;color:#9F95B3}
+
+/* live dot — a ping, not a blink */
+.fdp-pulse{position:relative;width:8px;height:8px;flex:none;border-radius:50%;background:#47C586}
+.fdp-pulse::after{content:"";position:absolute;inset:-4px;border:2px solid #47C586;border-radius:50%;opacity:0;animation:fdp-ping 2.2s var(--ease) infinite}
+@keyframes fdp-ping{0%{transform:scale(.5);opacity:.8}100%{transform:scale(1.7);opacity:0}}
+
+/* ── filter bar ────────────────────────────────────── */
+/* Sticks under the fixed header (80px, 72px at <=767px). */
+.fdp-bar{position:sticky;top:80px;z-index:30;background:rgba(255,255,255,.88);-webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid var(--ek-line)}
+.fdp-bar-in{display:flex;align-items:center;gap:16px;min-height:72px}
+.fdp-tabs{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--ek-line);border-radius:999px;background:var(--ek-soft)}
+.fdp-tabs a{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;font-size:15px;font-weight:600;color:var(--ek-body-2);white-space:nowrap;transition:background .2s var(--ease),color .2s var(--ease),box-shadow .2s var(--ease)}
+.fdp-tabs a:hover{color:var(--ek-ink)}
+.fdp-tabs a[aria-current="page"]{background:#fff;color:var(--ek-purple-h);box-shadow:var(--sh-2)}
+.fdp-tabs svg{flex:none}
+.fdp-tabs .n{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:22px;padding:0 7px;border-radius:999px;background:rgba(16,24,40,.06);font-size:12px;font-weight:600;color:var(--ek-muted);transition:background .2s var(--ease),color .2s var(--ease)}
+.fdp-tabs a[aria-current="page"] .n{background:var(--ek-purple);color:#fff}
+.fdp-live{display:inline-flex;align-items:center;gap:10px;margin:0;margin-inline-start:auto;font-size:14px;font-weight:500;color:var(--ek-muted)}
+
+/* ── grid ──────────────────────────────────────────── */
+.fdp-body{padding:40px 0 var(--s9);background:#FBFAF7}
+.fdp-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.fc{display:flex;min-width:0}
+.fc[hidden]{display:none}
+.fdp-grid[data-anim] .fc{animation:fc-in .5s var(--ease) both;animation-delay:calc(var(--i,0) * 35ms)}
+@keyframes fc-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.fc-in{flex:1;min-width:0;display:flex;flex-direction:column;background:#fff;border:1px solid var(--ek-line);border-radius:var(--r-lg);overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease)}
+.fc-in:hover{transform:translateY(-4px);border-color:var(--ek-purple-b);box-shadow:var(--sh-3)}
+
+/* media */
+.fc-media{--tone:96,77,140;position:relative;aspect-ratio:16/10;overflow:hidden;background:radial-gradient(120% 90% at 30% 20%,#3B2F58,#16101F)}
+.fc-vid,.fc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease)}
+.fc-in:hover .fc-vid,.fc-in:hover .fc-img{transform:scale(1.04)}
+.fc-video .fc-media{cursor:pointer}
+.fc-video .fc-media::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(13,9,23,.6),rgba(13,9,23,0) 46%),linear-gradient(to bottom,rgba(13,9,23,.35),rgba(13,9,23,0) 32%);pointer-events:none;transition:opacity .3s var(--ease)}
+.fc[data-playing="1"] .fc-media::after{opacity:.4}
+.fc[data-broken="1"] .fc-vid{display:none}
+
+.fc-play{position:absolute;z-index:2;top:50%;left:50%;display:grid;place-items:center;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;transition:opacity .3s var(--ease),transform .3s var(--ease),background .3s var(--ease)}
+/* Physical, not logical: the triangle's optical centre does not flip in RTL. */
+.fc-play svg{margin-left:3px}
+.fc-in:hover .fc-play{background:rgba(255,255,255,.26);transform:scale(1.06)}
+.fc[data-playing="1"] .fc-play{opacity:0;transform:scale(.8)}
+.fc-prog{position:absolute;z-index:2;inset-inline:0;bottom:0;height:3px;background:rgba(255,255,255,.18);opacity:0;transition:opacity .25s var(--ease)}
+.fc-prog i{display:block;width:0;height:100%;background:#B9A9D6}
+.fc[data-playing="1"] .fc-prog{opacity:1}
+
+.fc-type{position:absolute;z-index:2;top:12px;inset-inline-start:12px;display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(13,9,23,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:12px;font-weight:600;line-height:1;color:#fff}
+.fc-len{position:absolute;z-index:2;bottom:12px;inset-inline-end:12px;display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:6px;background:rgba(13,9,23,.66);font-size:12px;font-weight:600;color:#fff}
+.fc[data-playing="1"] .fc-len{opacity:0}
+
+/* articles: a typographic cover in one of four quiet tints */
+.fc-article .fc-media{background:linear-gradient(140deg,rgba(var(--tone),.07),rgba(var(--tone),.16))}
+.fc-article[data-tone="1"] .fc-media{--tone:14,147,132}
+.fc-article[data-tone="2"] .fc-media{--tone:68,76,231}
+.fc-article[data-tone="3"] .fc-media{--tone:181,71,8}
+.fc-article .fc-type{border-color:rgba(var(--tone),.22);background:rgba(255,255,255,.82);color:rgb(var(--tone))}
+.fc-article .fc-len{border:1px solid rgba(var(--tone),.18);background:rgba(255,255,255,.82);color:var(--ek-body-2)}
+/* a video item that arrives without a playable clip keeps the dark media
+   ground and gets the same cover, lightened to read on it */
+.fc-video .fc-cover{--tone:196,183,218}
+.fc-cover{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;padding:48px 20px 46px}
+.fc-q{position:absolute;top:-14px;inset-inline-end:14px;font-family:Georgia,'Times New Roman',serif;font-size:128px;line-height:1;color:rgba(var(--tone),.16);transition:transform .6s var(--ease)}
+.fc-in:hover .fc-q{transform:translateY(4px) rotate(-4deg)}
+.fc-cover b{font-family:var(--ek-lat);font-size:22px;font-weight:700;line-height:1.25;color:rgb(var(--tone));overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fc-lines{display:flex;flex-direction:column;gap:7px}
+.fc-lines i{display:block;height:6px;border-radius:3px;background:rgba(var(--tone),.15)}
+.fc-lines i:nth-child(1){width:92%}
+.fc-lines i:nth-child(2){width:76%}
+.fc-lines i:nth-child(3){width:52%}
+
+/* body */
+.fc-body{flex:1;display:flex;flex-direction:column;gap:10px;padding:16px 18px 14px;min-width:0}
+.fc-meta{display:flex;align-items:center;gap:8px;min-width:0;margin:0;font-size:13px;line-height:1.4;color:var(--ek-muted)}
+.fc-av{display:grid;place-items:center;width:24px;height:24px;flex:none;border-radius:50%;background:var(--ek-purple-t);font-size:12px;font-weight:700;line-height:1;color:var(--ek-purple-h)}
+.fc-src{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;color:var(--ek-body)}
+.fc-lang{flex:none;margin-inline-start:auto;padding:2px 8px;border:1px solid var(--ek-line);border-radius:6px;background:var(--ek-soft);font-size:12px;font-weight:500;color:var(--ek-body-2)}
+.fc-t{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:16.5px;font-weight:600;line-height:1.55;color:var(--ek-ink)}
+.fc-s{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;font-size:14.5px;line-height:1.7;color:var(--ek-body-2)}
+.fc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px;min-width:0}
+.fc-tags li{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:3px 8px;border-radius:6px;background:var(--ek-purple-t);font-size:12px;font-weight:500;line-height:1.5;color:var(--ek-purple-h)}
+.fc-ft{display:flex;align-items:center;gap:10px;min-height:46px;padding:10px 18px;border-top:1px solid var(--ek-line);font-size:13px;color:var(--ek-muted)}
+.fc-ai{display:inline-flex;align-items:center;gap:5px;margin-inline-start:auto;font-size:12px;font-weight:600;color:var(--ek-purple)}
+
+/* ── empty + closing strip ─────────────────────────── */
+.fdp-empty{padding:72px 0;text-align:center;font-size:16px;color:var(--ek-muted)}
+.fdp-empty[hidden]{display:none}
+.fdp-more{display:flex;align-items:center;gap:24px;margin-top:48px;padding:26px 28px;border:1px solid var(--ek-purple-b);border-radius:var(--r-lg);background:linear-gradient(120deg,#F6F3FB,#fff 70%)}
+.fdp-more>div:first-child{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.fdp-more-btns{display:flex;gap:10px;flex:none}
+
+/* ── responsive ────────────────────────────────────── */
+@media (max-width:1180px){.fdp-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:880px){
+.fdp-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.fdp-live{display:none}
+.fdp-more{flex-direction:column;align-items:stretch;text-align:center}
+.fdp-more-btns{justify-content:center}
+}
+@media (max-width:767px){
+.fdp-hero{padding:116px 0 52px}
+.fdp-bar{top:72px}
+.fdp-bar-in{min-height:64px}
+.fdp-body{padding-top:24px}
+}
+@media (max-width:600px){
+.fdp-grid{grid-template-columns:minmax(0,1fr)}
+.fdp-tabs{display:flex;width:100%}
+.fdp-tabs a{flex:1;padding:0 8px;gap:6px;font-size:14px}
+.fdp-more-btns{flex-direction:column}
+.fdp-more-btns .btn{width:100%}
+}
+@media (max-width:480px){
+.fdp-tabs svg{display:none}
+.fdp-stats{grid-template-columns:minmax(0,1fr)}
+.fdp-stats li{flex-direction:row;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 18px;text-align:start}
+.fdp-stats li+li{border-inline-start:0;border-top:1px solid rgba(255,255,255,.1)}
+}
+@media (prefers-reduced-motion:reduce){
+.fdp-pulse::after,.fdp-grid[data-anim] .fc{animation:none}
+.fc-in,.fc-in:hover,.fc-in:hover .fc-vid,.fc-in:hover .fc-img,.fc-in:hover .fc-q{transform:none}
+}
+
+/* the header link to this page marks where the visitor is */
+.nav a[aria-current="page"],.hdr[data-solid="1"] .nav a[aria-current="page"],.mnav a[aria-current="page"]{color:var(--ek-purple);font-weight:600}
+.hdr[data-solid="0"] .nav a[aria-current="page"]{color:#fff}

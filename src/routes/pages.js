@@ -11,6 +11,7 @@ import {
   robotsTxt,
   lastModifiedDate,
 } from '../seo.js'
+import { listFeeds, feedsLive } from '../services/feeds.js'
 
 export const pagesRouter = Router()
 
@@ -50,6 +51,95 @@ pagesRouter.get('/:locale', (req, res, next) => {
   // Serialised here rather than in the template: escaping JSON-LD correctly is
   // a security concern, not a formatting one. See jsonLdScript().
   res.render('index.njk', view(locale, { jsonLd: jsonLdScript(structuredData(locale)) }))
+})
+
+/* ── /:locale/feeds ────────────────────────────────────────────────────── */
+
+const FEED_TYPES = ['video', 'article']
+
+// Arabic pages keep Latin digits, as the rest of the copy does.
+const intlTag = (locale) => (locale === 'ar' ? 'ar-u-nu-latn' : LOCALES[locale].htmlLang)
+
+function clock(sec) {
+  if (sec == null) return ''
+  const h = Math.floor(sec / 3600)
+  const m = Math.floor((sec % 3600) / 60)
+  const s = String(sec % 60).padStart(2, '0')
+  return h ? `${h}:${String(m).padStart(2, '0')}:${s}` : `${m}:${s}`
+}
+
+// Everything locale-dependent is formatted here so the template only prints.
+// Language names come from Intl rather than the locale files: the API can
+// report any source language, and no hand-kept list would cover them all.
+function presentFeeds(items, locale) {
+  const tag = intlTag(locale)
+  const langs = new Intl.DisplayNames([tag], { type: 'language', fallback: 'none' })
+  const date = new Intl.DateTimeFormat(tag, { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
+  const num = new Intl.NumberFormat(tag)
+  const { words } = t(locale).feeds
+
+  return items.map((it) => {
+    let langLabel = ''
+    try {
+      langLabel = it.sourceLang ? langs.of(it.sourceLang) ?? '' : ''
+    } catch {}
+    return {
+      ...it,
+      initial: [...(it.source || '#')][0].toUpperCase(),
+      // Article covers are tinted by source, so one outlet keeps one colour
+      // wherever it lands in the grid.
+      tone: [...it.source].reduce((h, ch) => (h * 31 + ch.codePointAt(0)) >>> 0, 7) % 4,
+      langLabel,
+      iso: it.publishedAt ? it.publishedAt.toISOString() : '',
+      dateLabel: it.publishedAt ? date.format(it.publishedAt) : '',
+      durLabel: clock(it.duration),
+      wordsLabel: it.words ? words.replace('{n}', num.format(it.words)) : '',
+    }
+  })
+}
+
+pagesRouter.get('/:locale/feeds', async (req, res, next) => {
+  const { locale } = req.params
+  if (!isLocale(locale)) return next()
+  rememberLocale(req, res, locale)
+  res.set('Cache-Control', 'public, max-age=0, must-revalidate')
+
+  let items
+  try {
+    items = presentFeeds(await listFeeds(locale), locale)
+  } catch (err) {
+    return next(err)
+  }
+  // ?type= is the no-script path for the filter: the server hides the other
+  // cards itself. With scripting, feeds.js filters in place and keeps the URL
+  // in step, so a shared link opens on the same tab either way.
+  const filter = FEED_TYPES.includes(req.query.type) ? req.query.type : 'all'
+  const live = feedsLive()
+
+  res.render(
+    'feeds.njk',
+    view(locale, {
+      items,
+      filter,
+      counts: {
+        all: items.length,
+        video: items.filter((it) => it.type === 'video').length,
+        article: items.filter((it) => it.type === 'article').length,
+      },
+      canonical: `${config.siteUrl}/${locale}/feeds`,
+      locales: alternates(config.siteUrl, '/feeds'),
+      xDefault: `${config.siteUrl}/${FALLBACK_LOCALE}/feeds`,
+      // The shared header and switcher link back into the landing page and
+      // across to this page in other languages.
+      navBase: `/${locale}`,
+      pagePath: '/feeds',
+      pageTitle: t(locale).feeds.meta.title,
+      pageDescription: t(locale).feeds.meta.description,
+      // Sample items are placeholders: they must not be what search engines
+      // remember this URL for.
+      robots: live ? null : 'noindex, follow',
+    })
+  )
 })
 
 // The scroll-driven funnel lives in its own document so its animation engine
@@ -104,11 +194,33 @@ pagesRouter.get('/sitemap.xml', (_req, res) => {
       `    <xhtml:link rel="alternate" hreflang="x-default" href="${config.siteUrl}/${FALLBACK_LOCALE}"/>`,
       `  </url>`,
     ].join('\n')
-  }).join('\n')
+  })
+  // Listed only once real items are behind it; the sample set is noindex.
+  // No lastmod: the content changes with the feed, not with the source files.
+  if (feedsLive()) {
+    for (const code of LOCALE_CODES) {
+      const links = LOCALE_CODES.map(
+        (alt) =>
+          `    <xhtml:link rel="alternate" hreflang="${LOCALES[alt].htmlLang}" href="${config.siteUrl}/${alt}/feeds"/>`
+      ).join('\n')
+      urls.push(
+        [
+          `  <url>`,
+          `    <loc>${config.siteUrl}/${code}/feeds</loc>`,
+          `    <changefreq>hourly</changefreq>`,
+          `    <priority>0.7</priority>`,
+          links,
+          `    <xhtml:link rel="alternate" hreflang="x-default" href="${config.siteUrl}/${FALLBACK_LOCALE}/feeds"/>`,
+          `  </url>`,
+        ].join('\n')
+      )
+    }
+  }
+  const body = urls.join('\n')
 
   res.type('application/xml').send(
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
       `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
-      `${urls}\n</urlset>\n`
+      `${body}\n</urlset>\n`
   )
 })

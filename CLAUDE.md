@@ -38,6 +38,11 @@ Three deliberate deviations from the export exist, all in
 `public/css/page.css`, each with a comment explaining what was wrong and why the
 export masked it. Do not "clean them up".
 
+A fourth, also in `page.css`: the header carries a sixth nav link (Feeds →
+`/:locale/feeds`), so between 1024px and 1199px the nav spacing is tightened —
+at the design's spacing the Arabic and Turkish labels wrapped onto two lines.
+From 1200px up the header is the export's apart from that extra link.
+
 ## Architecture
 
 ### Copy lives only in `locales/`
@@ -75,6 +80,7 @@ stylesheet uses logical properties throughout and direction comes from
   never be hardcoded back to a locale.
 - `GET /:locale` → renders `index.njk`. Unknown locale falls through to 404.
 - `GET /funnel/:locale` → the scroll animation as a standalone document.
+- `GET /:locale/feeds` → the visual-feed browser. See **The feeds page**.
 - `robots.txt`, `sitemap.xml`, `llms.txt`, `llms-full.txt` are all generated
   from `src/seo.js`, never served as static files.
 
@@ -94,6 +100,10 @@ There is no language message: each locale is rendered server-side once.
 Where that progress comes from depends on the width. From 831px up the frame is
 sticky inside `.fs-pin`, a 300vh track, and progress is how far that track has
 travelled past it — so the animation is scrubbed while the picture holds still.
+The clock starts with a lead-in of `0.8 × viewport height` before the track
+reaches the top, so the wall is already filling while the frame rises into
+view; without it the frame sat on screen as an empty white panel for the whole
+approach. The end point is unaffected.
 Below 831px `.fs-pin` collapses to its natural height and progress is the
 frame's own travel through the viewport. `fit()` centres the sticky frame in
 whatever height the viewport has; it must run again whenever the funnel reports
@@ -103,6 +113,33 @@ At <=760px the funnel stops taking host progress altogether: each of the three
 cards runs its own looping clock (play 2400ms, hold 1500ms), started and stopped
 by an IntersectionObserver. Stacked cards are independent of each other and of
 the scroll position, so do not wire them back to `ektebScroll`.
+
+### The feeds page
+
+`/:locale/feeds` is a browse-only grid of what the platform monitors: video
+clips and articles, each with source, source language, date, summary and tags.
+It is not part of the design export, so the fidelity rule does not bind it —
+but it shares the header, `#contact` and footer partials, and those must keep
+rendering byte-identically on `/`. It reaches them through three variables the
+landing route never sets: `navBase` (header anchors point back to `/:locale`),
+`pagePath` (the language switcher stays on `/feeds`), and `skipId`.
+
+Data comes from `src/services/feeds.js`. With `FEEDS_API_URL` unset it serves
+`src/data/feeds.sample.json` and the page is `noindex` and absent from the
+sitemap. With it set, items are fetched per locale, cached
+(`FEEDS_CACHE_SECONDS`), and served stale while a refresh runs; an API failure
+keeps the last good list. `normalize()` is the only code that knows the wire
+format — adapt that function when the API contract changes, not the template.
+Display strings (dates, durations, word counts, language names via
+`Intl.DisplayNames`) are formatted in `presentFeeds()` in `src/routes/pages.js`.
+
+Clips and thumbnails load straight from the media host, so its origin must be
+in `FEEDS_MEDIA_ORIGINS`; CSP `img-src`/`media-src` are built from it.
+
+The filter is plain links (`?type=video|article`) that the server answers;
+`public/js/feeds.js` filters in place and keeps the URL in step. It also lazily
+attaches each clip near the viewport and plays it muted on hover (tap on touch).
+Styles live in `public/css/feeds.css`, loaded only by this page.
 
 ### CSP shapes the JavaScript
 
@@ -116,8 +153,9 @@ handlers or `eval` (the browser will block it, including in dev tooling).
 `style=` attributes that are part of the artwork.
 
 `public/js/*.js` is ES5-style, `var`-based, IIFE-wrapped — it was migrated from
-the export, not rewritten. Match that style when editing those two files. Server
-code under `src/` is modern ESM; match *that* style there.
+the export, not rewritten. Match that style in every file there, including the
+newer `feeds.js`. Server code under `src/` is modern ESM; match *that* style
+there.
 
 ### No database — the email is the record
 

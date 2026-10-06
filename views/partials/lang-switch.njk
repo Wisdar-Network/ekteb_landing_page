@@ -16,7 +16,7 @@
   </summary>
   <ul class="langsw-menu">
     {% for alt in locales %}
-    <li><a href="/{{ alt.code }}" lang="{{ alt.htmlLang }}" hreflang="{{ alt.htmlLang }}"{% if alt.code == locale %} aria-current="true"{% endif %}>{{ alt.label }}</a></li>
+    <li><a href="/{{ alt.code }}{{ pagePath }}" lang="{{ alt.htmlLang }}" hreflang="{{ alt.htmlLang }}"{% if alt.code == locale %} aria-current="true"{% endif %}>{{ alt.label }}</a></li>
     {% endfor %}
   </ul>
 </details>

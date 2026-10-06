@@ -1,7 +1,7 @@
 import helmet from 'helmet'
 import compression from 'compression'
 import { rateLimit } from 'express-rate-limit'
-import { isProd } from '../config.js'
+import { config, isProd } from '../config.js'
 
 /**
  * CSP notes:
@@ -12,6 +12,8 @@ import { isProd } from '../config.js'
  *    style="" attributes (swatches, gradients, flex ratios) that are part of
  *    the artwork, plus Google Fonts stylesheets.
  *  - frame-src 'self' allows the funnel animation iframe.
+ *  - img-src/media-src add the feeds media hosts: /feeds plays clips and shows
+ *    thumbnails straight from the platform's storage, not through this server.
  */
 export const securityMiddleware = [
   helmet({
@@ -22,7 +24,8 @@ export const securityMiddleware = [
         scriptSrc: ["'self'"],
         styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
         fontSrc: ["'self'", 'https://fonts.gstatic.com', 'data:'],
-        imgSrc: ["'self'", 'data:'],
+        imgSrc: ["'self'", 'data:', ...config.feeds.mediaOrigins],
+        mediaSrc: ["'self'", ...config.feeds.mediaOrigins],
         connectSrc: ["'self'"],
         frameSrc: ["'self'"],
         frameAncestors: ["'self'"],

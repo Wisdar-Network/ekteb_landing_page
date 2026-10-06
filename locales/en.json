@@ -13,6 +13,7 @@
     "usecases": "Use cases",
     "problem": "The problem",
     "faq": "FAQ",
+    "feeds": "Feeds",
     "login": "Log in",
     "contact": "Get in touch",
     "ariaMain": "Main navigation",
@@ -89,6 +90,42 @@
     "h2": "Find what deserves to be published. Turn it into ready content in minutes.",
     "lead": "Ekteb monitors more than 1,500 accounts and sources, helps your team pick what matters, then turns it into a translated, on-brand video ready for every channel.",
     "iframeTitle": "From discovery to publish"
+  },
+  "feeds": {
+    "meta": {
+      "title": "Visual feed | Ekteb",
+      "description": "Browse a live sample of what Ekteb monitors: videos and articles from sources in many languages, summarised, translated and tagged for your team."
+    },
+    "eyebrow": "Visual feed",
+    "h1": "Everything being published right now, in one place",
+    "lead": "Ekteb watches the sources you follow around the clock and turns every clip and article into a summarised, translated, tagged item your team can pick from.",
+    "stats": [
+      {
+        "n": "1,500+",
+        "label": "accounts and sources monitored"
+      },
+      {
+        "n": "20,000",
+        "label": "videos analysed every day"
+      },
+      {
+        "n": "30+",
+        "label": "source languages"
+      }
+    ],
+    "filterAria": "Filter items",
+    "all": "All",
+    "videos": "Videos",
+    "articles": "Articles",
+    "typeVideo": "Video",
+    "typeArticle": "Article",
+    "live": "Updated continuously",
+    "words": "{n} words",
+    "aiSummary": "AI summary",
+    "gridAria": "Feed items",
+    "empty": "Nothing of this type right now.",
+    "moreH": "This is only a glimpse",
+    "moreP": "Inside Ekteb, items arrive the moment they are published, with a full translation and transcript, and become a publish-ready video in one click."
   },
   "features": {
     "eyebrow": "Features",

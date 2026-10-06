@@ -13,6 +13,7 @@
     "usecases": "Kullanım alanları",
     "problem": "Sorun",
     "faq": "SSS",
+    "feeds": "Akış",
     "login": "Giriş yap",
     "contact": "Bize ulaşın",
     "ariaMain": "Ana gezinme",
@@ -89,6 +90,42 @@
     "h2": "Yayınlanmayı hak edeni bulun. Dakikalar içinde hazır içeriğe dönüştürün.",
     "lead": "Ekteb 1.500'den fazla hesap ve kaynağı izler, ekibinizin önemli olanı seçmesine yardım eder, ardından içeriği çevrilmiş, markanıza uygun ve her kanala hazır bir videoya dönüştürür.",
     "iframeTitle": "Keşiften yayına"
+  },
+  "feeds": {
+    "meta": {
+      "title": "Görsel akış | Ekteb",
+      "description": "Ekteb'in izlediklerinden canlı bir örneğe göz atın: birçok dildeki kaynaklardan videolar ve makaleler; özetlenmiş, çevrilmiş ve etiketlenmiş halde ekibinize hazır."
+    },
+    "eyebrow": "Görsel akış",
+    "h1": "Şu anda yayımlanan her şey, tek bir yerde",
+    "lead": "Ekteb takip ettiğiniz kaynakları gün boyu izler; her klibi ve makaleyi ekibinizin seçebileceği özetlenmiş, çevrilmiş ve etiketlenmiş bir içeriğe dönüştürür.",
+    "stats": [
+      {
+        "n": "1.500+",
+        "label": "izlenen hesap ve kaynak"
+      },
+      {
+        "n": "20.000",
+        "label": "günde analiz edilen video"
+      },
+      {
+        "n": "30+",
+        "label": "kaynak dili"
+      }
+    ],
+    "filterAria": "İçerikleri filtrele",
+    "all": "Tümü",
+    "videos": "Videolar",
+    "articles": "Makaleler",
+    "typeVideo": "Video",
+    "typeArticle": "Makale",
+    "live": "Sürekli güncellenir",
+    "words": "{n} kelime",
+    "aiSummary": "YZ özeti",
+    "gridAria": "Akış içerikleri",
+    "empty": "Şu anda bu türde içerik yok.",
+    "moreH": "Bu yalnızca bir ön izleme",
+    "moreP": "Ekteb içinde içerikler yayımlandıkları anda gelir; tam çeviri ve deşifreyle birlikte tek tıkla yayına hazır bir videoya dönüşür."
   },
   "features": {
     "eyebrow": "Özellikler",

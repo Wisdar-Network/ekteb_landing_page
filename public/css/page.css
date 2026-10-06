@@ -177,6 +177,15 @@ body[data-mnav="1"]{overflow:hidden}
   .langsw.langsw-m{display:block;position:static;margin:18px 0 0}
 }
 
+/* Not in the export: the header carries a sixth link (Feeds), and between the
+   burger breakpoint and ~1200px the Arabic and Turkish labels no longer fit at
+   the design's spacing — a label broke onto two lines. Tighten the spacing in
+   that band only; from 1200px up the header is the export's. */
+@media (min-width:1024px) and (max-width:1199px){
+  .hdr-in{gap:20px}
+  .nav a{padding-inline:9px}
+}
+
 /* Let grid tracks shrink below their content.
    A grid item's automatic minimum size is its min-content, so a card whose
    longest unbreakable run exceeds the track pushes that track wider. The
