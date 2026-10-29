@@ -50,6 +50,16 @@ const httpUrl = (v) => {
   return /^https:\/\//i.test(s) ? s : ''
 }
 
+// The rule CSP applies to the same list: an entry like https://*.example.com
+// admits any subdomain of example.com, but not example.com itself.
+function allowedOrigin(origin) {
+  return config.feeds.mediaOrigins.some((o) => {
+    if (!o.includes('*.')) return o === origin
+    const [scheme, host] = o.split('*.')
+    return origin.startsWith(scheme) && origin.endsWith(`.${host}`)
+  })
+}
+
 // Media the browser will actually load. CSP img-src/media-src admit only
 // FEEDS_MEDIA_ORIGINS, and the API sometimes points a thumbnail at the
 // publisher's own site; such a URL would render as a broken image, so it is
@@ -58,7 +68,7 @@ const mediaUrl = (v) => {
   const s = httpUrl(v)
   if (!s) return ''
   try {
-    return config.feeds.mediaOrigins.includes(new URL(s).origin) ? s : ''
+    return allowedOrigin(new URL(s).origin) ? s : ''
   } catch {
     return ''
   }
@@ -103,7 +113,6 @@ const cache = new Map() // locale → { at, items, pending }
 async function fromApi(locale) {
   const url = new URL(config.feeds.apiUrl)
   url.searchParams.set('language', locale)
-  url.searchParams.set('limit', String(config.feeds.limit))
   const headers = { Accept: 'application/json' }
   if (config.feeds.apiKey) headers['X-API-KEY'] = config.feeds.apiKey
 
@@ -111,8 +120,24 @@ async function fromApi(locale) {
   if (!res.ok) throw new Error(`feeds api answered ${res.status}`)
   const body = await res.json()
   if (body?.success === false) throw new Error('feeds api answered success: false')
-  const list = Array.isArray(body) ? body : body?.data ?? body?.items ?? []
-  return list.map(normalize).filter(Boolean).slice(0, config.feeds.limit)
+  return merge(body)
+}
+
+const take = (list) => (Array.isArray(list) ? list : []).map(normalize).filter(Boolean)
+
+// The API answers { videos: [...], articles: [...] }, each newest first. The
+// grid is one stream, so the two are merged newest first and shown in full —
+// how many items there are is the API's decision, not this page's. Dates carry
+// no time of day, so ties fall back to the id, which the platform assigns in
+// order. A flat list (the older { data } shape) is still accepted.
+function merge(body) {
+  const items =
+    body?.videos || body?.articles
+      ? [...take(body.videos), ...take(body.articles)]
+      : take(Array.isArray(body) ? body : body?.data ?? body?.items)
+  const time = (it) => it.publishedAt?.getTime() ?? 0
+  const seq = (it) => Number(it.id) || 0
+  return items.sort((a, b) => time(b) - time(a) || seq(b) - seq(a))
 }
 
 let sample = null
@@ -129,7 +154,10 @@ function refresh(locale, entry) {
     })
     .catch((err) => {
       // Keep whatever was there: last good list beats an empty grid.
-      console.error(`[feeds] ${locale}: ${err.message}`)
+      // fetch() reports every network failure as a bare "fetch failed"; the
+      // reason (ENOTFOUND, ECONNREFUSED, a TLS error…) is only on err.cause.
+      const cause = err.cause ? ` (${err.cause.code || err.cause.name}: ${err.cause.message})` : ''
+      console.error(`[feeds] ${locale}: ${err.message}${cause}`)
     })
     .finally(() => {
       entry.pending = null
@@ -138,7 +166,7 @@ function refresh(locale, entry) {
 }
 
 export async function listFeeds(locale) {
-  if (!feedsLive()) return fromSample().slice(0, config.feeds.limit)
+  if (!feedsLive()) return fromSample()
 
   let entry = cache.get(locale)
   if (!entry) cache.set(locale, (entry = { at: 0, items: null, pending: null }))
