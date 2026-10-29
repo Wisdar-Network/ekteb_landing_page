@@ -9,8 +9,9 @@ import { config } from '../config.js'
  * Two sources, one shape. With FEEDS_API_URL set, items come from the
  * platform's API; without it, from src/data/feeds.sample.json, so the page can
  * be built and reviewed before the API exists. Either way every item passes
- * through normalize(), which is the only place that knows the wire format —
- * when the API contract lands, that function is what changes, not the
+ * through normalize(), which is the only place that knows the wire format
+ * (portal.ekteb.ai/api/feeds?language=xx, keyed by an X-API-KEY header) —
+ * when the API contract changes, that function is what changes, not the
  * template.
  *
  * The page renders server-side, so the visitor's request waits on this call.
@@ -49,13 +50,28 @@ const httpUrl = (v) => {
   return /^https:\/\//i.test(s) ? s : ''
 }
 
+// Media the browser will actually load. CSP img-src/media-src admit only
+// FEEDS_MEDIA_ORIGINS, and the API sometimes points a thumbnail at the
+// publisher's own site; such a URL would render as a broken image, so it is
+// dropped here and the card falls back to its drawn cover.
+const mediaUrl = (v) => {
+  const s = httpUrl(v)
+  if (!s) return ''
+  try {
+    return config.feeds.mediaOrigins.includes(new URL(s).origin) ? s : ''
+  } catch {
+    return ''
+  }
+}
+
 export function normalize(raw, index = 0) {
   if (!raw || typeof raw !== 'object') return null
   const type = str(raw.type).toLowerCase() === 'video' ? 'video' : 'article'
   const title = str(raw.title)
   if (!title) return null
 
-  const tags = (Array.isArray(raw.tags) ? raw.tags : [])
+  const rawTags = raw.hashtags ?? raw.tags
+  const tags = (Array.isArray(rawTags) ? rawTags : [])
     .map((tg) => str(typeof tg === 'object' && tg ? tg.name : tg).replace(/^#/, ''))
     .filter(Boolean)
 
@@ -70,13 +86,13 @@ export function normalize(raw, index = 0) {
     // ISO 639-1 code of the language the material was published in. The label
     // is produced per page with Intl.DisplayNames, so no locale file lists
     // language names.
-    sourceLang: str(raw.source_language ?? raw.sourceLang ?? raw.language).toLowerCase(),
+    sourceLang: str(raw.original_language ?? raw.source_language ?? raw.sourceLang).toLowerCase(),
     publishedAt: Number.isNaN(date.getTime()) ? null : date,
-    duration: type === 'video' ? seconds(raw.duration) : null,
+    duration: type === 'video' ? seconds(raw.duration_seconds ?? raw.duration) : null,
     words: type === 'article' ? Number.parseInt(raw.word_count ?? raw.words, 10) || null : null,
     tags,
-    video: type === 'video' ? httpUrl(raw.video_url ?? raw.videoUrl) : '',
-    image: httpUrl(raw.thumbnail ?? raw.image ?? raw.poster),
+    video: type === 'video' ? mediaUrl(raw.video_url ?? raw.videoUrl) : '',
+    image: mediaUrl(raw.image_url ?? raw.thumbnail ?? raw.image),
   }
 }
 
@@ -89,13 +105,14 @@ async function fromApi(locale) {
   url.searchParams.set('language', locale)
   url.searchParams.set('limit', String(config.feeds.limit))
   const headers = { Accept: 'application/json' }
-  if (config.feeds.apiKey) headers.Authorization = `Bearer ${config.feeds.apiKey}`
+  if (config.feeds.apiKey) headers['X-API-KEY'] = config.feeds.apiKey
 
   const res = await fetch(url, { headers, signal: AbortSignal.timeout(config.feeds.timeoutMs) })
   if (!res.ok) throw new Error(`feeds api answered ${res.status}`)
   const body = await res.json()
+  if (body?.success === false) throw new Error('feeds api answered success: false')
   const list = Array.isArray(body) ? body : body?.data ?? body?.items ?? []
-  return list.map(normalize).filter(Boolean)
+  return list.map(normalize).filter(Boolean).slice(0, config.feeds.limit)
 }
 
 let sample = null

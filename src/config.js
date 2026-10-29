@@ -38,7 +38,8 @@ export const config = {
     timeoutMs: int(process.env.FEEDS_TIMEOUT_MS, 5000),
     // Hosts the cards load video and thumbnails from. CSP blocks any other
     // origin, so a new CDN must be added here. Comma-separated origins.
-    mediaOrigins: (process.env.FEEDS_MEDIA_ORIGINS || 'https://ekteb-01.fra1.digitaloceanspaces.com')
+    mediaOrigins: (process.env.FEEDS_MEDIA_ORIGINS ||
+      'https://ekteb-01.fra1.digitaloceanspaces.com,https://fra1.digitaloceanspaces.com')
       .split(',')
       .map((s) => s.trim().replace(/\/+$/, ''))
       .filter(Boolean),
