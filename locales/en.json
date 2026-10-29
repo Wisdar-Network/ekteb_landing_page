@@ -276,6 +276,133 @@
   "footer": {
     "copy": "© 2026 Ekteb"
   },
+  "legal": {
+    "footerAria": "Legal",
+    "privacyLink": "Privacy",
+    "termsLink": "Terms",
+    "updated": "Last updated:",
+    "see": "See also:",
+    "privacy": {
+      "meta": {
+        "title": "Privacy Policy | Ekteb",
+        "description": "How the Ekteb mobile app collects, uses and protects your data, and how to delete your account."
+      },
+      "h1": "Privacy Policy",
+      "intro_html": "<p>This Privacy Policy explains how Ekteb (“Ekteb”, “we”, “us”) collects, uses and protects information when you use the Ekteb mobile app for iOS and Android (the “App”). By using the App you agree to the practices described here.</p>",
+      "sections": [
+        {
+          "h": "Information we collect",
+          "body_html": "<p>We collect only what the App needs to work:</p><ul><li><b>Account information:</b> your name, your email address and, where applicable, the organisation you belong to. Passwords are stored only in hashed form.</li><li><b>Content you provide:</b> the projects, texts, subtitles, files and media you create, upload or save in the App.</li><li><b>Usage data:</b> through Google Firebase Analytics we collect information about how the App is used, such as screens viewed, features used, app version, device model, operating system, language, approximate country and an app-instance identifier.</li></ul><p>The App does not collect your precise location or your contacts, does not track you for advertising, and accesses files on your device only when you choose to upload them.</p>"
+        },
+        {
+          "h": "How we use information",
+          "body_html": "<p>We use the information we collect to:</p><ul><li>provide, operate and maintain the App and your account;</li><li>process the content you submit, for example to transcribe, translate, subtitle or summarise it;</li><li>understand, in aggregate, how the App is used so that we can fix problems and improve it;</li><li>keep the App and its users secure and prevent misuse;</li><li>answer your messages and requests.</li></ul><p>We do not sell your data, use it for advertising, or build advertising profiles from it.</p>"
+        },
+        {
+          "h": "Sharing of information",
+          "body_html": "<p>We do not sell, rent or share your personal data with third parties. The only exception is Google Firebase Analytics, which processes the usage data described above on our behalf as a service provider; it does not receive your account information or your content. Google describes how it handles this data in <a href=\"https://firebase.google.com/support/privacy\">Firebase’s privacy information</a>.</p><p>We may also disclose information where the law requires it or a competent authority issues a valid order.</p>"
+        },
+        {
+          "h": "Data retention",
+          "body_html": "<p>We keep account information and content for as long as your account is active. When you delete your account, we delete your personal data and content within 30 days, including from backups. Firebase Analytics usage data is kept for no longer than 14 months and is then deleted automatically.</p>"
+        },
+        {
+          "h": "Data security",
+          "body_html": "<p>Data is encrypted in transit using TLS, and access to it is limited to the staff who need it to run the service. No method of transmission or storage is completely secure, but we work to protect your information and to deal with any incident promptly.</p>"
+        },
+        {
+          "h": "Your rights",
+          "body_html": "<p>Depending on where you live, you may have the right to access the personal data we hold about you, to correct it, to delete it, to receive a copy of it, and to object to or restrict its processing. To exercise any of these rights, write to <a href=\"mailto:privacy@ekteb.ai\">privacy@ekteb.ai</a> from the email address on your account. We reply within 30 days.</p>"
+        },
+        {
+          "h": "Deleting your account",
+          "body_html": "<p>You can delete your account at any time:</p><ul><li><b>In the App:</b> open <b>Settings → Account → Delete account</b> and confirm.</li><li><b>By email:</b> send a deletion request to <a href=\"mailto:privacy@ekteb.ai\">privacy@ekteb.ai</a> from the email address on your account.</li></ul><p>Deleting your account permanently removes your personal data and content as described under “Data retention”. It cannot be undone.</p>"
+        },
+        {
+          "h": "Children",
+          "body_html": "<p>The App is a professional tool intended for users aged 18 and over. It is not directed at children, and we do not knowingly collect their data. If you believe a child has given us personal data, contact us and we will delete it.</p>"
+        },
+        {
+          "h": "Changes to this policy",
+          "body_html": "<p>We may update this policy from time to time. The “Last updated” date at the top of this page shows when it last changed, and we will tell you in the App before any material change takes effect.</p>"
+        },
+        {
+          "h": "Contact us",
+          "body_html": "<p>For any question about this policy or your data, contact us at <a href=\"mailto:privacy@ekteb.ai\">privacy@ekteb.ai</a>.</p>"
+        }
+      ]
+    },
+    "terms": {
+      "meta": {
+        "title": "Terms of Use | Ekteb",
+        "description": "The terms that govern your use of the Ekteb mobile app for iOS and Android."
+      },
+      "h1": "Terms of Use",
+      "intro_html": "<p>These Terms of Use (the “Terms”) govern your use of the Ekteb mobile app for iOS and Android (the “App”), provided by Ekteb (“Ekteb”, “we”, “us”). By downloading, accessing or using the App you agree to these Terms. If you do not agree, do not use the App.</p>",
+      "sections": [
+        {
+          "h": "The service",
+          "body_html": "<p>Ekteb is a media-monitoring and content platform. The App lets you follow video and article feeds and use tools to transcribe, translate, subtitle, summarise and edit content. We may add, change or remove features at any time.</p>"
+        },
+        {
+          "h": "Eligibility and accounts",
+          "body_html": "<p>You must be at least 18 years old to use the App. If you use it on behalf of an organisation, you confirm that you are authorised to accept these Terms for it.</p><p>You are responsible for the accuracy of the information you give us, for keeping your sign-in details confidential, and for all activity under your account. Tell us promptly at <a href=\"mailto:support@ekteb.ai\">support@ekteb.ai</a> if you suspect unauthorised use.</p>"
+        },
+        {
+          "h": "Acceptable use",
+          "body_html": "<p>You agree not to:</p><ul><li>use the App in breach of any applicable law or regulation;</li><li>upload or publish content that infringes the rights of others, or that is unlawful, defamatory, hateful or misleading;</li><li>try to access accounts, systems or data that are not yours, or to bypass any security measure;</li><li>copy, modify, decompile or reverse-engineer the App, except where the law expressly allows it;</li><li>scrape, overload or disrupt the service, or access it by automated means without our permission;</li><li>resell or sublicense the App or access to it.</li></ul>"
+        },
+        {
+          "h": "Your content",
+          "body_html": "<p>You keep ownership of the content you create or upload. You grant Ekteb a limited, non-exclusive licence to host, process and display that content solely in order to provide the App to you. You are responsible for holding the rights needed for any content you upload, and for how you use and publish what you produce with the App.</p>"
+        },
+        {
+          "h": "Third-party content",
+          "body_html": "<p>Feeds in the App show and link to material from third-party sources. That material belongs to its owners; Ekteb does not endorse it and is not responsible for its accuracy or availability. Your use of it, including republishing it, is your responsibility under the applicable law.</p>"
+        },
+        {
+          "h": "AI-generated output",
+          "body_html": "<p>Transcripts, translations, subtitles and summaries are produced automatically and may contain errors or omissions. Review them before you rely on or publish them. They are not professional or legal advice, nor a verified source of fact.</p>"
+        },
+        {
+          "h": "Intellectual property",
+          "body_html": "<p>The App, its software and design, and the Ekteb name and logo belong to Ekteb or its licensors. Subject to these Terms, we grant you a personal, revocable, non-exclusive and non-transferable licence to use the App on devices you own or control.</p>"
+        },
+        {
+          "h": "Paid plans",
+          "body_html": "<p>Some features may require a paid plan. The price and terms of any plan are shown before you buy. Purchases made through the App Store or Google Play are billed and managed by Apple or Google under their own terms, including cancellation and refunds. Plans for organisations may be governed by a separate agreement.</p>"
+        },
+        {
+          "h": "Suspension and termination",
+          "body_html": "<p>You may stop using the App and delete your account at any time, as described in the Privacy Policy. We may suspend or close an account that breaches these Terms or puts the service or other users at risk.</p>"
+        },
+        {
+          "h": "Disclaimer",
+          "body_html": "<p>The App is provided “as is” and “as available”. To the extent the law allows, we give no warranty of any kind, express or implied, including that the App will be uninterrupted, error-free or fit for a particular purpose.</p>"
+        },
+        {
+          "h": "Limitation of liability",
+          "body_html": "<p>To the extent the law allows, Ekteb is not liable for indirect, incidental, special or consequential damages, or for loss of data, profits or business, arising from your use of the App. Our total liability for any claim is limited to the amount you paid us for the App in the 12 months before the claim. Nothing in these Terms limits any liability that cannot be limited by law.</p>"
+        },
+        {
+          "h": "App stores",
+          "body_html": "<p>These Terms are between you and Ekteb, not Apple or Google. Apple and Google have no obligation to provide maintenance or support for the App and are not responsible for any claim relating to it. Your use of the App must also comply with the terms of the store you downloaded it from. Apple and its subsidiaries are third-party beneficiaries of these Terms and may enforce them against you.</p>"
+        },
+        {
+          "h": "Changes to these Terms",
+          "body_html": "<p>We may update these Terms. The “Last updated” date shows when they last changed, and we will tell you in the App before any material change takes effect. Continuing to use the App after that means you accept the updated Terms.</p>"
+        },
+        {
+          "h": "Governing law",
+          "body_html": "<p>These Terms are governed by the laws of the country in which Ekteb is registered, without regard to its conflict-of-law rules. This does not remove any protection you have under the mandatory law of the country where you live.</p>"
+        },
+        {
+          "h": "Contact us",
+          "body_html": "<p>Questions about these Terms can be sent to <a href=\"mailto:support@ekteb.ai\">support@ekteb.ai</a>.</p>"
+        }
+      ]
+    }
+  },
   "funnel": {
     "title": "Ekteb | From 20,000 items to one ready story",
     "srDesc": "Ekteb analyzes around twenty thousand items a day — video and written reports — drops duplicates and weak material, then ranks about two hundred items by priority and fit. One item becomes a project with transcript, translation, and brand applied, ready for review and then for publishing to YouTube, Facebook, Instagram, TikTok, X, and Telegram.",

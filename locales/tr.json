@@ -276,6 +276,133 @@
   "footer": {
     "copy": "© 2026 Ekteb"
   },
+  "legal": {
+    "footerAria": "Yasal",
+    "privacyLink": "Gizlilik",
+    "termsLink": "Koşullar",
+    "updated": "Son güncelleme:",
+    "see": "Ayrıca bakın:",
+    "privacy": {
+      "meta": {
+        "title": "Gizlilik Politikası | Ekteb",
+        "description": "Ekteb mobil uygulamasının verilerinizi nasıl topladığı, kullandığı ve koruduğu ve hesabınızı nasıl silebileceğiniz."
+      },
+      "h1": "Gizlilik Politikası",
+      "intro_html": "<p>Bu Gizlilik Politikası, iOS ve Android için Ekteb mobil uygulamasını (“Uygulama”) kullandığınızda Ekteb’in (“Ekteb”, “biz”) bilgileri nasıl topladığını, kullandığını ve koruduğunu açıklar. Uygulamayı kullanarak burada açıklanan esasları kabul etmiş olursunuz.</p>",
+      "sections": [
+        {
+          "h": "Topladığımız bilgiler",
+          "body_html": "<p>Yalnızca Uygulamanın çalışması için gerekenleri toplarız:</p><ul><li><b>Hesap bilgileri:</b> adınız, e-posta adresiniz ve varsa bağlı olduğunuz kuruluş. Parolalar yalnızca geri döndürülemez biçimde (hash) saklanır.</li><li><b>Sağladığınız içerik:</b> Uygulamada oluşturduğunuz, yüklediğiniz veya kaydettiğiniz projeler, metinler, altyazılar, dosyalar ve medya.</li><li><b>Kullanım verileri:</b> Google Firebase Analytics aracılığıyla Uygulamanın nasıl kullanıldığına dair bilgiler toplarız; örneğin görüntülenen ekranlar, kullanılan özellikler, uygulama sürümü, cihaz modeli, işletim sistemi, dil, yaklaşık ülke ve uygulama kurulum tanımlayıcısı.</li></ul><p>Uygulama kesin konumunuzu veya kişilerinizi toplamaz, sizi reklam amacıyla izlemez ve cihazınızdaki dosyalara yalnızca siz yüklemeyi seçtiğinizde erişir.</p>"
+        },
+        {
+          "h": "Bilgileri nasıl kullanırız",
+          "body_html": "<p>Topladığımız bilgileri şu amaçlarla kullanırız:</p><ul><li>Uygulamayı ve hesabınızı sağlamak, işletmek ve sürdürmek;</li><li>gönderdiğiniz içeriği işlemek, örneğin yazıya dökmek, çevirmek, altyazı eklemek veya özetlemek;</li><li>sorunları gidermek ve Uygulamayı geliştirmek için kullanımını toplu olarak anlamak;</li><li>Uygulamayı ve kullanıcılarını güvende tutmak ve kötüye kullanımı önlemek;</li><li>mesajlarınıza ve taleplerinize yanıt vermek.</li></ul><p>Verilerinizi satmayız, reklam için kullanmayız ve bunlardan reklam profilleri oluşturmayız.</p>"
+        },
+        {
+          "h": "Bilgilerin paylaşılması",
+          "body_html": "<p>Kişisel verilerinizi satmaz, kiralamaz ve hiçbir üçüncü tarafla paylaşmayız. Tek istisna, yukarıda açıklanan kullanım verilerini bizim adımıza bir hizmet sağlayıcı olarak işleyen Google Firebase Analytics’tir; hesap bilgilerinizi veya içeriğinizi almaz. Google’ın bu verileri nasıl işlediği <a href=\"https://firebase.google.com/support/privacy\">Firebase gizlilik bilgilerinde</a> açıklanmıştır.</p><p>Ayrıca kanunen zorunlu olduğunda veya yetkili bir makam geçerli bir karar verdiğinde bilgileri açıklayabiliriz.</p>"
+        },
+        {
+          "h": "Saklama süresi",
+          "body_html": "<p>Hesap bilgilerini ve içeriği hesabınız etkin olduğu sürece saklarız. Hesabınızı sildiğinizde kişisel verilerinizi ve içeriğinizi, yedekler dahil, 30 gün içinde sileriz. Firebase Analytics kullanım verileri en fazla 14 ay saklanır ve ardından otomatik olarak silinir.</p>"
+        },
+        {
+          "h": "Veri güvenliği",
+          "body_html": "<p>Veriler aktarım sırasında TLS ile şifrelenir ve verilere erişim, hizmeti yürütmek için buna ihtiyaç duyan personelle sınırlıdır. Hiçbir aktarım veya depolama yöntemi tamamen güvenli değildir; ancak bilgilerinizi korumak ve olası bir olaya hızla müdahale etmek için çalışırız.</p>"
+        },
+        {
+          "h": "Haklarınız",
+          "body_html": "<p>Yaşadığınız yere bağlı olarak, hakkınızda tuttuğumuz kişisel verilere erişme, bunları düzeltme, silme, bir kopyasını alma ve işlenmesine itiraz etme veya işlenmesinin kısıtlanmasını isteme haklarına sahip olabilirsiniz. Bu haklardan herhangi birini kullanmak için hesabınızdaki e-posta adresinden <a href=\"mailto:privacy@ekteb.ai\">privacy@ekteb.ai</a> adresine yazın. 30 gün içinde yanıt veririz.</p>"
+        },
+        {
+          "h": "Hesabınızı silme",
+          "body_html": "<p>Hesabınızı istediğiniz zaman silebilirsiniz:</p><ul><li><b>Uygulamada:</b> <b>Ayarlar → Hesap → Hesabı sil</b> yolunu izleyin ve onaylayın.</li><li><b>E-postayla:</b> hesabınızdaki e-posta adresinden <a href=\"mailto:privacy@ekteb.ai\">privacy@ekteb.ai</a> adresine bir silme talebi gönderin.</li></ul><p>Hesabınızı silmek, kişisel verilerinizi ve içeriğinizi “Saklama süresi” bölümünde açıklandığı şekilde kalıcı olarak kaldırır. Bu işlem geri alınamaz.</p>"
+        },
+        {
+          "h": "Çocuklar",
+          "body_html": "<p>Uygulama, 18 yaş ve üzerindeki kullanıcılar için tasarlanmış profesyonel bir araçtır. Çocuklara yönelik değildir ve onlardan bilerek veri toplamayız. Bir çocuğun bize kişisel veri verdiğini düşünüyorsanız bizimle iletişime geçin; bu verileri sileriz.</p>"
+        },
+        {
+          "h": "Bu politikadaki değişiklikler",
+          "body_html": "<p>Bu politikayı zaman zaman güncelleyebiliriz. Bu sayfanın üstündeki “Son güncelleme” tarihi politikanın en son ne zaman değiştiğini gösterir; önemli bir değişiklik yürürlüğe girmeden önce sizi Uygulama içinde bilgilendiririz.</p>"
+        },
+        {
+          "h": "Bize ulaşın",
+          "body_html": "<p>Bu politika veya verilerinizle ilgili her türlü soru için <a href=\"mailto:privacy@ekteb.ai\">privacy@ekteb.ai</a> adresinden bize ulaşın.</p>"
+        }
+      ]
+    },
+    "terms": {
+      "meta": {
+        "title": "Kullanım Koşulları | Ekteb",
+        "description": "iOS ve Android için Ekteb mobil uygulamasının kullanımını düzenleyen koşullar."
+      },
+      "h1": "Kullanım Koşulları",
+      "intro_html": "<p>Bu Kullanım Koşulları (“Koşullar”), Ekteb (“Ekteb”, “biz”) tarafından sunulan iOS ve Android için Ekteb mobil uygulamasını (“Uygulama”) kullanımınızı düzenler. Uygulamayı indirerek, ona erişerek veya onu kullanarak bu Koşulları kabul etmiş olursunuz. Kabul etmiyorsanız Uygulamayı kullanmayın.</p>",
+      "sections": [
+        {
+          "h": "Hizmet",
+          "body_html": "<p>Ekteb bir medya izleme ve içerik platformudur. Uygulama, video ve makale akışlarını takip etmenizi ve içeriği yazıya dökmek, çevirmek, altyazılandırmak, özetlemek ve düzenlemek için araçlar kullanmanızı sağlar. Özellikleri istediğimiz zaman ekleyebilir, değiştirebilir veya kaldırabiliriz.</p>"
+        },
+        {
+          "h": "Uygunluk ve hesaplar",
+          "body_html": "<p>Uygulamayı kullanmak için en az 18 yaşında olmalısınız. Uygulamayı bir kuruluş adına kullanıyorsanız, bu Koşulları o kuruluş adına kabul etmeye yetkili olduğunuzu onaylarsınız.</p><p>Bize verdiğiniz bilgilerin doğruluğundan, giriş bilgilerinizin gizliliğinden ve hesabınız altında gerçekleşen tüm etkinliklerden siz sorumlusunuz. Yetkisiz bir kullanımdan şüphelenirseniz bunu derhal <a href=\"mailto:support@ekteb.ai\">support@ekteb.ai</a> adresine bildirin.</p>"
+        },
+        {
+          "h": "Kabul edilebilir kullanım",
+          "body_html": "<p>Aşağıdakileri yapmamayı kabul edersiniz:</p><ul><li>Uygulamayı yürürlükteki herhangi bir yasa veya düzenlemeye aykırı şekilde kullanmak;</li><li>başkalarının haklarını ihlal eden ya da hukuka aykırı, karalayıcı, nefret içeren veya yanıltıcı içerik yüklemek veya yayımlamak;</li><li>size ait olmayan hesaplara, sistemlere veya verilere erişmeye ya da herhangi bir güvenlik önlemini aşmaya çalışmak;</li><li>yasanın açıkça izin verdiği durumlar dışında Uygulamayı kopyalamak, değiştirmek, kaynak koduna dönüştürmek veya tersine mühendislik uygulamak;</li><li>hizmetten otomatik olarak veri çekmek, hizmeti aşırı yüklemek veya aksatmak ya da iznimiz olmadan hizmete otomatik yollarla erişmek;</li><li>Uygulamayı veya ona erişimi yeniden satmak ya da alt lisansını vermek.</li></ul>"
+        },
+        {
+          "h": "İçeriğiniz",
+          "body_html": "<p>Oluşturduğunuz veya yüklediğiniz içeriğin sahibi siz olmaya devam edersiniz. Ekteb’e, bu içeriği yalnızca Uygulamayı size sunmak amacıyla barındırma, işleme ve görüntüleme için sınırlı ve münhasır olmayan bir lisans verirsiniz. Yüklediğiniz her içerik için gerekli haklara sahip olmaktan ve Uygulamayla ürettiklerinizi nasıl kullandığınız ve yayımladığınızdan siz sorumlusunuz.</p>"
+        },
+        {
+          "h": "Üçüncü taraf içeriği",
+          "body_html": "<p>Uygulamadaki akışlar, üçüncü taraf kaynaklardan gelen materyalleri gösterir ve bunlara bağlantı verir. Bu materyaller sahiplerine aittir; Ekteb bunları onaylamaz ve doğruluklarından veya erişilebilirliklerinden sorumlu değildir. Yeniden yayımlama dahil bu materyalleri kullanımınız, yürürlükteki hukuka göre sizin sorumluluğunuzdadır.</p>"
+        },
+        {
+          "h": "Yapay zekâ tarafından üretilen çıktılar",
+          "body_html": "<p>Döküm metinleri, çeviriler, altyazılar ve özetler otomatik olarak üretilir ve hata veya eksiklik içerebilir. Bunlara güvenmeden veya bunları yayımlamadan önce gözden geçirin. Bu çıktılar profesyonel veya hukuki tavsiye ya da doğrulanmış bilgi kaynağı niteliği taşımaz.</p>"
+        },
+        {
+          "h": "Fikri mülkiyet",
+          "body_html": "<p>Uygulama, yazılımı ve tasarımı ile Ekteb adı ve logosu Ekteb’e veya lisans verenlerine aittir. Bu Koşullara tabi olarak, Uygulamayı sahip olduğunuz veya kontrol ettiğiniz cihazlarda kullanmanız için size kişisel, geri alınabilir, münhasır olmayan ve devredilemez bir lisans veririz.</p>"
+        },
+        {
+          "h": "Ücretli planlar",
+          "body_html": "<p>Bazı özellikler ücretli bir plan gerektirebilir. Her planın fiyatı ve koşulları satın almadan önce gösterilir. App Store veya Google Play üzerinden yapılan satın almalar, iptal ve iadeler dahil olmak üzere Apple veya Google tarafından kendi koşullarına göre faturalandırılır ve yönetilir. Kuruluşlara yönelik planlar ayrı bir sözleşmeye tabi olabilir.</p>"
+        },
+        {
+          "h": "Askıya alma ve sona erdirme",
+          "body_html": "<p>Gizlilik Politikasında açıklandığı şekilde Uygulamayı kullanmayı istediğiniz zaman bırakabilir ve hesabınızı silebilirsiniz. Bu Koşulları ihlal eden veya hizmeti ya da diğer kullanıcıları riske atan bir hesabı askıya alabilir veya kapatabiliriz.</p>"
+        },
+        {
+          "h": "Sorumluluk reddi",
+          "body_html": "<p>Uygulama “olduğu gibi” ve “mevcut olduğu şekliyle” sunulur. Yasanın izin verdiği ölçüde, Uygulamanın kesintisiz, hatasız veya belirli bir amaca uygun olacağı dahil olmak üzere açık ya da örtülü hiçbir garanti vermeyiz.</p>"
+        },
+        {
+          "h": "Sorumluluğun sınırlandırılması",
+          "body_html": "<p>Yasanın izin verdiği ölçüde Ekteb, Uygulamayı kullanımınızdan doğan dolaylı, arızi, özel veya sonuç niteliğindeki zararlardan ya da veri, kâr veya iş kaybından sorumlu değildir. Herhangi bir talep için toplam sorumluluğumuz, talepten önceki 12 ay içinde Uygulama için bize ödediğiniz tutarla sınırlıdır. Bu Koşullardaki hiçbir hüküm, yasa gereği sınırlandırılamayan bir sorumluluğu sınırlamaz.</p>"
+        },
+        {
+          "h": "Uygulama mağazaları",
+          "body_html": "<p>Bu Koşullar Apple veya Google ile değil, sizinle Ekteb arasındadır. Apple ve Google’ın Uygulama için bakım veya destek sağlama yükümlülüğü yoktur ve Uygulamayla ilgili hiçbir talepten sorumlu değildir. Uygulamayı kullanımınız, onu indirdiğiniz mağazanın koşullarına da uygun olmalıdır. Apple ve bağlı şirketleri bu Koşulların üçüncü taraf lehtarlarıdır ve bunları size karşı uygulayabilir.</p>"
+        },
+        {
+          "h": "Bu Koşullardaki değişiklikler",
+          "body_html": "<p>Bu Koşulları güncelleyebiliriz. “Son güncelleme” tarihi Koşulların en son ne zaman değiştiğini gösterir; önemli bir değişiklik yürürlüğe girmeden önce sizi Uygulama içinde bilgilendiririz. Bundan sonra Uygulamayı kullanmaya devam etmeniz, güncellenmiş Koşulları kabul ettiğiniz anlamına gelir.</p>"
+        },
+        {
+          "h": "Uygulanacak hukuk",
+          "body_html": "<p>Bu Koşullar, kanunlar ihtilafı kuralları dikkate alınmaksızın Ekteb’in kayıtlı olduğu ülkenin yasalarına tabidir. Bu, ikamet ettiğiniz ülkenin emredici hukuku kapsamında sahip olduğunuz korumaları ortadan kaldırmaz.</p>"
+        },
+        {
+          "h": "Bize ulaşın",
+          "body_html": "<p>Bu Koşullarla ilgili sorularınızı <a href=\"mailto:support@ekteb.ai\">support@ekteb.ai</a> adresine gönderebilirsiniz.</p>"
+        }
+      ]
+    }
+  },
   "funnel": {
     "title": "Ekteb | 20.000 içerikten yayına hazır tek habere",
     "srDesc": "Ekteb günde yaklaşık yirmi bin içeriği — video ve yazılı raporları — analiz eder, kopya ve zayıf içeriği eler, ardından yaklaşık iki yüz içeriği öncelik ve uygunluğa göre sıralar. Tek bir içerik; deşifre, çeviri ve marka uygulamasının tamamlandığı bir projeye dönüşür, incelemeye ve ardından YouTube, Facebook, Instagram, TikTok, X ve Telegram'da yayına hazır hale gelir.",

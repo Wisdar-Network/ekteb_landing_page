@@ -1,0 +1,9 @@
+{# The strings site.js needs for every email form on the page. #contact renders
+   it; a page without #contact includes it alone so the mobile-menu form
+   still gets its messages. #}<script id="contact-i18n" type="application/json">{{ {
+  "bad": t.contact.msgBad,
+  "sending": t.contact.msgSending,
+  "ok": t.contact.msgOk,
+  "fail": t.contact.msgFail,
+  "rate": t.contact.msgRate
+} | dump | safe }}</script>

@@ -207,3 +207,11 @@ body[data-mnav="1"]{overflow:hidden}
 @media (min-width:768px){
   html:not([lang="ar"]) .prob-outcome p{white-space:normal;text-wrap:balance}
 }
+
+/* Not in the export: the footer links the app's Privacy Policy and Terms of
+   Use, which the store listings point at. They sit between the mark and the
+   copyright, at the copyright's size so the bar keeps its height, and take
+   over the auto margin that pushed the copyright to the far edge. */
+.ftr-legal{display:flex;flex-wrap:wrap;gap:4px 18px;margin-inline-start:auto;font-size:13.5px;line-height:1.75}
+.ftr-legal+.ftr-cr{margin-inline-start:0}
+.ftr-min .ftr-legal a[aria-current="page"]{color:#F7F3EC}

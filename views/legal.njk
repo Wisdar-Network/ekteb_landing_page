@@ -1,0 +1,33 @@
+{% extends "layout.njk" %}
+
+{% block bodyattrs %} id="top"{% endblock %}
+
+{% block body %}
+{% set skipId = 'lgl-doc' %}
+{% include "partials/header.njk" %}
+{# The header is transparent with light text until the page scrolls; this
+   strip gives it the plum it sits on at the top of /. #}
+<div class="lgl-bar" aria-hidden="true"></div>
+<main class="lgl" id="lgl-doc">
+<article class="wrap lgl-in">
+<h1>{{ doc.h1 }}</h1>
+<p class="lgl-date">{{ t.legal.updated }} <time datetime="{{ updatedIso }}">{{ updatedLabel }}</time></p>
+{{ doc.intro_html | safe }}
+{% for s in doc.sections %}
+<h2 id="lgl-s{{ loop.index }}">{{ loop.index }}. {{ s.h }}</h2>
+{{ s.body_html | safe }}
+{% endfor %}
+<p class="lgl-see">{{ t.legal.see }} <a href="/{{ locale }}/{{ other }}">{{ t.legal[other].h1 }}</a></p>
+</article>
+{% include "partials/contact-i18n.njk" %}
+</main>
+{% include "partials/footer.njk" %}
+{% endblock %}
+
+{% block styles %}{{ super() }}
+<link rel="stylesheet" href="{{ asset('/css/legal.css') }}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ asset('/js/site.js') }}" defer></script>
+{% endblock %}

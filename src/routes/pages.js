@@ -142,6 +142,45 @@ pagesRouter.get('/:locale/feeds', async (req, res, next) => {
   )
 })
 
+/* ── /:locale/privacy, /:locale/terms ──────────────────────────────────── */
+
+// The mobile app's store listings link to these URLs, so they must not move.
+// The effective date is one fact for all three languages, so it lives here
+// rather than in each locale file; bump it whenever the text changes.
+const LEGAL_PAGES = {
+  privacy: { updated: '2026-10-29' },
+  terms: { updated: '2026-10-29' },
+}
+
+for (const [page, { updated }] of Object.entries(LEGAL_PAGES)) {
+  pagesRouter.get(`/:locale/${page}`, (req, res, next) => {
+    const { locale } = req.params
+    if (!isLocale(locale)) return next()
+    rememberLocale(req, res, locale)
+    res.set('Cache-Control', 'public, max-age=0, must-revalidate')
+
+    const doc = t(locale).legal[page]
+    const date = new Intl.DateTimeFormat(intlTag(locale), { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+    res.render(
+      'legal.njk',
+      view(locale, {
+        doc,
+        // The page each document links across to at its foot.
+        other: page === 'privacy' ? 'terms' : 'privacy',
+        updatedIso: updated,
+        updatedLabel: date.format(new Date(updated)),
+        canonical: `${config.siteUrl}/${locale}/${page}`,
+        locales: alternates(config.siteUrl, `/${page}`),
+        xDefault: `${config.siteUrl}/${FALLBACK_LOCALE}/${page}`,
+        navBase: `/${locale}`,
+        pagePath: `/${page}`,
+        pageTitle: doc.meta.title,
+        pageDescription: doc.meta.description,
+      })
+    )
+  })
+}
+
 // The scroll-driven funnel lives in its own document so its animation engine
 // keeps a private scroll timeline; it is rendered per locale like any page.
 pagesRouter.get('/funnel/:locale', (req, res, next) => {
@@ -211,6 +250,28 @@ pagesRouter.get('/sitemap.xml', (_req, res) => {
           `    <priority>0.7</priority>`,
           links,
           `    <xhtml:link rel="alternate" hreflang="x-default" href="${config.siteUrl}/${FALLBACK_LOCALE}/feeds"/>`,
+          `  </url>`,
+        ].join('\n')
+      )
+    }
+  }
+  // lastmod is the document's own effective date: the text, not the code
+  // around it, is what a crawler should re-read.
+  for (const [page, { updated }] of Object.entries(LEGAL_PAGES)) {
+    for (const code of LOCALE_CODES) {
+      const links = LOCALE_CODES.map(
+        (alt) =>
+          `    <xhtml:link rel="alternate" hreflang="${LOCALES[alt].htmlLang}" href="${config.siteUrl}/${alt}/${page}"/>`
+      ).join('\n')
+      urls.push(
+        [
+          `  <url>`,
+          `    <loc>${config.siteUrl}/${code}/${page}</loc>`,
+          `    <lastmod>${updated}</lastmod>`,
+          `    <changefreq>yearly</changefreq>`,
+          `    <priority>0.3</priority>`,
+          links,
+          `    <xhtml:link rel="alternate" hreflang="x-default" href="${config.siteUrl}/${FALLBACK_LOCALE}/${page}"/>`,
           `  </url>`,
         ].join('\n')
       )

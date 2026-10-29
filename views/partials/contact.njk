@@ -15,13 +15,7 @@
 <button class="btn btn-p" type="submit">{{ t.contact.submit }}</button>
 </form>
 <p class="ctc-msg" id="ctc-msg" role="status" aria-live="polite"></p>
-<script id="contact-i18n" type="application/json">{{ {
-  "bad": t.contact.msgBad,
-  "sending": t.contact.msgSending,
-  "ok": t.contact.msgOk,
-  "fail": t.contact.msgFail,
-  "rate": t.contact.msgRate
-} | dump | safe }}</script>
+{% include "partials/contact-i18n.njk" %}
 <div class="ctc-trust">
 <span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>{{ t.contact.trust1 }}</span>
 <span><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>{{ t.contact.trust2 }}</span>

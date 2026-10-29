@@ -43,6 +43,9 @@ A fourth, also in `page.css`: the header carries a sixth nav link (Feeds →
 at the design's spacing the Arabic and Turkish labels wrapped onto two lines.
 From 1200px up the header is the export's apart from that extra link.
 
+A fifth, also in `page.css`: the footer links Privacy and Terms between the
+mark and the copyright, at the copyright's size so the bar keeps its height.
+
 ## Architecture
 
 ### Copy lives only in `locales/`
@@ -81,6 +84,7 @@ stylesheet uses logical properties throughout and direction comes from
 - `GET /:locale` → renders `index.njk`. Unknown locale falls through to 404.
 - `GET /funnel/:locale` → the scroll animation as a standalone document.
 - `GET /:locale/feeds` → the visual-feed browser. See **The feeds page**.
+- `GET /:locale/privacy`, `/:locale/terms` → see **The legal pages**.
 - `robots.txt`, `sitemap.xml`, `llms.txt`, `llms-full.txt` are all generated
   from `src/seo.js`, never served as static files.
 
@@ -140,6 +144,23 @@ The filter is plain links (`?type=video|article`) that the server answers;
 `public/js/feeds.js` filters in place and keeps the URL in step. It also lazily
 attaches each clip near the viewport and plays it muted on hover (tap on touch).
 Styles live in `public/css/feeds.css`, loaded only by this page.
+
+### The legal pages
+
+`/:locale/privacy` and `/:locale/terms` are the mobile app's Privacy Policy and
+Terms of Use, and the App Store / Google Play listings link to them, so the
+URLs must not move. Both render `views/legal.njk` from `legal.privacy` /
+`legal.terms` in the locale files: an `intro_html` and a `sections` array of
+`{ h, body_html }`. Add or remove a section in all three files at once.
+
+The effective date is not copy: it lives in `LEGAL_PAGES` in
+`src/routes/pages.js`, is formatted per locale there, and is the sitemap
+`lastmod` for those URLs. Bump it whenever the text changes.
+
+They are plain text by design: no `#contact` section, but they include
+`partials/contact-i18n.njk` on its own, because the mobile-menu form reads
+its strings from that blob. Styles are in `public/css/legal.css`, loaded only
+by these pages.
 
 ### CSP shapes the JavaScript
 
