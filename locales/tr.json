@@ -292,19 +292,19 @@
       "sections": [
         {
           "h": "Topladığımız bilgiler",
-          "body_html": "<p>Yalnızca Uygulamanın çalışması için gerekenleri toplarız:</p><ul><li><b>Hesap bilgileri:</b> adınız, e-posta adresiniz ve varsa bağlı olduğunuz kuruluş. Parolalar yalnızca geri döndürülemez biçimde (hash) saklanır.</li><li><b>Sağladığınız içerik:</b> Uygulamada oluşturduğunuz, yüklediğiniz veya kaydettiğiniz projeler, metinler, altyazılar, dosyalar ve medya.</li><li><b>Kullanım verileri:</b> Google Firebase Analytics aracılığıyla Uygulamanın nasıl kullanıldığına dair bilgiler toplarız; örneğin görüntülenen ekranlar, kullanılan özellikler, uygulama sürümü, cihaz modeli, işletim sistemi, dil, yaklaşık ülke ve uygulama kurulum tanımlayıcısı.</li></ul><p>Uygulama kesin konumunuzu veya kişilerinizi toplamaz, sizi reklam amacıyla izlemez ve cihazınızdaki dosyalara yalnızca siz yüklemeyi seçtiğinizde erişir.</p>"
+          "body_html": "<p>Yalnızca Uygulamanın çalışması için gerekenleri toplarız:</p><ul><li><b>Hesap bilgileri:</b> adınız, e-posta adresiniz ve varsa bağlı olduğunuz kuruluş. Parolalar yalnızca geri döndürülemez biçimde (hash) saklanır.</li><li><b>Sağladığınız içerik:</b> Uygulamada oluşturduğunuz, yüklediğiniz veya kaydettiğiniz projeler, metinler, altyazılar, dosyalar ve medya.</li><li><b>Bildirim verileri:</b> bildirimlere izin verirseniz, içeriğiniz hazır olduğunda size haber verebilmemiz için cihazınızın anlık bildirim jetonunu ve platformunu (iOS veya Android) saklarız. Bu jeton, oturumu kapattığınızda silinir.</li></ul><p>Uygulama kesin konumunuzu veya kişilerinizi toplamaz, sizi reklam amacıyla izlemez ve cihazınızdaki dosyalara yalnızca siz yüklemeyi seçtiğinizde erişir.</p>"
         },
         {
           "h": "Bilgileri nasıl kullanırız",
-          "body_html": "<p>Topladığımız bilgileri şu amaçlarla kullanırız:</p><ul><li>Uygulamayı ve hesabınızı sağlamak, işletmek ve sürdürmek;</li><li>gönderdiğiniz içeriği işlemek, örneğin yazıya dökmek, çevirmek, altyazı eklemek veya özetlemek;</li><li>sorunları gidermek ve Uygulamayı geliştirmek için kullanımını toplu olarak anlamak;</li><li>Uygulamayı ve kullanıcılarını güvende tutmak ve kötüye kullanımı önlemek;</li><li>mesajlarınıza ve taleplerinize yanıt vermek.</li></ul><p>Verilerinizi satmayız, reklam için kullanmayız ve bunlardan reklam profilleri oluşturmayız.</p>"
+          "body_html": "<p>Topladığımız bilgileri şu amaçlarla kullanırız:</p><ul><li>Uygulamayı ve hesabınızı sağlamak, işletmek ve sürdürmek;</li><li>gönderdiğiniz içeriği işlemek, örneğin yazıya dökmek, çevirmek, altyazı eklemek veya özetlemek;</li><li>izin verirseniz içeriğinizle ilgili size bildirim göndermek;</li><li>Uygulamayı ve kullanıcılarını güvende tutmak ve kötüye kullanımı önlemek;</li><li>mesajlarınıza ve taleplerinize yanıt vermek.</li></ul><p>Verilerinizi satmayız, reklam için kullanmayız ve bunlardan reklam profilleri oluşturmayız.</p>"
         },
         {
           "h": "Bilgilerin paylaşılması",
-          "body_html": "<p>Kişisel verilerinizi satmaz, kiralamaz ve hiçbir üçüncü tarafla paylaşmayız. Tek istisna, yukarıda açıklanan kullanım verilerini bizim adımıza bir hizmet sağlayıcı olarak işleyen Google Firebase Analytics’tir; hesap bilgilerinizi veya içeriğinizi almaz. Google’ın bu verileri nasıl işlediği <a href=\"https://firebase.google.com/support/privacy\">Firebase gizlilik bilgilerinde</a> açıklanmıştır.</p><p>Ayrıca kanunen zorunlu olduğunda veya yetkili bir makam geçerli bir karar verdiğinde bilgileri açıklayabiliriz.</p>"
+          "body_html": "<p>Kişisel verilerinizi satmaz, kiralamaz ve hiçbir üçüncü tarafla paylaşmayız. Bildirimleri iletmek için Uygulama, Firebase Cloud Messaging’i (Google tarafından sağlanır) ve Apple’ın anlık bildirim hizmetini kullanır; bu hizmetler hesap bilgilerinizi veya içeriğinizi değil, yalnızca cihazınızın bildirim jetonunu ve bildirim metnini alır.</p><p>Ayrıca kanunen zorunlu olduğunda veya yetkili bir makam geçerli bir karar verdiğinde bilgileri açıklayabiliriz.</p>"
         },
         {
           "h": "Saklama süresi",
-          "body_html": "<p>Hesap bilgilerini ve içeriği hesabınız etkin olduğu sürece saklarız. Hesabınızı sildiğinizde kişisel verilerinizi ve içeriğinizi, yedekler dahil, 30 gün içinde sileriz. Firebase Analytics kullanım verileri en fazla 14 ay saklanır ve ardından otomatik olarak silinir.</p>"
+          "body_html": "<p>Hesap bilgilerini ve içeriği hesabınız etkin olduğu sürece saklarız. Hesabınızı sildiğinizde kişisel verilerinizi ve içeriğinizi, yedekler dahil, 30 gün içinde sileriz. Bildirim jetonları, Uygulamada oturumu kapattığınızda silinir.</p>"
         },
         {
           "h": "Veri güvenliği",
@@ -316,7 +316,7 @@
         },
         {
           "h": "Hesabınızı silme",
-          "body_html": "<p>Hesabınızı istediğiniz zaman silebilirsiniz:</p><ul><li><b>Uygulamada:</b> <b>Ayarlar → Hesap → Hesabı sil</b> yolunu izleyin ve onaylayın.</li><li><b>E-postayla:</b> hesabınızdaki e-posta adresinden <a href=\"mailto:privacy@ekteb.ai\">privacy@ekteb.ai</a> adresine bir silme talebi gönderin.</li></ul><p>Hesabınızı silmek, kişisel verilerinizi ve içeriğinizi “Saklama süresi” bölümünde açıklandığı şekilde kalıcı olarak kaldırır. Bu işlem geri alınamaz.</p>"
+          "body_html": "<p>Hesabınızın silinmesini istediğiniz zaman, hesabınızdaki e-posta adresinden <a href=\"mailto:privacy@ekteb.ai\">privacy@ekteb.ai</a> adresine bir silme talebi göndererek isteyebilirsiniz.</p><p>Hesabınızı silmek, kişisel verilerinizi ve içeriğinizi “Saklama süresi” bölümünde açıklandığı şekilde kalıcı olarak kaldırır. Bu işlem geri alınamaz.</p>"
         },
         {
           "h": "Çocuklar",

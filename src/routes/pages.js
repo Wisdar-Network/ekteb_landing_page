@@ -148,7 +148,7 @@ pagesRouter.get('/:locale/feeds', async (req, res, next) => {
 // The effective date is one fact for all three languages, so it lives here
 // rather than in each locale file; bump it whenever the text changes.
 const LEGAL_PAGES = {
-  privacy: { updated: '2026-10-29' },
+  privacy: { updated: '2026-10-30' },
   terms: { updated: '2026-10-29' },
 }
 

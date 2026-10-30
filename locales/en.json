@@ -292,19 +292,19 @@
       "sections": [
         {
           "h": "Information we collect",
-          "body_html": "<p>We collect only what the App needs to work:</p><ul><li><b>Account information:</b> your name, your email address and, where applicable, the organisation you belong to. Passwords are stored only in hashed form.</li><li><b>Content you provide:</b> the projects, texts, subtitles, files and media you create, upload or save in the App.</li><li><b>Usage data:</b> through Google Firebase Analytics we collect information about how the App is used, such as screens viewed, features used, app version, device model, operating system, language, approximate country and an app-instance identifier.</li></ul><p>The App does not collect your precise location or your contacts, does not track you for advertising, and accesses files on your device only when you choose to upload them.</p>"
+          "body_html": "<p>We collect only what the App needs to work:</p><ul><li><b>Account information:</b> your name, your email address and, where applicable, the organisation you belong to. Passwords are stored only in hashed form.</li><li><b>Content you provide:</b> the projects, texts, subtitles, files and media you create, upload or save in the App.</li><li><b>Notification data:</b> if you allow notifications, a push-notification token for your device and its platform (iOS or Android), so we can tell you when your content is ready. The token is removed when you sign out.</li></ul><p>The App does not collect your precise location or your contacts, does not track you for advertising, and accesses files on your device only when you choose to upload them.</p>"
         },
         {
           "h": "How we use information",
-          "body_html": "<p>We use the information we collect to:</p><ul><li>provide, operate and maintain the App and your account;</li><li>process the content you submit, for example to transcribe, translate, subtitle or summarise it;</li><li>understand, in aggregate, how the App is used so that we can fix problems and improve it;</li><li>keep the App and its users secure and prevent misuse;</li><li>answer your messages and requests.</li></ul><p>We do not sell your data, use it for advertising, or build advertising profiles from it.</p>"
+          "body_html": "<p>We use the information we collect to:</p><ul><li>provide, operate and maintain the App and your account;</li><li>process the content you submit, for example to transcribe, translate, subtitle or summarise it;</li><li>send you notifications about your content, if you allow them;</li><li>keep the App and its users secure and prevent misuse;</li><li>answer your messages and requests.</li></ul><p>We do not sell your data, use it for advertising, or build advertising profiles from it.</p>"
         },
         {
           "h": "Sharing of information",
-          "body_html": "<p>We do not sell, rent or share your personal data with third parties. The only exception is Google Firebase Analytics, which processes the usage data described above on our behalf as a service provider; it does not receive your account information or your content. Google describes how it handles this data in <a href=\"https://firebase.google.com/support/privacy\">Firebase’s privacy information</a>.</p><p>We may also disclose information where the law requires it or a competent authority issues a valid order.</p>"
+          "body_html": "<p>We do not sell, rent or share your personal data with third parties. To deliver notifications, the App uses Firebase Cloud Messaging (provided by Google) and Apple’s push notification service; they receive only your device’s notification token and the text of the notification, not your account information or your content.</p><p>We may also disclose information where the law requires it or a competent authority issues a valid order.</p>"
         },
         {
           "h": "Data retention",
-          "body_html": "<p>We keep account information and content for as long as your account is active. When you delete your account, we delete your personal data and content within 30 days, including from backups. Firebase Analytics usage data is kept for no longer than 14 months and is then deleted automatically.</p>"
+          "body_html": "<p>We keep account information and content for as long as your account is active. When you delete your account, we delete your personal data and content within 30 days, including from backups. Notification tokens are deleted when you sign out of the App.</p>"
         },
         {
           "h": "Data security",
@@ -316,7 +316,7 @@
         },
         {
           "h": "Deleting your account",
-          "body_html": "<p>You can delete your account at any time:</p><ul><li><b>In the App:</b> open <b>Settings → Account → Delete account</b> and confirm.</li><li><b>By email:</b> send a deletion request to <a href=\"mailto:privacy@ekteb.ai\">privacy@ekteb.ai</a> from the email address on your account.</li></ul><p>Deleting your account permanently removes your personal data and content as described under “Data retention”. It cannot be undone.</p>"
+          "body_html": "<p>You can ask us to delete your account at any time by sending a deletion request to <a href=\"mailto:privacy@ekteb.ai\">privacy@ekteb.ai</a> from the email address on your account.</p><p>Deleting your account permanently removes your personal data and content as described under “Data retention”. It cannot be undone.</p>"
         },
         {
           "h": "Children",
