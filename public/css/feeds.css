@@ -6,18 +6,20 @@
 
 /* ── hero band ─────────────────────────────────────── */
 /* The landing hero's plum, so the transparent header reads the same here. */
-.fdp-hero{position:relative;isolation:isolate;overflow:hidden;background:#0D0917;color:#D9D2E4;padding:156px 0 76px}
+.fdp-hero{position:relative;isolation:isolate;overflow:hidden;background:#0D0917;color:#D9D2E4;padding:124px 0 44px}
 .fdp-hero::before{content:"";position:absolute;z-index:-1;inset-inline-start:-10%;bottom:-45%;width:78%;height:140%;background:radial-gradient(50% 50% at 50% 50%,rgba(126,102,182,.44),rgba(96,77,140,0) 72%);pointer-events:none}
 .fdp-hero::after{content:"";position:absolute;z-index:-1;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:22px 22px;-webkit-mask-image:linear-gradient(to bottom,#000,transparent 85%);mask-image:linear-gradient(to bottom,#000,transparent 85%);pointer-events:none}
-.fdp-hero-in{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
-.fdp-eyb{display:inline-flex;align-items:center;gap:10px;height:34px;padding:0 15px;border-radius:999px;border:1px solid rgba(185,169,214,.28);background:rgba(255,255,255,.04);font-size:14px;font-weight:600;color:#C4B7DA}
-.fdp-hero h1{color:#F7F3EC;font-size:clamp(32px,3.8vw,52px);line-height:1.18;letter-spacing:-.015em;max-width:20ch}
-.fdp-hero .lead{color:#B7AEC6;max-width:60ch}
-.fdp-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;max-width:780px;margin-top:22px;border:1px solid rgba(255,255,255,.1);border-radius:var(--r-lg);background:rgba(255,255,255,.035);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.fdp-stats li{display:flex;flex-direction:column;gap:4px;padding:18px 20px;min-width:0}
-.fdp-stats li+li{border-inline-start:1px solid rgba(255,255,255,.1)}
-.fdp-stats b{font-family:var(--ek-lat);font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.1;color:#fff;direction:ltr;unicode-bidi:isolate}
-.fdp-stats span{font-size:14px;line-height:1.5;color:#9F95B3}
+/* An editorial header, the way browse pages (Linear, Vercel, Perplexity) open:
+   no boxes, a large start-aligned title on the grid's edge, and the three
+   figures as one quiet line under it rather than tiles competing with it. */
+.fdp-hero-in{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;text-align:start}
+.fdp-eyb{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#C4B7DA}
+.fdp-hero h1{color:#F7F3EC;font-size:clamp(28px,3vw,44px);line-height:1.14;letter-spacing:-.02em;text-wrap:balance}
+.fdp-stats{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 0;margin-top:2px}
+.fdp-stats li{display:inline-flex;align-items:baseline;gap:7px;min-width:0}
+.fdp-stats li+li::before{content:"";align-self:center;width:4px;height:4px;margin-inline:16px 9px;border-radius:50%;background:rgba(196,183,218,.4)}
+.fdp-stats b{font-family:var(--ek-lat);font-size:17px;font-weight:700;line-height:1.3;color:#fff;direction:ltr;unicode-bidi:isolate}
+.fdp-stats span{font-size:15px;line-height:1.5;color:#9F95B3}
 
 /* live dot — a ping, not a blink */
 .fdp-pulse{position:relative;width:8px;height:8px;flex:none;border-radius:50%;background:#47C586}
@@ -25,9 +27,12 @@
 @keyframes fdp-ping{0%{transform:scale(.5);opacity:.8}100%{transform:scale(1.7);opacity:0}}
 
 /* ── filter bar ────────────────────────────────────── */
-/* Sticks under the fixed header (80px, 72px at <=767px). */
-.fdp-bar{position:sticky;top:80px;z-index:30;background:rgba(255,255,255,.88);-webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid var(--ek-line)}
-.fdp-bar-in{display:flex;align-items:center;gap:16px;min-height:72px}
+/* Sticks under the fixed header (80px, 72px at <=767px). It wears the cards'
+   own background with no rule under it, so the filters read as the head of
+   the grid rather than a separate strip; once it is stuck, the blur keeps the
+   cards scrolling under it from showing through. */
+.fdp-bar{position:sticky;top:80px;z-index:30;background:rgba(251,250,247,.9);-webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px)}
+.fdp-bar-in{display:flex;align-items:center;gap:16px;min-height:72px;padding-top:12px}
 .fdp-tabs{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--ek-line);border-radius:999px;background:var(--ek-soft)}
 .fdp-tabs a{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;font-size:15px;font-weight:600;color:var(--ek-body-2);white-space:nowrap;transition:background .2s var(--ease),color .2s var(--ease),box-shadow .2s var(--ease)}
 .fdp-tabs a:hover{color:var(--ek-ink)}
@@ -38,7 +43,7 @@
 .fdp-live{display:inline-flex;align-items:center;gap:10px;margin:0;margin-inline-start:auto;font-size:14px;font-weight:500;color:var(--ek-muted)}
 
 /* ── grid ──────────────────────────────────────────── */
-.fdp-body{padding:40px 0 var(--s9);background:#FBFAF7}
+.fdp-body{padding:16px 0 var(--s9);background:#FBFAF7}
 .fdp-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
 .fc{display:flex;min-width:0}
 .fc[hidden]{display:none}
@@ -119,10 +124,10 @@
 .fdp-more-btns{justify-content:center}
 }
 @media (max-width:767px){
-.fdp-hero{padding:116px 0 52px}
+.fdp-hero{padding:104px 0 36px}
 .fdp-bar{top:72px}
 .fdp-bar-in{min-height:64px}
-.fdp-body{padding-top:24px}
+.fdp-body{padding-top:8px}
 }
 @media (max-width:600px){
 .fdp-grid{grid-template-columns:minmax(0,1fr)}
@@ -133,9 +138,13 @@
 }
 @media (max-width:480px){
 .fdp-tabs svg{display:none}
-.fdp-stats{grid-template-columns:minmax(0,1fr)}
-.fdp-stats li{flex-direction:row;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 18px;text-align:start}
-.fdp-stats li+li{border-inline-start:0;border-top:1px solid rgba(255,255,255,.1)}
+.fdp-stats{flex-direction:column;align-items:flex-start;gap:4px}
+.fdp-stats li+li::before{display:none}
+}
+@media (max-width:380px){
+.fdp-tabs{gap:2px;padding:3px}
+.fdp-tabs a{padding:0 4px;gap:4px;font-size:13px}
+.fdp-tabs .n{min-width:18px;height:20px;padding:0 4px;font-size:11px}
 }
 @media (prefers-reduced-motion:reduce){
 .fdp-pulse::after,.fdp-grid[data-anim] .fc{animation:none}

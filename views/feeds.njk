@@ -9,10 +9,9 @@
 {# Dark band under the transparent header, the same plum as the landing hero
    and #contact, so the header reads exactly as it does at the top of /. #}
 <section class="fdp-hero" aria-labelledby="fdp-h">
-<div class="wrap fdp-hero-in">
+<div class="wrap-wide fdp-hero-in">
 <span class="fdp-eyb"><span class="fdp-pulse" aria-hidden="true"></span>{{ t.feeds.eyebrow }}</span>
 <h1 id="fdp-h">{{ t.feeds.h1 }}</h1>
-<p class="lead">{{ t.feeds.lead }}</p>
 <ul class="fdp-stats">
 {% for s in t.feeds.stats %}<li><b>{{ s.n }}</b><span>{{ s.label }}</span></li>
 {% endfor %}</ul>

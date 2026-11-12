@@ -11,7 +11,7 @@
     "how": "How it works",
     "features": "Features",
     "usecases": "Use cases",
-    "problem": "The problem",
+    "problem": "Why Ekteb?",
     "faq": "FAQ",
     "feeds": "Feeds",
     "login": "Log in",
@@ -29,37 +29,37 @@
     "lead": "Faster production. Lower cost. Unified management."
   },
   "problem": {
-    "eyebrow": "The problem",
-    "h2_html": "Why content teams<br>choose Ekteb",
-    "lead": "Ekteb removes the slow, manual parts of the daily grind, so your team publishes more and faster without giving up quality.",
+    "eyebrow": "Why Ekteb?",
+    "h2_html": "Why do content teams<br>choose Ekteb?",
+    "lead": "Ekteb automates the time-consuming steps between producing content and publishing it, so your team spends less time on repetitive work and more on creating quality content.",
     "vs": "VS",
     "bad": {
-      "title": "Manual work",
-      "sub": "Watching sources, translating, and preparing a version for every platform by hand costs your team hours every day.",
+      "title": "The traditional way",
+      "sub": "Tracking content sources, transcribing and translating videos, and adapting them for every platform takes serious time and effort.",
       "items": [
-        "Checking dozens of sources by hand, every hour",
-        "Transcribing and translating every video manually",
-        "Building a separate cut and ratio for each platform",
-        "Hours of work for every video you publish"
+        "Constantly tracking sources by hand",
+        "Transcribing and translating videos one by one",
+        "Preparing separate edits and sizes for each platform",
+        "Spending hours on repetitive tasks"
       ],
-      "note": "Routine work eats your team's day. Spend it making more content instead."
+      "note": "Leave the time-consuming routine work to Ekteb, and spend that time creating more content."
     },
     "good": {
       "title": "With Ekteb",
-      "sub": "Upload a video or pick one from the visual feed, and get a publish-ready cut in minutes.",
+      "sub": "Upload a video or pick an item from the feed, and get a publish-ready edit in minutes.",
       "items": [
-        "Ekteb watches your sources and flags what matters, instantly",
-        "Automatic transcription and translation, at high accuracy",
-        "Automatic export at the right size and brand for every platform",
-        "From raw footage to a published video in minutes"
+        "Ekteb watches your sources and alerts you to key developments instantly",
+        "Automatically transcribe and translate your videos with high accuracy",
+        "Prepare your content in the right size and brand identity for every platform",
+        "Speed up video editing and publishing prep"
       ],
       "cta": "Get started"
     },
-    "outcome_html": "<b>The result:</b> a smaller team, faster delivery, and fewer errors and lower cost across every account."
+    "outcome_html": "<b>The result:</b> a smaller team, faster content production, consistent quality across every platform, and lower cost."
   },
   "steps": {
     "eyebrow": "How it works",
-    "h2": "From raw footage to publish-ready content in three steps.",
+    "h2": "Get your content ready to publish in three steps",
     "cta": "Get started",
     "c1": {
       "feedTitle": "Aerial display at the annual show",
@@ -68,28 +68,29 @@
       "add": "Add",
       "setLang": "Arabic",
       "setBrand": "Channel brand",
-      "h3_html": "Upload a video or browse<br>the visual feed",
-      "p": "Start from a file, a link, or a shortlisted item from the feed, then set language, ratio, and brand before you begin."
+      "h3_html": "Add your content",
+      "p": "Start with a file, a link, or an item you pick from the feed, then choose the language, sizes, and brand."
     },
     "c2": {
       "t1": "Transcribe & translate…",
       "t2": "Detect faces…",
       "t3": "Cut & apply brand…",
       "cap": "Subtitles in channel brand",
-      "h3_html": "Let the AI do<br>the work for you",
+      "h3_html": "Leave the details to Ekteb",
       "p": "Ekteb transcribes, translates, cuts, and applies your brand, then hands you a video you can edit or publish as is."
     },
     "c3": {
       "cap": "Scheduled tomorrow 9:00",
-      "h3_html": "Get your outputs<br>and publish or schedule",
-      "p": "Download the outputs, send them straight to your channels, or schedule them at the right size for each platform."
+      "h3_html": "Get publish-ready content",
+      "p": "Download the outputs, send them straight to your channels, or schedule the right post for each platform."
     }
   },
   "feed": {
     "eyebrow": "Visual feed",
-    "h2": "Find what deserves to be published. Turn it into ready content in minutes.",
-    "lead": "Ekteb monitors more than 1,500 accounts and sources, helps your team pick what matters, then turns it into a translated, on-brand video ready for every channel.",
-    "iframeTitle": "From discovery to publish"
+    "h2": "Discover what matters and turn it into publish-ready content in minutes.",
+    "lead": "Ekteb tracks more than 1,500 accounts and sources, so you can reach the latest content in one place and pick what matters to you. Then, with the help of AI, it transcribes, translates, and turns it into an on-brand video ready to publish across platforms.",
+    "iframeTitle": "From discovery to publish",
+    "cta": "Explore the visual feed"
   },
   "feeds": {
     "meta": {
@@ -98,7 +99,6 @@
     },
     "eyebrow": "Visual feed",
     "h1": "Everything being published right now, in one place",
-    "lead": "Ekteb watches the sources you follow around the clock and turns every clip and article into a summarised, translated, tagged item your team can pick from.",
     "stats": [
       {
         "n": "1,500+",
@@ -129,11 +129,11 @@
   },
   "features": {
     "eyebrow": "Features",
-    "h2_html": "A smarter way to edit video,<br>faster than ever.",
-    "lead": "Ekteb takes the slow manual work off your plate, so you produce and publish more without compromising quality.",
+    "h2_html": "A faster editor<br>for a smarter workflow",
+    "lead": "Ekteb takes on the tedious, detailed work for you, so you produce more with consistent quality.",
     "f1": {
       "h3": "Full processing, full control",
-      "p": "Cut, trim, reframe, zoom, blur, subtitle, template, audio, and cover art — all in a browser-based editor. Take the AI's suggestions or adjust every detail by hand before you sign off.",
+      "p": "Prepare your videos easily with tools to cut, trim, resize, zoom, blur, add subtitles, and edit audio. Use AI-powered editing suggestions, or manage every detail yourself in the browser-based editor.",
       "winTitle": "Ekteb editor",
       "laneSubs": "Subtitles",
       "laneFaces": "Faces",
@@ -142,7 +142,7 @@
     },
     "f2": {
       "h3": "Accurate transcription, translation in 30+ languages",
-      "p": "It knows who is speaking and when, and splits the text by speaker automatically — instead of someone spending hours transcribing and labelling. Source and translation sit side by side on the timeline, with subtitles styled to match your brand and lift completion rates.",
+      "p": "Turn your videos into text automatically, tell speakers apart, and translate your content into more than 30 languages. Compare the original text and translations on the timeline, and style your subtitles to match your brand's visual identity.",
       "srcLabel": "Source",
       "trLabel": "Translation",
       "srcDir": "rtl",
@@ -156,7 +156,7 @@
     },
     "f3": {
       "h3": "Your brand, applied automatically",
-      "p": "Upload your logo, colours, fonts, templates, and tone of voice once. Everything Ekteb produces after that comes out consistent with your brand — no redesign or reformatting per item.",
+      "p": "Define your logo, colours, fonts, and templates once. Ekteb applies your brand identity to everything you prepare automatically, so you never have to rework it for each video.",
       "before": "Before",
       "logo": "Logo",
       "colours": "Colours",
@@ -167,22 +167,22 @@
       "bar": "Breaking · Ekteb"
     },
     "f4": {
-      "h3": "A cover suggested for every video",
-      "p": "Ekteb proposes covers from the strongest frames, in the sizes each social platform needs."
+      "h3": "Cover suggestions for each video",
+      "p": "Ekteb analyzes the most eye-catching frames in your video and suggests different cover images. Choose from the suggestions and prepare your covers in the right dimensions for the platform you're publishing to."
     },
     "f5": {
-      "h3": "Ekteb knows who is on screen",
-      "p": "Pick a face and Ekteb finds every appearance, collects the shots, and reframes the video around them automatically."
+      "h3": "Smart face tracking",
+      "p": "Ekteb automatically detects the people in your video and follows the person you choose throughout the footage. It adjusts the framing around them, making it easy to turn multi-speaker videos like interviews and podcasts into vertical format."
     },
     "f6": {
-      "h3": "Scheduled publishing to every platform",
-      "p": "Pick your channels, set the time, and Ekteb publishes on schedule."
+      "h3": "Scheduled publishing on every platform",
+      "p": "Choose which platforms to share your content on and set the publish date and time. Ekteb automatically publishes your videos to the social accounts you selected, at the time you set."
     }
   },
   "usecases": {
     "eyebrow": "Use cases",
-    "h2_html": "Ekteb is for every team<br>publishing every day",
-    "lead": "From newsrooms to agencies and creators, Ekteb shortens the distance between raw footage and a finished post.",
+    "h2_html": "Ekteb is for everyone<br>who creates content",
+    "lead": "From newsrooms to creators, and from social media teams to brands, Ekteb simplifies the whole journey from video production to publishing.",
     "items": [
       {
         "h3": "Media organizations",
@@ -203,70 +203,70 @@
     ]
   },
   "enterprise": {
-    "badge": "Enterprise ready",
-    "h2": "Built to meet your organization's requirements",
+    "badge": "Enterprise solutions",
+    "h2": "A complete platform built for professional production",
     "items": [
       {
-        "h3_html": "Your content stays <b>yours</b>",
-        "p": "A clear data retention policy, and your content is never used to train models."
+        "h3_html": "Your content is <b>safe</b>",
+        "p": "Your content is stored securely and is never used to train AI models without your permission."
       },
       {
-        "h3_html": "Full control over <b>permissions</b>",
-        "p": "Roles, groups, and granular permissions at the project and item level."
+        "h3_html": "<b>Permissions</b> under control",
+        "p": "Set your team members' access and permissions. Manage who can do what, by project and by content."
       },
       {
-        "h3_html": "Fits <b>your stack</b>",
-        "p": "An open API, plus integrations with publishing platforms and media libraries."
+        "h3_html": "Works with <b>your tools</b>",
+        "p": "With open API support and integration options, easily bring Ekteb into your existing tools and publishing workflows."
       },
       {
-        "h3_html": "Real <b>Arabic</b> support",
-        "p": "A full RTL interface and a team working in your timezone."
+        "h3_html": "Dedicated <b>Arabic</b> support",
+        "p": "Use Ekteb comfortably in your own language, with an RTL-ready interface and an Arabic-speaking support team."
       }
     ]
   },
   "faq": {
-    "eyebrow": "FAQ",
+    "eyebrow": "Frequently asked questions",
     "h2": "Questions?",
     "items": [
       {
-        "q": "What kind of content can I start from?",
-        "a": "Upload a video, paste a link, add an article, or pick an item from the visual feed. In every case Ekteb creates a single project and starts preparing the content inside it."
+        "q": "What kind of content can I add to Ekteb?",
+        "a": "You can upload a video directly to Ekteb, share a video link, add an article, or pick content from the visual feed. Ekteb creates a project for the content you chose, and you continue editing from there."
       },
       {
         "q": "Which languages does Ekteb support?",
-        "a": "Ekteb translates and generates content in multiple languages with near-native accuracy, so you can reach a global audience without the overhead.",
+        "a": "Ekteb supports transcription and translation in more than 30 languages. You can automatically turn the speech in your videos into text, translate it into other languages, and prepare multilingual subtitles.",
         "open": true
       },
       {
         "q": "What is the visual feed?",
-        "a": "A discovery surface that gathers new material from more than 1,500 accounts and sources. Ekteb analyzes around 20,000 videos a day, drops duplicates and weak material, then ranks about 200 items by priority and editorial fit."
+        "a": "The visual feed lets you discover the latest content Ekteb gathers from different sources, all in one place. Ekteb tracks more than 1,500 accounts and sources and analyzes around 20,000 videos every day. It filters out duplicate and low-quality content, then ranks about 200 standout items by importance and fit for publishing."
       },
       {
-        "q": "Can I edit the output before approving it?",
-        "a": "Yes. Every output is reviewable and editable — transcript, translation, title, description, clips, cover, and template. The final call always stays with your team."
+        "q": "Can I edit videos before publishing them?",
+        "a": "Of course. You can review the videos Ekteb prepares and make any changes you want before publishing, including the transcript, translation, title, description, video clips, cover image, and templates."
       },
       {
-        "q": "How does Ekteb keep my brand consistent?",
-        "a": "Templates, logo, colours, fonts, subtitle styling, and tags are stored in the platform, then applied automatically to new material."
+        "q": "How does Ekteb protect my brand identity?",
+        "a": "Just define your logo, brand colours, fonts, and templates in Ekteb once. These settings are applied automatically to your new content, so you keep the same visual language across the videos you publish on every platform."
       },
       {
-        "q": "Which channels can I publish to?",
-        "a": "Ekteb publishes to YouTube, Facebook, Instagram, TikTok, X, and Telegram. Publish immediately or schedule for later."
+        "q": "Which platforms can I publish to with Ekteb?",
+        "a": "With Ekteb you can publish content to your YouTube, Instagram, TikTok, Facebook, X, and Telegram accounts. Share your videos instantly or schedule them for the date and time you want."
       },
       {
-        "q": "How does our team get started?",
-        "a": "We start with an onboarding session to understand your workflow, then set up templates, connect accounts, and train your users on discovery, production, review, and publishing."
+        "q": "How does our team get started with Ekteb?",
+        "a": "First, we assess your team's needs and current content production process together. Then we connect your accounts, prepare your templates, and train your team on how to use the platform."
       }
     ]
   },
   "contact": {
-    "eyebrow": "Next step",
-    "h2": "See how Ekteb works inside your team",
-    "lead": "Leave your email and the Ekteb team will set up a short session walking through the workflow that fits your team.",
+    "eyebrow": "Discover Ekteb",
+    "h2": "Want to get to know Ekteb better?",
+    "lead": "Leave your email, and we'll get in touch to discuss your needs and plan a workflow tailored to you.",
     "emailLabel": "Email address",
     "submit": "Get in touch",
     "trust1": "A reply within one business day",
-    "trust2": "An onboarding session with your team",
+    "trust2": "Planning tailored to your needs",
     "msgBad": "Enter a valid email address.",
     "msgSending": "Sending…",
     "msgOk": "Got it. The Ekteb team will get back to you within one business day.",
@@ -407,7 +407,7 @@
     "title": "Ekteb | From 20,000 items to one ready story",
     "srDesc": "Ekteb analyzes around twenty thousand items a day — video and written reports — drops duplicates and weak material, then ranks about two hundred items by priority and fit. One item becomes a project with transcript, translation, and brand applied, ready for review and then for publishing to YouTube, Facebook, Instagram, TikTok, X, and Telegram.",
     "t1": "Multi-source monitoring",
-    "t1lbl": "items analyzed today — video and reports",
+    "t1lbl": "items analyzed today",
     "t2": "Analysis and shortlisting",
     "t2lbl": "items ranked by priority and fit",
     "t3": "Ready to edit",
@@ -429,7 +429,7 @@
     "chipSaved": "Saved",
     "source": "© Source",
     "sub": "Aid groups call for crossings to open to relief convoys",
-    "watch": "Monitoring new material",
+    "watch": "Tracking new content",
     "drop": "Dropping duplicates and weak material",
     "ranked": "200 items ranked by priority",
     "pick": "Suggested for your team",

@@ -111,7 +111,7 @@ export function structuredData(locale) {
     inLanguage: langs,
     publisher: { '@id': ORG() },
     provider: { '@id': ORG() },
-    screenshot: `${config.siteUrl}/media/opt/hero-app.webp`,
+    screenshot: `${config.siteUrl}/media/opt/hero-app-${locale}.webp`,
     featureList: ['f1', 'f2', 'f3', 'f4', 'f5', 'f6'].map((k) => tr.features[k].h3),
   }
 
