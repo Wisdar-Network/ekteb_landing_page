@@ -17,6 +17,9 @@ export const pagesRouter = Router()
 
 function appUrlFor(locale) {
   const url = new URL(config.appUrl)
+  // The portal's root 302s to /login and drops the query string, so a bare
+  // origin in APP_URL would lose ?lang and the portal falls back to Arabic.
+  if (url.pathname === '/') url.pathname = '/login'
   url.searchParams.set('lang', locale)
   return url.href
 }

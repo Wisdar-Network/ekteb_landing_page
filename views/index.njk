@@ -11,17 +11,14 @@
 {% block preload %}<link rel="preload" as="image" href="{{ asset('/media/opt/hero-app-' + locale + '-1100.webp') }}" imagesrcset="{{ asset('/media/opt/hero-app-' + locale + '-800.webp') }} 800w, {{ asset('/media/opt/hero-app-' + locale + '-1100.webp') }} 1100w, {{ asset('/media/opt/hero-app-' + locale + '-1500.webp') }} 1500w, {{ asset('/media/opt/hero-app-' + locale + '.webp') }} 2000w" imagesizes="(max-width:1023px) 100vw, min(94vw, 100vh, 1070px)" type="image/webp" media="(min-width:768px)" fetchpriority="high">
 <link rel="preload" as="image" href="{{ asset('/media/opt/hero-app-' + locale + '-m.webp') }}" imagesrcset="{{ asset('/media/opt/hero-app-' + locale + '-m-400.webp') }} 400w, {{ asset('/media/opt/hero-app-' + locale + '-m-800.webp') }} 800w, {{ asset('/media/opt/hero-app-' + locale + '-m.webp') }} 1200w" imagesizes="100vw" type="image/webp" media="(max-width:767px)" fetchpriority="high">{% endblock %}
 
-{% block styles %}{{ super() }}
-<link rel="stylesheet" href="{{ asset('/css/pricing.css') }}">
-{% endblock %}
-
 {% block body %}
 {% include "partials/header.njk" %}
 <main>
 {% include "partials/hero.njk" %}
 {% include "partials/problem.njk" %}
 {% include "partials/steps.njk" %}
-{% include "partials/pricing.njk" %}
+{# Pricing is built but on hold. To publish it, include partials/pricing.njk
+   here and add /css/pricing.css to the styles block. #}
 {% include "partials/feed.njk" %}
 {% include "partials/features.njk" %}
 {% include "partials/usecases.njk" %}
