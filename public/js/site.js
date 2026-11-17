@@ -267,4 +267,26 @@
     setTimeout(send, 300)
     send()
   })()
+
+  /* ---- Pricing: monthly / yearly switch ----
+     Each price and billing note carries both texts in data-m / data-y; the
+     markup ships the monthly ones, so this only swaps text. */
+  ;(function () {
+    var root = document.getElementById('pricing')
+    if (!root) return
+    var btns = root.querySelectorAll('.ekp-switch [data-bill]')
+    var vals = root.querySelectorAll('[data-m][data-y]')
+    function set(mode) {
+      root.setAttribute('data-bill', mode)
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].setAttribute('aria-pressed', btns[i].getAttribute('data-bill') === mode ? 'true' : 'false')
+      }
+      for (var j = 0; j < vals.length; j++) {
+        vals[j].textContent = vals[j].getAttribute('data-' + mode)
+      }
+    }
+    for (var k = 0; k < btns.length; k++) {
+      btns[k].addEventListener('click', function () { set(this.getAttribute('data-bill')) })
+    }
+  })()
 })()

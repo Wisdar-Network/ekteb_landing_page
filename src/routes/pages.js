@@ -15,6 +15,12 @@ import { listFeeds, feedsLive } from '../services/feeds.js'
 
 export const pagesRouter = Router()
 
+function appUrlFor(locale) {
+  const url = new URL(config.appUrl)
+  url.searchParams.set('lang', locale)
+  return url.href
+}
+
 function view(locale, extra = {}) {
   return {
     locale,
@@ -23,7 +29,8 @@ function view(locale, extra = {}) {
     locales: alternates(config.siteUrl, ''),
     localeCodes: LOCALE_CODES,
     siteUrl: config.siteUrl,
-    appUrl: config.appUrl,
+    // The portal opens in the language the visitor was reading: ?lang=ar|en|tr.
+    appUrl: appUrlFor(locale),
     canonical: `${config.siteUrl}/${locale}`,
     // Derived, not written into the template: x-default names the page an
     // unmatched visitor gets, so it has to follow pickLocale() rather than sit

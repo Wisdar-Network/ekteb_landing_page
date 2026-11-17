@@ -1,0 +1,49 @@
+{# Not part of the design export: added after #steps. Plan names, prices and
+   limits come from the pricing reference; copy lives in t.pricing.
+   Every price carries both periods in data-m / data-y and site.js swaps the
+   text, so without script the page simply shows the monthly prices. #}
+<section class="sec ekp-sec" id="pricing" data-bill="m" aria-labelledby="pricing-h">
+<div class="wrap-wide">
+<div class="hiw-head rv">
+<span class="eyebrow">{{ t.pricing.eyebrow }}</span>
+<h2 id="pricing-h">{{ t.pricing.h2 }}</h2>
+<p class="lead">{{ t.pricing.lead }}</p>
+</div>
+
+<div class="ekp-switch rv" role="group" aria-label="{{ t.pricing.billingAria }}">
+<button type="button" data-bill="m" aria-pressed="true">{{ t.pricing.monthly }}</button>
+<button type="button" data-bill="y" aria-pressed="false">{{ t.pricing.yearly }}<span class="ekp-save">{{ t.pricing.save }}</span></button>
+</div>
+
+<ul class="ekp-grid rv">
+{% for p in t.pricing.plans %}
+{% set ent = not p.m %}
+<li class="ekp-card{% if loop.index == 3 %} is-pop{% endif %}{% if ent %} is-ent{% endif %}">
+{% if loop.index == 3 %}<span class="ekp-badge">{{ t.pricing.popular }}</span>{% endif %}
+<div class="ekp-top">
+<span class="ekp-cat">{{ t.pricing.cat }} {{ loop.index }}</span>
+<h3 class="ekp-name">{{ p.name }}</h3>
+</div>
+<p class="ekp-desc">{{ p.desc }}</p>
+{% if ent %}
+<p class="ekp-price"><span class="ekp-custom">{{ t.pricing.custom }}</span></p>
+<p class="ekp-billed">{{ t.pricing.customNote }}</p>
+<a class="btn btn-s ekp-cta" href="#contact">{{ p.cta }}<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ekp-arr"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+{% else %}
+<p class="ekp-price"><span class="ekp-amt" dir="ltr"><span class="ekp-cur">$</span><b data-m="{{ p.m }}" data-y="{{ p.y }}">{{ p.m }}</b></span><span class="ekp-per">{{ t.pricing.per }}</span></p>
+<p class="ekp-billed" data-m="{{ t.pricing.billedM }}" data-y="{{ t.pricing.billedY }}">{{ t.pricing.billedM }}</p>
+<a class="btn {% if loop.index == 3 %}btn-p{% else %}btn-s{% endif %} ekp-cta" href="{{ appUrl }}">{{ p.cta }}</a>
+{% endif %}
+<div class="ekp-feats">
+{% if p.incl %}<p class="ekp-incl">{{ p.incl }}</p>{% endif %}
+<ul>
+{% for f in p.feats %}<li><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>{{ f.t }}</span>{% if f.v %}<b>{{ f.v }}</b>{% endif %}</li>
+{% endfor %}</ul>
+</div>
+</li>
+{% endfor %}
+</ul>
+
+<p class="ekp-trust rv">{{ t.pricing.trust }}</p>
+</div>
+</section>

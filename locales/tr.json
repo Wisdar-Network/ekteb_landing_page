@@ -85,6 +85,137 @@
       "p": "Çıktıları indirin, doğrudan kanallarınıza gönderin ya da her platform için doğru yayını planlayın."
     }
   },
+  "pricing": {
+    "eyebrow": "Fiyatlandırma",
+    "h2": "Basit fiyatlandırma, büyüdükçe ölçeklenin",
+    "lead": "Yayına hazır videoları dakikalar içinde oluşturun, montaj bilgisi gerekmez. Her şeyi 14 gün ücretsiz deneyin.",
+    "trust": "Kredi kartı gerekmez · İstediğiniz zaman iptal edin",
+    "billingAria": "Faturalandırma dönemi",
+    "monthly": "Aylık",
+    "yearly": "Yıllık",
+    "save": "%20 tasarruf",
+    "popular": "En popüler",
+    "cat": "Kategori",
+    "per": "/ay",
+    "billedM": "Aylık faturalandırılır",
+    "billedY": "Yıllık faturalandırılır",
+    "plans": [
+      {
+        "name": "Starter",
+        "desc": "Yeni başlayan bireysel içerik üreticileri için",
+        "m": "1.700",
+        "y": "1.360",
+        "incl": "",
+        "feats": [
+          {
+            "t": "Kapak üretimine erişim",
+            "v": ""
+          },
+          {
+            "t": "Makale çevirisine erişim",
+            "v": ""
+          },
+          {
+            "t": "Akışa erişim",
+            "v": ""
+          },
+          {
+            "t": "Özel şablon",
+            "v": "1"
+          },
+          {
+            "t": "Günlük maksimum video",
+            "v": "5"
+          }
+        ],
+        "cta": "Hemen başlayın"
+      },
+      {
+        "name": "Growth",
+        "desc": "Düzenli yayın yapan küçük ekipler için",
+        "m": "4.000",
+        "y": "3.200",
+        "incl": "",
+        "feats": [
+          {
+            "t": "Kapak üretimine erişim",
+            "v": ""
+          },
+          {
+            "t": "Makale çevirisine erişim",
+            "v": ""
+          },
+          {
+            "t": "Akışa erişim",
+            "v": ""
+          },
+          {
+            "t": "Özel şablon",
+            "v": "1"
+          },
+          {
+            "t": "Günlük maksimum video",
+            "v": "12"
+          }
+        ],
+        "cta": "Hemen başlayın"
+      },
+      {
+        "name": "Pro",
+        "desc": "Büyüyen medya ekipleri ve haber merkezleri için",
+        "m": "10.000",
+        "y": "8.000",
+        "incl": "Growth'taki her şey, artı:",
+        "feats": [
+          {
+            "t": "7/24 destek",
+            "v": ""
+          },
+          {
+            "t": "Özel şablon",
+            "v": "3'e kadar"
+          },
+          {
+            "t": "Günlük maksimum video",
+            "v": "30"
+          }
+        ],
+        "cta": "Pro denemesini başlatın"
+      },
+      {
+        "name": "Enterprise",
+        "desc": "İhtiyaçlarınıza göre size özel bir çözüm oluşturmak için bizimle iletişime geçin.",
+        "m": "",
+        "y": "",
+        "incl": "Pro'daki her şey, artı:",
+        "feats": [
+          {
+            "t": "Sınırsız şablon",
+            "v": ""
+          },
+          {
+            "t": "Günlük sınırsız video",
+            "v": ""
+          },
+          {
+            "t": "Özel müşteri temsilcisi",
+            "v": ""
+          },
+          {
+            "t": "Özel SLA ve API erişimi",
+            "v": ""
+          },
+          {
+            "t": "Kurulum ve eğitim",
+            "v": ""
+          }
+        ],
+        "cta": "Satış ekibiyle görüşün"
+      }
+    ],
+    "custom": "Özel fiyat",
+    "customNote": "Hacminize ve ihtiyaçlarınıza göre"
+  },
   "feed": {
     "eyebrow": "Görsel akış",
     "h2": "Önemli içerikleri keşfedin, dakikalar içinde yayına hazır içeriğe dönüştürün.",
